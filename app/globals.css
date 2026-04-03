@@ -1,26 +1,177 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0908;
+  --foreground: #f4ede0;
+  --surface: #11100d;
+  --surface-strong: #181613;
+  --surface-soft: rgba(19, 17, 14, 0.78);
+  --muted: #cabda7;
+  --muted-strong: #e4d3b3;
+  --accent: #caa56a;
+  --accent-strong: #f0d5a8;
+  --line: rgba(236, 216, 180, 0.12);
+  --line-strong: rgba(236, 216, 180, 0.22);
+  --shadow: 0 28px 80px rgba(0, 0, 0, 0.34);
+  --shadow-soft: 0 16px 40px rgba(0, 0, 0, 0.26);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-surface-soft: var(--surface-soft);
+  --color-muted: var(--muted);
+  --color-muted-strong: var(--muted-strong);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-display);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 7rem;
 }
 
 body {
-  background: var(--background);
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, rgba(202, 165, 106, 0.14), transparent 24%),
+    radial-gradient(circle at 78% 12%, rgba(221, 184, 123, 0.08), transparent 18%),
+    linear-gradient(180deg, #120f0b 0%, #0a0908 46%, #0b0907 100%);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), sans-serif;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 20%, transparent 82%, rgba(255, 255, 255, 0.02)),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.012) 0 1px, transparent 1px 4px);
+  mix-blend-mode: soft-light;
+  opacity: 0.2;
+  z-index: 0;
+}
+
+::selection {
+  background: rgba(202, 165, 106, 0.24);
+  color: #fff7ea;
+}
+
+a,
+button,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a,
+button {
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 3px;
+}
+
+audio {
+  display: none;
+}
+
+.panel {
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(180deg, rgba(28, 24, 20, 0.94), rgba(16, 14, 11, 0.96));
+  box-shadow: var(--shadow-soft);
+}
+
+.panel-soft {
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(180deg, rgba(21, 18, 15, 0.82), rgba(13, 11, 9, 0.9));
+  box-shadow: var(--shadow-soft);
+}
+
+.section-anchor {
+  scroll-margin-top: 7rem;
+}
+
+.gold-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(240, 213, 168, 0.46), transparent);
+}
+
+.identity-marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent 0, black 8%, black 92%, transparent 100%);
+}
+
+.identity-track {
+  width: max-content;
+  animation: identity-drift 30s linear infinite;
+}
+
+.hero-image-shadow {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 40px 80px rgba(0, 0, 0, 0.4);
+}
+
+.button-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 18%, rgba(255, 255, 255, 0.18) 50%, transparent 78%);
+  transform: translateX(-160%);
+  transition: transform 600ms ease;
+}
+
+.button-shine:hover::after,
+.button-shine:focus-visible::after {
+  transform: translateX(160%);
+}
+
+@keyframes identity-drift {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .identity-track {
+    animation: none;
+  }
+
+  a,
+  button {
+    transition: none;
+  }
 }

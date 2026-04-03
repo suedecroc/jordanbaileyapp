@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 
-import { HomePage } from "@/components/home-page";
+import { AboutPage } from "@/components/about-page";
 import { siteDescription } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Jordan Bailey",
+  title: "About Jordan Bailey",
   description: siteDescription,
   alternates: {
-    canonical: "/",
+    canonical: "/about",
   },
 };
 
 export default function Page() {
-  return <HomePage />;
+  return <AboutPage />;
 }
