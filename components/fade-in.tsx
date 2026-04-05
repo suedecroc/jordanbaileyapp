@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
@@ -21,14 +21,14 @@ export function FadeIn({
   }
 
   return (
-    <motion.div
+    <m.div
       className={cn(className)}
-      initial={{ opacity: 0, y: 22 }}
+      initial={{ opacity: 0, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.34, delay, ease: [0.22, 1, 0.36, 1] as const }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }

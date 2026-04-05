@@ -25,7 +25,10 @@ function FieldError({
 export function BookingForm() {
   const { locale } = useLanguage();
   const formRef = useRef<HTMLFormElement | null>(null);
-  const [state, formAction, pending] = useActionState(submitBookingRequest, initialBookingFormState);
+  const [state, formAction, pending] = useActionState(
+    submitBookingRequest,
+    initialBookingFormState,
+  );
 
   useEffect(() => {
     if (state.status === "success") {
@@ -34,8 +37,8 @@ export function BookingForm() {
   }, [state.status]);
 
   return (
-    <div className="panel rounded-[2rem] p-6 sm:p-8">
-      <form ref={formRef} action={formAction} className="grid gap-5" noValidate={false}>
+    <div className="sheet-card rounded-[1.9rem] p-6 sm:p-8">
+      <form ref={formRef} action={formAction} className="grid gap-5">
         <div className="grid gap-5 sm:grid-cols-2">
           {bookingFields.slice(0, 2).map((field) => (
             <label key={field.name} className="block">
@@ -47,7 +50,7 @@ export function BookingForm() {
                 type={field.type}
                 required={field.required}
                 minLength={"minLength" in field ? field.minLength : undefined}
-                className="w-full rounded-[1.25rem] border border-[var(--line)] bg-[rgba(255,255,255,0.02)] px-4 py-3.5 text-base text-foreground placeholder:text-[rgba(244,237,224,0.32)]"
+                className="input-shell"
               />
               <FieldError errors={state.fieldErrors[field.name]} />
             </label>
@@ -65,7 +68,7 @@ export function BookingForm() {
                   name={field.name}
                   required={field.required}
                   defaultValue=""
-                  className="w-full rounded-[1.25rem] border border-[var(--line)] bg-[rgba(255,255,255,0.02)] px-4 py-3.5 text-base text-foreground"
+                  className="input-shell"
                 >
                   <option value="" disabled>
                     {locale === "de" ? "Bitte auswählen" : "Select one"}
@@ -87,7 +90,7 @@ export function BookingForm() {
                   name={field.name}
                   type={field.type}
                   required={field.required}
-                  className="w-full rounded-[1.25rem] border border-[var(--line)] bg-[rgba(255,255,255,0.02)] px-4 py-3.5 text-base text-foreground placeholder:text-[rgba(244,237,224,0.32)]"
+                  className="input-shell"
                 />
                 <FieldError errors={state.fieldErrors[field.name]} />
               </label>
@@ -105,7 +108,7 @@ export function BookingForm() {
                 name={field.name}
                 type={field.type}
                 required={field.required}
-                className="w-full rounded-[1.25rem] border border-[var(--line)] bg-[rgba(255,255,255,0.02)] px-4 py-3.5 text-base text-foreground placeholder:text-[rgba(244,237,224,0.32)]"
+                className="input-shell"
               />
               <FieldError errors={state.fieldErrors[field.name]} />
             </label>
@@ -121,7 +124,7 @@ export function BookingForm() {
             required
             minLength={24}
             rows={6}
-            className="w-full rounded-[1.25rem] border border-[var(--line)] bg-[rgba(255,255,255,0.02)] px-4 py-3.5 text-base text-foreground placeholder:text-[rgba(244,237,224,0.32)]"
+            className="input-shell min-h-[11rem] resize-y"
           />
           <FieldError errors={state.fieldErrors.projectDetails} />
         </label>
@@ -130,11 +133,7 @@ export function BookingForm() {
           <span className="mb-2 block text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-muted">
             {getLocalizedText(bookingFields[7].label, locale)}
           </span>
-          <input
-            name="referenceLink"
-            type="url"
-            className="w-full rounded-[1.25rem] border border-[var(--line)] bg-[rgba(255,255,255,0.02)] px-4 py-3.5 text-base text-foreground placeholder:text-[rgba(244,237,224,0.32)]"
-          />
+          <input name="referenceLink" type="url" className="input-shell" />
           <FieldError errors={state.fieldErrors.referenceLink} />
         </label>
 
@@ -152,15 +151,25 @@ export function BookingForm() {
             className={cn(
               "rounded-[1.35rem] border px-4 py-4 text-sm leading-6",
               state.status === "success"
-                ? "border-[rgba(240,213,168,0.22)] bg-[rgba(240,213,168,0.08)] text-foreground"
+                ? "border-[rgba(111,67,35,0.14)] bg-[rgba(255,255,255,0.72)] text-foreground"
                 : state.status === "fallback"
-                  ? "border-[rgba(241,190,156,0.22)] bg-[rgba(241,190,156,0.08)] text-[#ffe0cd]"
-                  : "border-[rgba(241,190,156,0.22)] bg-[rgba(241,190,156,0.08)] text-[#ffd9bf]",
+                  ? "border-[rgba(149,94,63,0.18)] bg-[rgba(252,244,236,0.86)] text-[var(--paper-ink)]"
+                  : "border-[rgba(149,94,63,0.18)] bg-[rgba(252,244,236,0.86)] text-[var(--paper-ink)]",
             )}
             aria-live="polite"
           >
             <p className="font-semibold uppercase tracking-[0.18em]">
-              {state.status === "success" ? "Got it." : state.status === "fallback" ? "Direct fallback." : "Tighten the details."}
+              {state.status === "success"
+                ? locale === "de"
+                  ? "Verstanden."
+                  : "Got it."
+                : state.status === "fallback"
+                  ? locale === "de"
+                    ? "Direkter Ausweg."
+                    : "Direct fallback."
+                  : locale === "de"
+                    ? "Details schärfen."
+                    : "Tighten the details."}
             </p>
             <p className="mt-2">{state.message}</p>
 
@@ -182,10 +191,14 @@ export function BookingForm() {
         <button
           type="submit"
           disabled={pending}
-          className="button-shine relative inline-flex min-h-13 items-center justify-center rounded-full border border-[rgba(240,213,168,0.34)] bg-[linear-gradient(180deg,#f3dfbb_0%,#dfbe86_34%,#b88d52_100%)] px-6 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#1a130b] shadow-[0_18px_38px_rgba(0,0,0,0.28),inset_0_1px_0_rgba(255,255,255,0.36)] disabled:cursor-not-allowed disabled:opacity-70"
+          className="button-rail inline-flex min-h-[3.35rem] items-center justify-center px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] disabled:cursor-not-allowed disabled:opacity-70"
         >
           {pending ? (
-            locale === "de" ? "Wird gesendet" : "Sending request"
+            locale === "de" ? (
+              "Wird gesendet"
+            ) : (
+              "Sending request"
+            )
           ) : (
             <>
               {getLocalizedText({ en: "Send Request", de: "Anfrage senden" }, locale)}

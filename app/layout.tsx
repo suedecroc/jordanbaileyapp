@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Manrope } from "next/font/google";
+import { Cinzel, Cormorant_Garamond, Instrument_Sans } from "next/font/google";
 
 import { LanguageProvider } from "@/components/language-provider";
-import { Navbar } from "@/components/navbar";
-import { SiteFooter } from "@/components/site-footer";
+import { MotionProvider } from "@/components/motion-provider";
+import { SiteShell } from "@/components/site-shell";
 import { siteDescription, siteName, siteUrl } from "@/lib/site";
 
 import "./globals.css";
 
-const bodyFont = Manrope({
+const bodyFont = Instrument_Sans({
   variable: "--font-body",
   subsets: ["latin"],
   display: "swap",
@@ -19,6 +19,13 @@ const displayFont = Cormorant_Garamond({
   subsets: ["latin"],
   display: "swap",
   weight: ["500", "600", "700"],
+});
+
+const cinzelFont = Cinzel({
+  variable: "--font-cinzel",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "600", "700", "900"],
 });
 
 export const metadata: Metadata = {
@@ -60,15 +67,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${bodyFont.variable} ${displayFont.variable} h-full antialiased`}
+      className={`${bodyFont.variable} ${displayFont.variable} ${cinzelFont.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-background text-foreground">
         <LanguageProvider>
-          <div className="relative flex min-h-screen flex-col">
-            <Navbar />
-            <main className="flex-1 pt-24 sm:pt-28">{children}</main>
-            <SiteFooter />
-          </div>
+          <MotionProvider>
+            <SiteShell>{children}</SiteShell>
+          </MotionProvider>
         </LanguageProvider>
       </body>
     </html>

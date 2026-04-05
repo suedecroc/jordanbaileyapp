@@ -1,99 +1,134 @@
 "use client";
 
-import { Globe2, Headphones, ShieldCheck } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
-import { ContactStrip } from "@/components/contact-strip";
 import { FadeIn } from "@/components/fade-in";
 import { useLanguage } from "@/components/language-provider";
-import { SectionHeading } from "@/components/section-heading";
+import { ButtonLink } from "@/components/ui/button-link";
 import { Container } from "@/components/ui/container";
-import { aboutPageCopy, bilingualEdge, getLocalizedText } from "@/lib/site";
-
-const pillars = [
-  {
-    icon: Headphones,
-    title: "Performance",
-    body: {
-      en: "Reads that land because the timing, control, and restraint are already there.",
-      de: "Reads, die landen, weil Timing, Kontrolle und Zurückhaltung schon da sind.",
-    },
-  },
-  {
-    icon: Globe2,
-    title: "Bilingual adaptation",
-    body: bilingualEdge.body,
-  },
-  {
-    icon: ShieldCheck,
-    title: "Operational range",
-    body: {
-      en: "Tier 3 operations experience means calm under pressure, clear communication, and no wasted movement.",
-      de: "Tier-3-Erfahrung bedeutet Ruhe unter Druck, klare Kommunikation und keine verschwendete Bewegung.",
-    },
-  },
-];
+import { pageTwo } from "@/lib/home";
+import { aboutPageCopy, getLocalizedText } from "@/lib/site";
 
 export function AboutPage() {
   const { locale } = useLanguage();
 
   return (
-    <>
-      <section className="section-anchor py-16 sm:py-24">
-        <Container>
-          <SectionHeading
-            eyebrow="About Jordan Bailey"
-            title="Real presence. Clean execution."
-            description="No filler bio. Just the part that matters."
-          />
-
-          <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,0.76fr)_minmax(280px,0.44fr)]">
+    <section className="section-anchor pb-12 pt-3 sm:pb-16 sm:pt-4">
+      <Container>
+        <div className="book-page book-page--paper p-5 sm:p-7 lg:p-8">
+          <div className="grid gap-6 xl:grid-cols-[minmax(0,0.94fr)_minmax(320px,0.46fr)]">
             <FadeIn>
-              <div className="space-y-5 text-lg leading-8 text-muted">
-                {aboutPageCopy.map((paragraph) => (
-                  <p key={paragraph.en}>{getLocalizedText(paragraph, locale)}</p>
-                ))}
+              <div>
+                <div className="book-page__number">
+                  <span className="folio-pill folio-pill--ink">{pageTwo.folio}</span>
+                  <p className="cue-label cue-label--ink">
+                    {getLocalizedText(pageTwo.cue, locale)}
+                  </p>
+                </div>
+                <h1 className="mt-5 max-w-[13ch] font-serif text-[3rem] leading-[0.9] tracking-[0.01em] paper-ink sm:text-[4rem]">
+                  {getLocalizedText(pageTwo.title, locale)}
+                </h1>
+                <div className="paper-rule mt-5" />
+                <div className="mt-5 max-w-[38rem] space-y-5 text-base leading-8 paper-muted sm:text-lg">
+                  {aboutPageCopy.map((paragraph) => (
+                    <p key={paragraph.en}>{getLocalizedText(paragraph, locale)}</p>
+                  ))}
+                </div>
               </div>
             </FadeIn>
 
             <FadeIn delay={0.08}>
-              <aside className="panel rounded-[1.9rem] p-6 sm:p-7">
-                <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-accent">
-                  German / English
+              <aside className="panel rounded-[1.15rem] p-5 sm:p-6">
+                <p className="cue-label">
+                  {getLocalizedText(
+                    { en: "Act II / how I work", de: "Akt II / Dossiernotizen" },
+                    locale,
+                  )}
                 </p>
-                <h3 className="mt-5 font-serif text-3xl leading-none text-foreground">
-                  {getLocalizedText(bilingualEdge.title, locale)}
-                </h3>
+                <h2 className="mt-5 font-serif text-[2.1rem] leading-[0.95] text-foreground">
+                  {getLocalizedText(pageTwo.bilingualTitle, locale)}
+                </h2>
                 <p className="mt-4 text-base leading-7 text-muted">
-                  {getLocalizedText(bilingualEdge.body, locale)}
+                  {getLocalizedText(pageTwo.bilingualBody, locale)}
                 </p>
+                <div className="stage-rule mt-5" />
+                <ul className="mt-5 grid gap-2.5">
+                  {pageTwo.markers.map((marker) => (
+                    <li key={marker.en}>
+                      <span className="paper-tag paper-tag--soft">
+                        {getLocalizedText(marker, locale)}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-6 grid gap-3">
+                  <ButtonLink href="/reels">
+                    {getLocalizedText({ en: "Go hear the work", de: "Zu Seite III" }, locale)}
+                    <ArrowRight className="ml-3 h-4 w-4" />
+                  </ButtonLink>
+                  <ButtonLink href="/book" variant="secondary">
+                    {getLocalizedText(
+                      { en: "Go book it", de: "Direkt zum Booking" },
+                      locale,
+                    )}
+                  </ButtonLink>
+                </div>
               </aside>
             </FadeIn>
           </div>
 
-          <div className="mt-12 grid gap-5 md:grid-cols-3">
-            {pillars.map((pillar, index) => {
-              const Icon = pillar.icon;
-              return (
-                <FadeIn key={pillar.title} delay={index * 0.06}>
-                  <article className="panel-soft rounded-[1.6rem] p-6">
-                    <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-[var(--line)] bg-[rgba(240,213,168,0.08)] text-accent">
-                      <Icon className="h-5 w-5" />
-                    </div>
-                    <h3 className="mt-5 font-serif text-[1.9rem] leading-none text-foreground">
-                      {pillar.title}
-                    </h3>
-                    <p className="mt-4 text-base leading-7 text-muted">
-                      {getLocalizedText(pillar.body, locale)}
-                    </p>
-                  </article>
-                </FadeIn>
-              );
-            })}
-          </div>
-        </Container>
-      </section>
+          <div className="mt-6 grid gap-4 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,0.92fr)]">
+            <FadeIn>
+              <div className="sheet-card rounded-[1.15rem] p-5 sm:p-6">
+                <p className="cue-label">
+                  {getLocalizedText(
+                    { en: "Where it matters", de: "Wo es trifft" },
+                    locale,
+                  )}
+                </p>
+                <div className="mt-4 space-y-4">
+                  <p className="text-base leading-7 text-muted">
+                    {getLocalizedText(
+                      {
+                        en: "Games, animation, commercial, corporate, all of it clocks fake weight right away. If the read doesn’t feel real first, nobody cares how impressive it sounds.",
+                        de: "Games, Animation und Cinematic-Arbeit bestrafen falsches Gewicht sofort. Der Read muss sich gelebt anfühlen, bevor er beeindruckt.",
+                      },
+                      locale,
+                    )}
+                  </p>
+                  <p className="text-base leading-7 text-muted">
+                    {getLocalizedText(
+                      {
+                        en: "German and English are not the same line with different words on top. It has to sound natural in both, or it’s not done.",
+                        de: "Deutsch und Englisch sind keine alternativen Skins derselben Zeile. Die Adaption muss auch unter Druck noch nativ klingen.",
+                      },
+                      locale,
+                    )}
+                  </p>
+                </div>
+              </div>
+            </FadeIn>
 
-      <ContactStrip />
-    </>
+            <FadeIn delay={0.05}>
+              <div className="sheet-card rounded-[1.15rem] p-5 sm:p-6">
+                <p className="cue-label">
+                  {getLocalizedText(
+                    { en: "How I move", de: "Wie ich arbeite" },
+                    locale,
+                  )}
+                </p>
+                <div className="mt-4 space-y-4">
+                  {pageTwo.detailCards.map((card) => (
+                    <p key={card.en} className="text-base leading-7 text-muted">
+                      {getLocalizedText(card, locale)}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+      </Container>
+    </section>
   );
 }

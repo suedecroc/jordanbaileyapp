@@ -1,43 +1,109 @@
 "use client";
 
-import { ContactStrip } from "@/components/contact-strip";
-import { ReelsShowcase } from "@/components/reels-showcase";
+import Image from "next/image";
+import { ArrowRight } from "lucide-react";
+
 import { FadeIn } from "@/components/fade-in";
-import { SectionHeading } from "@/components/section-heading";
+import { useLanguage } from "@/components/language-provider";
+import { ReelsShowcase } from "@/components/reels-showcase";
+import { ButtonLink } from "@/components/ui/button-link";
 import { Container } from "@/components/ui/container";
-import { reels } from "@/lib/site";
+import { pageThree } from "@/lib/home";
+import { getLocalizedText } from "@/lib/site";
 
 export function ReelsPage() {
+  const { locale } = useLanguage();
+
   return (
-    <>
-      <section className="section-anchor py-16 sm:py-24">
-        <Container>
-          <FadeIn>
-            <SectionHeading
-              eyebrow="Reels"
-              title="The work."
-              description="Different tones. Same standard. It has to land."
-            />
-          </FadeIn>
+    <section className="section-anchor pb-12 pt-3 sm:pb-16 sm:pt-4">
+      <Container>
+        <div className="book-page book-page--paper p-5 sm:p-7 lg:p-8">
+          <div className="grid gap-5 xl:grid-cols-[minmax(0,0.78fr)_minmax(320px,0.58fr)] xl:items-start">
+            <FadeIn>
+              <div>
+                <div className="book-page__number">
+                  <span className="folio-pill">{pageThree.folio}</span>
+                  <p className="cue-label">{getLocalizedText(pageThree.cue, locale)}</p>
+                </div>
+                <h1 className="mt-5 max-w-[13ch] font-serif text-[3rem] leading-[0.9] tracking-[0.01em] text-foreground sm:text-[4rem]">
+                  {getLocalizedText(pageThree.title, locale)}
+                </h1>
+                <p className="mt-4 max-w-[35rem] text-base leading-7 text-muted-strong sm:text-lg sm:leading-8">
+                  {getLocalizedText(pageThree.body, locale)}
+                </p>
+                <p className="stage-epigraph mt-6">
+                  I am a singer without a song
+                </p>
+                <div className="mt-7">
+                  <ButtonLink href="/book">
+                    {getLocalizedText(
+                      { en: "If it hits, book it", de: "Wenn es landet, buch es" },
+                      locale,
+                    )}
+                    <ArrowRight className="ml-3 h-4 w-4" />
+                  </ButtonLink>
+                </div>
+              </div>
+            </FadeIn>
 
-          <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
-            {reels.map((reel, index) => (
-              <FadeIn key={reel.id} delay={index * 0.04}>
-                <article className="panel-soft h-full rounded-[1.5rem] p-5">
-                  <p className="text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-accent">
-                    {reel.label.en}
+            <FadeIn delay={0.08}>
+              <div className="reels-side-stack">
+                <div className="hero-portrait min-h-[360px] sm:min-h-[420px]">
+                  <Image
+                    src={pageThree.heroImage.src}
+                    alt={getLocalizedText(pageThree.heroImage.alt, locale)}
+                    width={1200}
+                    height={1600}
+                    priority
+                    sizes="(max-width: 1279px) 100vw, 38vw"
+                    className="h-full min-h-[360px] w-full object-cover object-[center_28%] sm:min-h-[420px]"
+                  />
+                </div>
+
+                <figure className="reels-side-figure">
+                  <div className="hero-portrait aspect-square">
+                    <Image
+                      src={pageThree.waitImage.src}
+                      alt={getLocalizedText(pageThree.waitImage.alt, locale)}
+                      width={1284}
+                      height={1264}
+                      sizes="(max-width: 1279px) 100vw, 38vw"
+                      className="h-full w-full object-cover object-[center_18%]"
+                    />
+                  </div>
+                  <figcaption className="reels-side-caption mt-3 text-sm leading-6 text-muted">
+                    {getLocalizedText(pageThree.waitImage.caption, locale)}
+                  </figcaption>
+                </figure>
+
+                <div className="panel-soft reels-video-card rounded-[1.05rem] p-3.5 sm:rounded-[1.15rem] sm:p-5">
+                  <p className="cue-label">
+                    {getLocalizedText(pageThree.video.cue, locale)}
                   </p>
-                  <h3 className="mt-4 font-serif text-[2rem] leading-none text-foreground">{reel.title}</h3>
-                  <p className="mt-4 text-sm leading-6 text-muted">{reel.description}</p>
-                </article>
-              </FadeIn>
-            ))}
+                  <div className="reels-video-frame mt-4">
+                    <video
+                      className="reels-video"
+                      controls
+                      playsInline
+                      preload="metadata"
+                      poster={pageThree.video.poster}
+                      aria-label={getLocalizedText(pageThree.video.alt, locale)}
+                    >
+                      <source src={pageThree.video.src} type="video/mp4" />
+                    </video>
+                  </div>
+                </div>
+              </div>
+            </FadeIn>
           </div>
-        </Container>
-      </section>
 
-      <ReelsShowcase mode="page" />
-      <ContactStrip />
-    </>
+          <div className="stage-rule mt-7" />
+
+          <div className="listening-stage mt-7">
+            <ReelsShowcase mode="page" />
+          </div>
+        </div>
+      </Container>
+    </section>
   );
 }

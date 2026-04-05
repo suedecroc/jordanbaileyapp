@@ -2,12 +2,19 @@ export type Locale = "en" | "de";
 
 export type LocalizedText = Record<Locale, string>;
 
+export type NavigationItem = {
+  href: "/home" | "/about" | "/reels" | "/book";
+  folio: string;
+  label: LocalizedText;
+  cue: LocalizedText;
+};
+
 export type ReelItem = {
   id: "commercial" | "cinematic" | "narration" | "promo" | "character";
   label: LocalizedText;
-  title: string;
-  description: string;
-  note: string;
+  title: LocalizedText;
+  description: LocalizedText;
+  note: LocalizedText;
   src: string;
   mimeType: string;
   category: string;
@@ -22,8 +29,9 @@ export type ServiceCard = {
 
 export const siteName = "Jordan Bailey";
 export const siteDescription =
-  "Voice actor, creative, and Tier 3 Operations Engineer with real presence, real range, and no wasted motion.";
-export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://jordanbailey.app";
+  "Jordan Bailey is a voice actor for games, animation, commercial, corporate, and cinematic work, with fluent English/German adaptation and Tier 3 calm when things get ugly.";
+export const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://jordanbaileyvoice.com";
 
 export function getLocalizedText(text: LocalizedText, locale: Locale) {
   return text[locale];
@@ -39,48 +47,46 @@ export const contactDetails = {
   linkedinHref: "https://www.linkedin.com/in/jordanbailey23",
 };
 
-export const navigationItems = [
-  { href: "/reels", label: { en: "Reels", de: "Reels" } },
-  { href: "/about", label: { en: "About", de: "Über" } },
-  { href: "/book", label: { en: "Book", de: "Buchen" } },
-  { href: "/#contact", label: { en: "Contact", de: "Kontakt" } },
-] satisfies Array<{ href: string; label: LocalizedText }>;
-
-export const homeHero = {
-  kicker: {
-    en: "Voice actor. Creative. Tier 3 Operations Engineer.",
-    de: "Voice Actor. Kreativer. Tier-3-Operations-Engineer.",
+export const navigationItems: NavigationItem[] = [
+  {
+    href: "/home",
+    folio: "I",
+    label: { en: "Home", de: "Start" },
+    cue: { en: "Act I", de: "Akt I" },
   },
-  headline: "Cinematic when it counts. Human the whole time.",
-  subhead: {
-    en: "Jordan Bailey. Voice actor, creative, and Tier 3 Operations Engineer with real presence, real range, and no wasted motion. Clean reads, sharp delivery, and the technical depth to back the brand.",
-    de: "Jordan Bailey. Voice Actor, Kreativer und Tier-3-Operations-Engineer mit echter Präsenz, echter Bandbreite und ohne verschwendete Bewegung. Saubere Reads, präzise Delivery und die technische Tiefe hinter der Marke.",
+  {
+    href: "/about",
+    folio: "II",
+    label: { en: "About", de: "Dossier" },
+    cue: { en: "Act II", de: "Akt II" },
   },
-  note: {
-    en: "Atlanna smooth. Frankfurt precision. No wasted takes.",
-    de: "Atlanna smooth. Frankfurter Präzision. Keine verschwendeten Takes.",
+  {
+    href: "/reels",
+    folio: "III",
+    label: { en: "Reels", de: "Reels" },
+    cue: { en: "Act III", de: "Akt III" },
   },
-  primaryCta: { en: "Book Jordan", de: "Jordan buchen" },
-  secondaryCta: { en: "Listen Now", de: "Jetzt hören" },
-};
-
-export const identityItems: LocalizedText[] = [
-  { en: "Cinematic", de: "Cinematic" },
-  { en: "Commercial", de: "Commercial" },
-  { en: "Narration", de: "Narration" },
-  { en: "Character", de: "Character" },
-  { en: "Promo", de: "Promo" },
-  { en: "Tier 3 Operations", de: "Tier 3 Operations" },
-  { en: "Creative Strategy", de: "Creative Strategy" },
+  {
+    href: "/book",
+    folio: "IV",
+    label: { en: "Book", de: "Buchen" },
+    cue: { en: "Act IV", de: "Akt IV" },
+  },
 ];
 
 export const reels: ReelItem[] = [
   {
     id: "commercial",
     label: { en: "Commercial", de: "Commercial" },
-    title: "Commercial",
-    description: "Clean, natural, and believable. No fake polish. Just a read people trust.",
-    note: "Clean read. Heavy landing.",
+    title: { en: "Commercial", de: "Commercial" },
+    description: {
+      en: "Clean, human, believable. No salesman cosplay. Just the line landing where it should.",
+      de: "Klar, natürlich und glaubwürdig. Kein falscher Ansager-Lack. Einfach eine Zeile, die da landet, wo sie soll.",
+    },
+    note: {
+      en: "No fake varnish.",
+      de: "Sauber gelesen. Schweres Landing.",
+    },
     src: "/media/reels/commercial-demo.m4a",
     mimeType: "audio/mp4",
     category: "featured",
@@ -89,9 +95,15 @@ export const reels: ReelItem[] = [
   {
     id: "cinematic",
     label: { en: "Cinematic", de: "Cinematic" },
-    title: "Cinematic",
-    description: "Weight, pacing, atmosphere, and control. This is where the edge gets sharper.",
-    note: "Warm when needed. Dangerous if required.",
+    title: { en: "Cinematic", de: "Cinematic" },
+    description: {
+      en: "Weight, atmosphere, and enough room for the scene to breathe.",
+      de: "Gewicht, Pace, Bedrohung und Zurückhaltung. Die Zeile vor dem Einschlag zählt genauso wie der Treffer.",
+    },
+    note: {
+      en: "Smooth when it helps. Dangerous when it counts.",
+      de: "Warm, wenn nötig. Gefährlich auf den Takt.",
+    },
     src: "/media/reels/cinematic-demo.m4a",
     mimeType: "audio/mp4",
     category: "featured",
@@ -99,9 +111,15 @@ export const reels: ReelItem[] = [
   {
     id: "narration",
     label: { en: "Narration", de: "Narration" },
-    title: "Narration",
-    description: "Steady, clear, and human. You follow the voice instead of fighting it.",
-    note: "Polished, not plastic.",
+    title: { en: "Narration", de: "Narration" },
+    description: {
+      en: "Clear thought. Steady pace. Zero sleep mode.",
+      de: "Ruhig, menschlich und exakt. Man folgt der Stimme, statt mit ihr zu ringen.",
+    },
+    note: {
+      en: "Human all the way through.",
+      de: "Poliert, nicht künstlich.",
+    },
     src: "/media/reels/narration-demo.m4a",
     mimeType: "audio/mp4",
     category: "featured",
@@ -109,9 +127,15 @@ export const reels: ReelItem[] = [
   {
     id: "promo",
     label: { en: "Promo", de: "Promo" },
-    title: "Promo",
-    description: "Energy with discipline. Sharp enough to move people without turning into noise.",
-    note: "Rhythm matters. I don’t rush the line.",
+    title: { en: "Promo", de: "Promo" },
+    description: {
+      en: "Energy without turning into noise. Push where it helps. Back off where it doesn't.",
+      de: "Energie mit Disziplin. Scharf genug, um zu bewegen, ohne zu Lärm zu werden.",
+    },
+    note: {
+      en: "Quick on the turn.",
+      de: "Rhythmus zählt. Ich hetze keine Zeile.",
+    },
     src: "/media/reels/intro-demo.mp3",
     mimeType: "audio/mpeg",
     category: "featured",
@@ -119,9 +143,15 @@ export const reels: ReelItem[] = [
   {
     id: "character",
     label: { en: "Character", de: "Character" },
-    title: "Character",
-    description: "Range with control. Not chaos. Actual personality.",
-    note: "Subtle beats loud every time.",
+    title: { en: "Character", de: "Character" },
+    description: {
+      en: "Texture, point of view, and the good kind of trouble.",
+      de: "Range mit Kontrolle. Nicht Chaos. Tatsächliche Persönlichkeit mit Timing dahinter.",
+    },
+    note: {
+      en: "Range that still reads clean.",
+      de: "Subtil schlägt laut. Jedes Mal.",
+    },
     src: "/media/reels/character-demo.m4a",
     mimeType: "audio/mp4",
     category: "featured",
@@ -129,26 +159,51 @@ export const reels: ReelItem[] = [
 ];
 
 export const reelMicrocopy: LocalizedText[] = [
-  { en: "Clean read. Heavy landing.", de: "Sauber gelesen. Schweres Landing." },
-  { en: "Warm when needed. Dangerous if required.", de: "Warm, wenn nötig. Gefährlich, wenn gefordert." },
-  { en: "Polished, not plastic.", de: "Poliert, nicht künstlich." },
-  { en: "Rhythm matters. I don’t rush the line.", de: "Rhythmus zählt. Ich hetze keine Zeile." },
-  { en: "Subtle beats loud every time.", de: "Subtil schlägt laut. Jedes Mal." },
-  { en: "Real tone over fake announcer voice. Always.", de: "Echter Ton vor falscher Sprecherstimme. Immer." },
+  { en: "Real reads. No announcer cosplay.", de: "Echter Ton vor falscher Ansager-Energie." },
+  { en: "Easy to direct. Fast on pickups.", de: "Direction-friendly und schnell bei Pickups." },
+  { en: "English and German both keep the same rhythm.", de: "Englisch und Deutsch, ohne den Rhythmus zu verlieren." },
+  { en: "Quiet control when the line needs teeth.", de: "Ruhige Kontrolle, wenn die Zeile Zähne braucht." },
+];
+
+export const homeHero = {
+  kicker: {
+    en: "Voice actor. Games, animation, cinematic. English / German.",
+    de: "Sprecher. Games, Animation, Cinematic. Englisch / Deutsch.",
+  },
+  headline: "The performance starts when the line gets specific.",
+  subhead: {
+    en: "Voice for games, animation, cinematic work, and anything that needs elegance before it gets loud.",
+    de: "Voice für Games, Animation, Cinematic-Arbeit und alles, was Eleganz braucht, bevor es laut wird.",
+  },
+  note: {
+    en: "Precision over noise. Always.",
+    de: "Präzision vor Lärm. Immer.",
+  },
+  primaryCta: { en: "Book Jordan", de: "Jordan buchen" },
+  secondaryCta: { en: "Listen Now", de: "Jetzt hören" },
+};
+
+export const identityItems: LocalizedText[] = [
+  { en: "games", de: "Games" },
+  { en: "animation", de: "Animation" },
+  { en: "cinematic", de: "Cinematic" },
+  { en: "english / german", de: "Englisch / Deutsch" },
+  { en: "direction-friendly", de: "direction-friendly" },
+  { en: "calm under pressure", de: "ruhig unter Druck" },
 ];
 
 export const aboutPreview: LocalizedText[] = [
   {
-    en: "I care about how something feels when it lands. Not just the words. The timing. The space between them. The weight behind them.",
-    de: "Ich achte darauf, wie etwas wirkt, wenn es landet. Nicht nur auf die Worte. Auf das Timing. Den Raum dazwischen. Das Gewicht dahinter.",
+    en: "The work should feel like someone knew exactly how much force the line needed.",
+    de: "Die Arbeit sollte sich so anfühlen, als hätte jemand genau gewusst, wie viel Druck die Zeile braucht.",
   },
   {
-    en: "I am not here to sound like a voice actor. I am here to sound like the right voice for that exact moment. Sometimes that means clean and simple. Sometimes it means darker, sharper, and more precise.",
-    de: "Ich bin nicht hier, um wie ein Voice Actor zu klingen. Ich bin hier, um für genau diesen Moment die richtige Stimme zu sein. Manchmal heißt das klar und einfach. Manchmal dunkler, schärfer und präziser.",
+    en: "Too much performance is still bad performance. Control is the part people remember.",
+    de: "Zu viel Performance ist immer noch schlechte Performance. Kontrolle ist der Teil, an den man sich erinnert.",
   },
   {
-    en: "Either way, it is intentional.",
-    de: "So oder so: Es ist absichtlich gesetzt.",
+    en: "That applies in the booth, in collaboration, and when the project gets messy.",
+    de: "Das gilt in der Booth, in der Zusammenarbeit und wenn das Projekt unordentlich wird.",
   },
 ];
 
@@ -158,16 +213,16 @@ export const bilingualEdge = {
     de: "Fließend in Deutsch und Englisch, mit Adaption, die trotzdem natürlich klingt.",
   },
   body: {
-    en: "That matters when copy needs to move between languages without losing control, tone, or credibility. This is not a decorative skill. It is a real edge.",
-    de: "Das zählt, wenn Copy zwischen Sprachen wechseln muss, ohne Kontrolle, Ton oder Glaubwürdigkeit zu verlieren. Das ist kein dekoratives Extra. Das ist ein echter Vorteil.",
+    en: "If the line works in one language and falls apart in the other, the adaptation failed. This is part of the job, not a little bonus skill.",
+    de: "Wenn eine Zeile in einer Sprache funktioniert und in der anderen stirbt, ist die Adaption gescheitert. Das ist echter Vorteil, keine dekorative Fußnote.",
   },
   badge: {
     en: "German / English",
     de: "Deutsch / Englisch",
   },
   badgeBody: {
-    en: "Natural both ways. Not translated-looking. Not stiff.",
-    de: "Natürlich in beide Richtungen. Nicht wie übersetzt. Nicht steif.",
+    en: "Natural both ways. No translated-looking stiffness.",
+    de: "Natürlich in beide Richtungen. Keine steife Übersetzungsenergie.",
   },
 };
 
@@ -176,62 +231,50 @@ export const serviceCards: ServiceCard[] = [
     id: "voiceover",
     title: "Voiceover",
     body: {
-      en: "Commercials, trailers, narration, and character work. If it needs tone, timing, and presence, I bring all three.",
-      de: "Commercials, Trailer, Narration und Character-Arbeit. Wenn Ton, Timing und Präsenz zählen, bringe ich alle drei.",
+      en: "Games, animation, trailers, narration, and character work that needs control before spectacle.",
+      de: "Games, Animation, Trailer, Narration und Character-Arbeit, die zuerst Kontrolle und dann Spektakel braucht.",
     },
   },
   {
     id: "operations",
     title: "Tier 3 Operations Engineer for Hire",
     body: {
-      en: "Production support, incident response, infrastructure stability, and systems visibility. When it has to work, I am already thinking ahead.",
-      de: "Production Support, Incident Response, Infrastrukturstabilität und System-Transparenz. Wenn es funktionieren muss, denke ich bereits voraus.",
+      en: "Escalations, ugly incidents, brittle systems, and the people part of getting them under control.",
+      de: "Eskalationen, hässliche Incidents, fragile Systeme und der menschliche Teil, sie wieder unter Kontrolle zu bekommen.",
     },
   },
   {
     id: "creative",
     title: "Creative / Collaboration",
     body: {
-      en: "Campaigns, concepts, voice direction, and brand energy. Bring me in early and the work gets sharper.",
-      de: "Kampagnen, Konzepte, Voice Direction und Brand-Energy. Holt mich früh rein und die Arbeit wird schärfer.",
+      en: "Voice direction, world tone, and sharp collaboration before the work gets watered down.",
+      de: "Voice Direction, Welt-Ton und scharfe Kollaboration, bevor die Arbeit verwässert wird.",
     },
   },
   {
     id: "custom",
     title: "Custom",
     body: {
-      en: "Specific, unusual, or hard-to-label projects welcome. Those tend to be the best ones.",
-      de: "Spezifische, ungewöhnliche oder schwer einzuordnende Projekte sind willkommen. Genau die werden oft die besten.",
+      en: "Specific, weird, or hard-to-label projects are usually the fun ones.",
+      de: "Spezifische, seltsame oder schwer einzuordnende Projekte sind meistens die guten.",
     },
   },
 ];
 
 export const aboutPageCopy: LocalizedText[] = [
   {
-    en: "I like things that feel real.",
-    de: "Ich mag Dinge, die sich echt anfühlen.",
+    en: "I’m Jordan Bailey, a voice actor, creative, and Tier 3 Operations Engineer based in Atlanta and born in Frankfurt. I care about work that feels clear, intentional, and real, whether that means delivering a strong read, building a thoughtful brand, or supporting complex technical environments behind the scenes. I bring a mix of creativity, technical depth, and emotional intelligence to what I do, along with a calm, grounded presence people can actually trust. My goal is simple: do great work, make it memorable, and never waste motion.",
+    de: "Ich mag Arbeit, die genau weiß, was sie tun will.",
   },
   {
-    en: "Not overdone. Not trying too hard. Not buried under noise. Just right.",
-    de: "Nicht überzogen. Nicht zu bemüht. Nicht unter Lärm vergraben. Genau richtig.",
-  },
-  {
-    en: "I have spent years around systems, pressure, and environments where details matter. That carries directly into how I approach performance, communication, and execution.",
-    de: "Ich habe Jahre in Systemen, unter Druck und in Umgebungen verbracht, in denen Details zählen. Das prägt direkt, wie ich Performance, Kommunikation und Umsetzung angehe.",
-  },
-  {
-    en: "Timing matters. Tone matters. Knowing when to pull back matters.",
-    de: "Timing zählt. Ton zählt. Zu wissen, wann man zurücknimmt, zählt.",
-  },
-  {
-    en: "The goal is simple: make it land, and make it feel like it was always supposed to sound that way.",
-    de: "Das Ziel ist einfach: Es muss landen, und es muss so wirken, als hätte es immer genau so klingen sollen.",
+    en: "Let’s connect and bring your next project to life.",
+    de: "Nicht lauter als nötig. Nicht sauberer als nötig. Einfach exakt.",
   },
 ];
 
 export const bookingIntro: LocalizedText = {
-  en: "Clear briefs help. Honest timelines help. Either way, give me enough to move decisively and I will handle the rest.",
-  de: "Klare Briefings helfen. Ehrliche Timelines helfen. So oder so: Geben Sie mir genug, um entschlossen zu arbeiten, und ich übernehme den Rest.",
+  en: "Give me enough detail to move decisively and I will handle the rest. Clean briefs help. Honest timelines help more.",
+  de: "Gib mir genug Details, damit ich entschlossen arbeiten kann, und ich übernehme den Rest. Klare Briefings helfen. Ehrliche Timelines helfen mehr.",
 };
 
 export const bookingFields = [

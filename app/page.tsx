@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { HomePage } from "@/components/home-page";
+import { LandingPage } from "@/components/landing-page";
 import { siteDescription } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -12,5 +12,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <HomePage />;
+  return <LandingPage />;
 }

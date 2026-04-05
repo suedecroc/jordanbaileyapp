@@ -4,8 +4,7 @@ import { Pause, Play } from "lucide-react";
 import { useEffect, useId, useRef, useState } from "react";
 
 import { useLanguage } from "@/components/language-provider";
-import type { ReelItem } from "@/lib/site";
-import { getLocalizedText } from "@/lib/site";
+import { getLocalizedText, type ReelItem } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 let activeAudioInstance: HTMLAudioElement | null = null;
@@ -36,6 +35,11 @@ export function ReelPlayer({
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+
+  const label = getLocalizedText(reel.label, locale);
+  const title = getLocalizedText(reel.title, locale);
+  const description = getLocalizedText(reel.description, locale);
+  const note = getLocalizedText(reel.note, locale);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -107,41 +111,84 @@ export function ReelPlayer({
   return (
     <article
       className={cn(
-        "panel rounded-[1.75rem] p-5 sm:p-6",
-        isPlaying && "border-[rgba(240,213,168,0.26)] shadow-[0_0_0_1px_rgba(240,213,168,0.14),0_22px_48px_rgba(0,0,0,0.34)]",
+        compact
+          ? "panel rounded-[1.75rem] p-5 sm:p-6"
+          : "reel-player-stage rounded-[1.75rem] p-5 sm:p-6",
+        isPlaying &&
+          (compact
+            ? "border-[rgba(111,67,35,0.26)] shadow-[0_0_0_1px_rgba(111,67,35,0.08),0_18px_34px_rgba(54,36,20,0.12)]"
+            : "border-[rgba(223,194,155,0.22)] shadow-[0_0_0_1px_rgba(223,194,155,0.06),0_22px_36px_rgba(8,6,5,0.26)]"),
       )}
     >
       <audio ref={audioRef} preload="metadata">
         <source src={reel.src} type={reel.mimeType} />
       </audio>
 
-      <div className={cn("flex flex-col gap-5", compact ? "sm:flex-row sm:items-center sm:justify-between" : "")}>
-        <div className="space-y-3">
-          <div className="inline-flex rounded-full border border-[var(--line)] bg-[rgba(255,255,255,0.02)] px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-accent">
-            {getLocalizedText(reel.label, locale)}
+      <div
+          className={cn(
+            "flex flex-col gap-5",
+            compact && "sm:flex-row sm:items-center sm:justify-between",
+        )}
+      >
+        <div className={cn("space-y-3", compact && "sm:max-w-[24rem]")}>
+          <div
+            className={cn(
+              "inline-flex rounded-[0.7rem] border px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.2em]",
+              compact
+                ? "border-[var(--line)] bg-[rgba(255,255,255,0.5)] text-accent-strong"
+                : "border-[rgba(223,194,155,0.16)] bg-[rgba(255,255,255,0.06)] text-[#ecd4b0]",
+            )}
+          >
+            {label}
           </div>
           <div>
-            <h3 className="font-serif text-3xl leading-none tracking-[0.02em] text-foreground sm:text-[2.25rem]">
-              {reel.title}
+            <h3
+              className={cn(
+                "font-serif text-3xl leading-none tracking-[0.02em] sm:text-[2.25rem]",
+                compact ? "text-foreground" : "text-[var(--ink-surface-text)]",
+              )}
+            >
+              {title}
             </h3>
-            <p className="mt-3 max-w-2xl text-base leading-7 text-muted">{reel.description}</p>
+            <p
+              className={cn(
+                "mt-3 max-w-2xl text-base leading-7",
+                compact ? "text-muted" : "text-[rgba(247,241,231,0.74)]",
+              )}
+            >
+              {description}
+            </p>
           </div>
         </div>
 
         <button
           type="button"
           onClick={togglePlayback}
-          className="inline-flex h-15 w-15 items-center justify-center rounded-full border border-[rgba(240,213,168,0.34)] bg-[rgba(240,213,168,0.08)] text-accent-strong hover:-translate-y-0.5 hover:bg-[rgba(240,213,168,0.14)]"
-          aria-label={isPlaying ? `Pause ${reel.title}` : `Play ${reel.title}`}
+          className={cn(
+            "audio-trigger inline-flex items-center justify-center",
+            isPlaying && "audio-trigger--active",
+          )}
+          aria-label={isPlaying ? `Pause ${title}` : `Play ${title}`}
         >
-          {isPlaying ? <Pause className="h-5 w-5" /> : <Play className="ml-0.5 h-5 w-5" />}
+          {isPlaying ? (
+            <Pause className="h-5 w-5" />
+          ) : (
+            <Play className="ml-0.5 h-5 w-5" />
+          )}
         </button>
       </div>
 
       <div className="mt-5">
-        <div className="mb-2 flex items-center justify-between text-[0.72rem] font-medium uppercase tracking-[0.18em] text-muted">
-          <label htmlFor={progressId}>{reel.note}</label>
-          <span>{formatTime(currentTime)} / {formatTime(duration)}</span>
+        <div
+          className={cn(
+            "mb-2 flex items-center justify-between gap-4 text-[0.72rem] font-medium uppercase tracking-[0.18em]",
+            compact ? "text-muted" : "text-[rgba(247,241,231,0.62)]",
+          )}
+        >
+          <label htmlFor={progressId}>{note}</label>
+          <span>
+            {formatTime(currentTime)} / {formatTime(duration)}
+          </span>
         </div>
         <input
           id={progressId}
@@ -151,8 +198,11 @@ export function ReelPlayer({
           step={0.1}
           value={Math.min(currentTime, duration || 0)}
           onChange={(event) => onProgressChange(event.target.value)}
-          className="h-2 w-full cursor-pointer appearance-none rounded-full bg-[rgba(255,255,255,0.08)] accent-[var(--accent)]"
-          aria-label={`Seek ${reel.title}`}
+          className={cn(
+            "audio-track h-2 w-full cursor-pointer appearance-none rounded-full",
+            compact ? "bg-[rgba(23,19,16,0.09)]" : "bg-[rgba(255,255,255,0.12)]",
+          )}
+          aria-label={`Seek ${title}`}
         />
       </div>
     </article>
