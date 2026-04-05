@@ -25,7 +25,7 @@ export function ReelsPage() {
                   <span className="folio-pill">{pageThree.folio}</span>
                   <p className="cue-label">{getLocalizedText(pageThree.cue, locale)}</p>
                 </div>
-                <h1 className="mt-5 max-w-[13ch] font-serif text-[3rem] leading-[0.9] tracking-[0.01em] text-foreground sm:text-[4rem]">
+                <h1 className="mt-5 max-w-[13ch] font-serif text-[2.85rem] leading-[0.9] tracking-[0.01em] text-foreground sm:text-[3.8rem]">
                   {getLocalizedText(pageThree.title, locale)}
                 </h1>
                 <p className="mt-4 max-w-[35rem] text-base leading-7 text-muted-strong sm:text-lg sm:leading-8">

@@ -25,7 +25,7 @@ export function AboutPage() {
                     {getLocalizedText(pageTwo.cue, locale)}
                   </p>
                 </div>
-                <h1 className="mt-5 max-w-[13ch] font-serif text-[3rem] leading-[0.9] tracking-[0.01em] paper-ink sm:text-[4rem]">
+                <h1 className="mt-5 max-w-[13ch] font-serif text-[2.85rem] leading-[0.9] tracking-[0.01em] paper-ink sm:text-[3.8rem]">
                   {getLocalizedText(pageTwo.title, locale)}
                 </h1>
                 <div className="paper-rule mt-5" />
@@ -45,7 +45,7 @@ export function AboutPage() {
                     locale,
                   )}
                 </p>
-                <h2 className="mt-5 font-serif text-[2.1rem] leading-[0.95] text-foreground">
+                <h2 className="mt-5 font-serif text-[2rem] leading-[0.95] text-foreground">
                   {getLocalizedText(pageTwo.bilingualTitle, locale)}
                 </h2>
                 <p className="mt-4 text-base leading-7 text-muted">

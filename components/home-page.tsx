@@ -34,7 +34,7 @@ export function HomePage() {
                     locale,
                   )}
                 </p>
-                <h1 className="mt-4 max-w-[13ch] font-serif text-[3rem] leading-[0.9] tracking-[0.01em] text-foreground sm:text-[4.35rem]">
+                <h1 className="mt-4 max-w-[13ch] font-serif text-[2.85rem] leading-[0.9] tracking-[0.01em] text-foreground sm:text-[4.13rem]">
                   {getLocalizedText(pageOne.title, locale)}
                 </h1>
                 <p className="mt-4 max-w-[38rem] text-base leading-7 text-muted-strong sm:text-lg sm:leading-8">
@@ -64,7 +64,7 @@ export function HomePage() {
                   <p className="cue-label">
                     {getLocalizedText(pageOne.video.eyebrow, locale)}
                   </p>
-                  <h2 className="mt-4 max-w-[14ch] font-serif text-[2.15rem] leading-[0.96] text-foreground">
+                  <h2 className="mt-4 max-w-[14ch] font-serif text-[2.04rem] leading-[0.96] text-foreground">
                     {getLocalizedText(pageOne.video.title, locale)}
                   </h2>
                   <p className="mt-4 text-base leading-7 text-muted">
@@ -91,7 +91,7 @@ export function HomePage() {
                       locale,
                     )}
                   </p>
-                  <h2 className="mt-4 max-w-[12ch] font-serif text-[2.45rem] leading-[0.94] text-foreground">
+                  <h2 className="mt-4 max-w-[12ch] font-serif text-[2.33rem] leading-[0.90] text-foreground">
                     {getLocalizedText(
                       {
                         en: "English and German should both sound like me.",
