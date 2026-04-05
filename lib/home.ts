@@ -8,16 +8,16 @@ export type SupportCard = {
 
 export const coverContent = {
   eyebrow: {
-    en: "Voice actor / English + German / Animation, Commercial, Audiobooks etc.",
-    de: "Sprecher / Englisch + Deutsch / Animation, Commercial, Audiobooks etc.",
+    en: "Voice actor / English + German / Games, Animation, Commercial",
+    de: "Sprecher / Englisch + Deutsch / Games, Animation, Commercial",
   },
   title: {
-    en: "Jordan Bailey",
-    de: "Jordan Bailey",
+    en: "You'll know in the first read.",
+    de: "Du weißt es beim ersten Read.",
   },
   body: {
-    en: "Voice work should feel locked in. Specific. Controlled. No wasted motion.",
-    de: "Voice-Arbeit sollte sich so anfühlen, als hätte der Raum sich absichtlich gesammelt. Klarer Fokus. Echter Druck. Keine verschwendete Bewegung.",
+    en: "Jordan Bailey. Voice actor with presence, control, and range. Easy to direct. Hard to forget.",
+    de: "Jordan Bailey. Sprecher mit Präsenz, Kontrolle und Range. Leicht zu lenken. Schwer zu vergessen.",
   },
   enter: {
     en: "Enter",
@@ -36,24 +36,24 @@ export const pageOne = {
     de: "Ouvertüre",
   },
   title: {
-    en: "If I’m right for it, you’ll know fast.",
-    de: "Der erste Eindruck sollte exakt, teuer und leicht gefährlich wirken.",
+    en: "Tier 3 Operations taught me how to stay calm when everything gets loud.",
+    de: "Tier-3-Ops haben mir beigebracht, wie man ruhig bleibt, wenn alles laut wird.",
   },
   body: {
-    en: "Games, animation, commercial. Both languages natural. Fast adjustments. Calm under pressure.",
-    de: "Games, Animation, Commercial. Beide Sprachen natürlich. Schnelle Anpassung. Ruhig unter Druck.",
+    en: "That carries over. Sessions stay focused. Direction lands. Work gets done. English and German both sound right. Not close. Right.",
+    de: "Das überträgt sich. Sessions bleiben fokussiert. Direction sitzt. Arbeit wird gemacht. Englisch und Deutsch klingen beide richtig. Nicht fast. Richtig.",
   },
   capabilityQuote: {
-    en: "Commercial, corporate, animation. All of it.",
-    de: "Commercial, Corporate, Animation. Alles davon.",
+    en: "Presence, control, range.",
+    de: "Präsenz, Kontrolle, Range.",
   },
   primaryCta: {
-    en: "Jump to Page IV",
-    de: "Direkt zu Seite IV",
+    en: "Play the work",
+    de: "Arbeit hören",
   },
   secondaryCta: {
-    en: "Play the reel",
-    de: "Reel starten",
+    en: "Book me",
+    de: "Jetzt buchen",
   },
   video: {
     eyebrow: {
@@ -71,32 +71,7 @@ export const pageOne = {
     src: "/media/home/voice-impression.mp4",
     poster: "/media/home/voice-impression-poster.png",
   },
-  cards: [
-    {
-      eyebrow: { en: "Voice first", de: "Voice zuerst" },
-      title: { en: "Commercial, corporate, animation, games", de: "Games, Animation, Cinematic" },
-      body: {
-        en: "Funny, warm, dangerous. Still sounds human.",
-        de: "Lustig, warm, bedrohlich. Klingt trotzdem menschlich.",
-      },
-    },
-    {
-      eyebrow: { en: "English / German", de: "Englisch / Deutsch" },
-      title: { en: "A real edge, not a fun fact", de: "Ein echter Vorteil, keine nette Randnotiz" },
-      body: {
-        en: "Same tone in both languages.",
-        de: "Gleicher Ton in beiden Sprachen.",
-      },
-    },
-    {
-      eyebrow: { en: "Tier 3 ops", de: "Tier-3-Ops" },
-      title: { en: "Calm when the project gets weird", de: "Ruhig, wenn der Raum anfängt zu lügen" },
-      body: {
-        en: "Stays useful when things get loud.",
-        de: "Bleibt nützlich, wenn es laut wird.",
-      },
-    },
-  ] satisfies SupportCard[],
+  cards: [] satisfies SupportCard[],
   reaction: {
     label: {
       en: "Visual evidence",
@@ -139,40 +114,31 @@ export const pageTwo = {
     de: "Dossier",
   },
   title: {
-    en: "Clean reads. Fast adjustments. No weird ego in the room.",
-    de: "Gemessene Kraft. Saubere Reads. Kein Interesse daran, generisch zu klingen.",
+    en: "I'm a voice actor with a background in high-pressure technical environments.",
+    de: "Ich bin Sprecher mit Erfahrung in stressigen, technischen Umgebungen.",
   },
   intro: {
-    en: "I like work with pulse. Games, animation, commercial, corporate, cinematic. Funny when it helps, grounded when it matters, and big when the line actually earns it. I take direction well, I adjust fast, and I do not make the room about me.",
-    de: "Die Kurzversion: Timing zählt, Ton zählt, und die Zeile sollte einen Abdruck hinterlassen, ohne darum zu betteln. Voice ist die erste Klinge. Englisch und Deutsch sind echter Vorteil. Ops-Erfahrung ist der Grund, warum Druck den Raum nicht zerlegt.",
+    en: "Tier 3 Operations, escalations, systems that don't behave. That's where I learned how to stay calm, listen closely, and adjust fast. It translates well. Sessions stay clean. Direction lands quickly. My reads are controlled, intentional, and just the way you asked. I'm not here to overcomplicate things. I'm here to get it right.",
+    de: "Tier-3-Ops, Eskalationen, Systeme die nicht mitspielen. Dort habe ich gelernt, wie man ruhig bleibt, genau zuhört und schnell anpasst. Das überträgt sich. Sessions laufen sauber. Direction sitzt schnell. Meine Reads sind kontrolliert, gewollt und genau wie du es brauchst. Ich bin nicht hier, um Dinge kompliziert zu machen. Ich bin hier, um es richtig zu machen.",
   },
   bilingualTitle: {
-    en: "German and English. Same tone. Same standard.",
-    de: "Gebaut für Skripte, die Geschmack, Timing und Druckkontrolle brauchen.",
+    en: "I work in English and German at a native level.",
+    de: "Ich arbeite auf Muttersprachler-Niveau auf Englisch und Deutsch.",
   },
   bilingualBody: {
-    en: "I don’t just speak both. I know where the line lives in both, so the read doesn’t get stiff on the way over.",
-    de: "Natürlich in beide Richtungen. Nicht wie übersetzt. Nicht steif. Und definitiv kein Nebentalent.",
+    en: "If the tone matters, it carries in both.",
+    de: "Wenn der Ton zählt, dann sitzt er in beiden Sprachen.",
   },
   markers: [
-    { en: "Commercial / corporate / animation / games", de: "Games, Animation, Cinematic, Promo" },
-    { en: "English / German that still sounds natural", de: "Englisch / Deutsch ohne Steifheit" },
-    { en: "Tier 3 calm when things go sideways", de: "Ruhig, wenn der Raum laut wird" },
+    { en: "Games, animation, commercial, cinematic", de: "Games, Animation, Commercial, Cinematic" },
+    { en: "English and German", de: "Englisch und Deutsch" },
+    { en: "Tier 3 Ops experience", de: "Tier-3-Ops Erfahrung" },
   ] satisfies LocalizedText[],
-  detailCards: [
-    {
-      en: "Give me the note and I’ll turn it fast. I’m not precious about the take.",
-      de: "Direction landet besser, wenn niemand versucht, Direktionsfähigkeit zu performen.",
-    },
-    {
-      en: "Direction is easy. Changes are quick. No ego nonsense in the middle.",
-      de: "Jahre in Ops haben Klarheit, Tempo und Zurückhaltung auf die bestmögliche Weise teuer wirken lassen.",
-    },
-    {
-      en: "I also do Tier 3 operations support for hire. If the problem is messy, high-pressure, under-documented, or already ruining everybody’s day, I can help there too.",
-      de: "Tier-3-Ops-Support ist auch buchbar.",
-    },
-  ] satisfies LocalizedText[],
+  detailCards: [] satisfies LocalizedText[],
+  primaryCta: {
+    en: "Book now",
+    de: "Jetzt buchen",
+  },
 };
 
 export const pageThree = {
@@ -182,12 +148,12 @@ export const pageThree = {
     de: "Hören",
   },
   title: {
-    en: "Commercial. Cinematic. Character. Narration. Same standard.",
-    de: "Verschiedene Spuren. Gleicher Standard. Nichts Weiches dazwischen.",
+    en: "Pick a lane and let the work speak for itself.",
+    de: "Wähl die Spur und lass die Arbeit für sich sprechen.",
   },
   body: {
-    en: "Pick a lane, hit play, and trust your gut. If it fits, you will know pretty fast.",
-    de: "Das hier ist der Listening Room. Wähl die Spur, drück Play und entscheide zügig. Die Bühne wird hier absichtlich dunkler.",
+    en: "Whatever lane you choose, it holds up. Same control. Same attention to detail.",
+    de: "Egal welche Spur du wählst, sie sitzt. Gleiche Kontrolle. Gleiche Aufmerksamkeit zum Detail.",
   },
   heroImage: {
     src: "/media/reels/cinematic-hero-purple-mic.jpeg",
@@ -234,16 +200,16 @@ export const pageFour = {
     de: "Buchen",
   },
   title: {
-    en: "Send the brief. I’ll take it from there.",
-    de: "Schick das Briefing. Ich übernehme ab da.",
+    en: "Let’s get to work",
+    de: "Lass uns arbeiten",
   },
   availabilityQuote: {
-    en: "I am availble for booking right now! Please send me and email and let's get to work on your next project!",
-    de: "Ich bin gerade für Buchungen verfügbar!",
+    en: "You don’t need a long pitch. You just need the right voice.",
+    de: "Du brauchst keinen langen Pitch. Du brauchst nur die richtige Stimme.",
   },
   body: {
-    en: "Send the brief, the messy note, the half-finished thought, the reference link at 1:13. If it is commercial, corporate, animation, games, or something harder to label, send it.",
-    de: "Scope, Usage, Ton, Timing und was die Arbeit leisten soll. Je sauberer das Briefing, desto schneller der Handoff. Wenn das Briefing noch halb Chaos ist, schick es trotzdem.",
+    en: "Send what you’ve got. Script, references, direction. I’ll meet you there and make it land. I’m quick to adjust, easy to work with and even easier to book.",
+    de: "Schick, was du hast. Script, Referenzen, Direction. Ich treffe dich dort und mache es landen. Ich bin schnell anpassbar, einfach zu arbeiten und noch einfacher zu buchen.",
   },
   heroImage: {
     src: "/media/performance-book/book-hero-portrait.jpeg",
@@ -254,12 +220,12 @@ export const pageFour = {
   },
   formMarkers: [
     { en: "voice work", de: "Voice-Arbeit" },
-    { en: "EN / DE adaptation", de: "EN / DE Adaption" },
+    { en: "Tier 3 Ops if needed", de: "Tier-3-Ops wenn nötig" },
     { en: "games, animation, cinematic", de: "Games, Animation, Cinematic" },
   ] satisfies LocalizedText[],
   duoCaption: {
     en: "The second you hit \"book now\" we'll start cooking up!",
-    de: "So sehen wir aus, wenn wir dein Projekt kochen.",
+    de: "Sobald du auf Buchen klickst, fangen wir an!",
   },
   duoImages: [
     {
@@ -329,11 +295,11 @@ export const contactCopy = {
     de: "Letzte Seite",
   },
   title: {
-    en: "If it already sounds right in your head, you probably do not need a sales pitch from me.",
-    de: "Wenn es in deinem Kopf schon richtig klingt, ist Seite IV der Move.",
+    en: "You're here. Now let's book.",
+    de: "Du bist hier. Lass uns jetzt buchen.",
   },
   body: {
-    en: "Email, call, or use the booking page. Send the brief or the half-brief. We can sort it out fast.",
-    de: "Mail, Anruf oder die Booking-Seite. Der Punkt ist, sich zu bewegen, solange die Idee noch Hitze hat.",
+    en: "Email, call, or use the booking form. Whatever works. jordan@jordanbaileyvoice.com or 678-559-9787.",
+    de: "Mail, Anruf oder Booking-Formular. Was für dich passt. jordan@jordanbaileyvoice.com oder 678-559-9787.",
   },
 };

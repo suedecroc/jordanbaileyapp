@@ -8,58 +8,6 @@ import { useLanguage } from "@/components/language-provider";
 import { coverContent } from "@/lib/home";
 import { contactDetails, getLocalizedText } from "@/lib/site";
 
-const abilities = [
-  {
-    key: "A",
-    label: { en: "Authority", de: "Autorität" },
-    name: "AUTHORITY",
-    desc: {
-      en: "Command presence. Deliberate.",
-      de: "Präsenz. Absichtlich.",
-    },
-    color: "#c89b3c",
-  },
-  {
-    key: "U",
-    label: { en: "Authenticity", de: "Authentizität" },
-    name: "AUTHENTICITY",
-    desc: {
-      en: "Real. No fake.",
-      de: "Echt. Keine Künstlichkeit.",
-    },
-    color: "#0bc4e3",
-  },
-  {
-    key: "V",
-    label: { en: "Versatility", de: "Vielseitigkeit" },
-    name: "VERSATILITY",
-    desc: {
-      en: "Full range. Same standard.",
-      de: "Volle Range. Gleicher Standard.",
-    },
-    color: "#0bc4e3",
-  },
-  {
-    key: "C",
-    label: { en: "Clarity", de: "Klarheit" },
-    name: "CLARITY",
-    desc: {
-      en: "Every word lands.",
-      de: "Jedes Wort sitzt.",
-    },
-    color: "#0bc4e3",
-  },
-  {
-    key: "T",
-    label: { en: "Tone", de: "Tonalität" },
-    name: "TONE",
-    desc: {
-      en: "Emotional control. Texture.",
-      de: "Emotionale Kontrolle. Struktur.",
-    },
-    color: "#c89b3c",
-  },
-];
 
 const loreCards = [
   {
@@ -82,7 +30,6 @@ const loreCards = [
 
 export function LandingPage() {
   const { locale } = useLanguage();
-  const [activeAbility, setActiveAbility] = useState<number | null>(null);
   const [revealed, setRevealed] = useState(false);
   const stageRef = useRef<HTMLDivElement>(null);
   const splashRef = useRef<HTMLDivElement>(null);
@@ -203,33 +150,8 @@ export function LandingPage() {
           </p>
         </div>
 
-        {/* Ability bar + lock-in */}
+        {/* Lock-in */}
         <div className="cs-action-bar">
-          <div className="cs-abilities">
-            {abilities.map((a, i) => (
-              <button
-                key={a.key}
-                type="button"
-                className={`cs-ability${activeAbility === i ? " cs-ability--active" : ""}`}
-                onMouseEnter={() => setActiveAbility(i)}
-                onMouseLeave={() => setActiveAbility(null)}
-                style={{ "--ability-color": a.color } as React.CSSProperties}
-                aria-label={a.name}
-              >
-                <span className="cs-ability__lbl">{getLocalizedText(a.label, locale)}</span>
-
-                {activeAbility === i && (
-                  <div className="cs-tooltip" role="tooltip">
-                    <strong className="cs-tooltip__name">{a.name}</strong>
-                    <span className="cs-tooltip__desc">
-                      {getLocalizedText(a.desc, locale)}
-                    </span>
-                  </div>
-                )}
-              </button>
-            ))}
-          </div>
-
           <Link href="/home" className="cs-lock-in">
             <span className="cs-lock-in__glow" aria-hidden="true" />
             <span className="cs-lock-in__label">
