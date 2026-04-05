@@ -40,12 +40,12 @@ export const pageOne = {
     de: "Der erste Eindruck sollte exakt, teuer und leicht gefährlich wirken.",
   },
   body: {
-    en: "I do voiceover for games, animation, commercial, corporate, and cinematic work. English and German both sound natural. I take direction well, I adjust fast, and I stay calm when the session gets messy.",
-    de: "Voice für Games, Animation, Cinematic-Arbeit und Skripte, die Kontrolle brauchen, bevor sie Lautstärke brauchen. Englisch und Deutsch, mit Adaption, die immer noch nativ klingt. Tier-3-Ruhe, wenn das Projekt mitten drin komisch wird.",
+    en: "Games, animation, commercial. Both languages natural. Fast adjustments. Calm under pressure.",
+    de: "Games, Animation, Commercial. Beide Sprachen natürlich. Schnelle Anpassung. Ruhig unter Druck.",
   },
   capabilityQuote: {
-    en: "Whether it's commercial, corporate or animation, I can do it all.",
-    de: "Ob Commercial, Corporate oder Animation - ich kann alles davon.",
+    en: "Commercial, corporate, animation. All of it.",
+    de: "Commercial, Corporate, Animation. Alles davon.",
   },
   primaryCta: {
     en: "Jump to Page IV",
@@ -76,24 +76,24 @@ export const pageOne = {
       eyebrow: { en: "Voice first", de: "Voice zuerst" },
       title: { en: "Commercial, corporate, animation, games", de: "Games, Animation, Cinematic" },
       body: {
-        en: "Funny when it helps. Warm when it helps. Dangerous when it helps. The line still sounds like a person.",
-        de: "Charme, Bedrohung, Wärme, Command. Die Zeile behält trotzdem ihre Form.",
+        en: "Funny, warm, dangerous. Still sounds human.",
+        de: "Lustig, warm, bedrohlich. Klingt trotzdem menschlich.",
       },
     },
     {
       eyebrow: { en: "English / German", de: "Englisch / Deutsch" },
       title: { en: "A real edge, not a fun fact", de: "Ein echter Vorteil, keine nette Randnotiz" },
       body: {
-        en: "I do not just switch languages. I keep the same tone, timing, and nerve in both.",
-        de: "Wenn die Copy in einer Sprache funktioniert und in der anderen stirbt, ist sie noch nicht fertig.",
+        en: "Same tone in both languages.",
+        de: "Gleicher Ton in beiden Sprachen.",
       },
     },
     {
       eyebrow: { en: "Tier 3 ops", de: "Tier-3-Ops" },
       title: { en: "Calm when the project gets weird", de: "Ruhig, wenn der Raum anfängt zu lügen" },
       body: {
-        en: "Tier 3 ops taught me how to stay useful when things get loud, messy, or start slipping sideways.",
-        de: "Incidents, Eskalationen, fragile Systeme und der menschliche Teil, den Raum stabil zu halten.",
+        en: "Stays useful when things get loud.",
+        de: "Bleibt nützlich, wenn es laut wird.",
       },
     },
   ] satisfies SupportCard[],
