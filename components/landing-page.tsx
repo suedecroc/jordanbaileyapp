@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { LanguageToggle } from "@/components/language-toggle";
 import { useLanguage } from "@/components/language-provider";
+import { FloatingIntroPlayerV3 } from "@/components/floating-intro-player-v3";
 import { coverContent } from "@/lib/home";
 import { contactDetails, getLocalizedText } from "@/lib/site";
 
@@ -77,6 +78,7 @@ export function LandingPage() {
 
   return (
     <div className={`cs-root${revealed ? " cs-root--revealed" : ""}`} ref={stageRef}>
+      <FloatingIntroPlayerV3 />
       {/* Ambient layers */}
       <div className="cs-bg-hex" aria-hidden="true" />
       <div className="cs-particles" aria-hidden="true" />
