@@ -1,4 +1,4 @@
-""{
+{
   "name": "jordan-bailey-app",
   "version": "1.0.0",
   "private": true,
@@ -13,4 +13,3 @@
     "react-dom": "18.3.1"
   }
 }
-""
