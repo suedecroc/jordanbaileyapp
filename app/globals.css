@@ -3092,13 +3092,16 @@ img {
 
   /* V1 MOBILE OPTIMIZATIONS */
   .v1-root {
-    padding: 1rem 0;
+    padding: 0;
   }
 
   .v1-hero-container {
-    max-width: 95%;
-    gap: 1.2rem;
-    padding: 1rem;
+    max-width: 100%;
+    width: 100%;
+    gap: 0.6rem;
+    padding: 0.5rem;
+    padding-bottom: 2.5rem;
+    margin: 0;
   }
 
   .v1-hero-outer-frame {
@@ -3142,9 +3145,9 @@ img {
   .v1-btn-book {
     width: 100%;
     max-width: none;
-    padding: 1rem;
-    min-height: 48px;
-    font-size: 0.8rem;
+    padding: 0.7rem 0.8rem;
+    min-height: 44px;
+    font-size: 0.7rem;
   }
 
   .v1-info-card {
@@ -3153,19 +3156,19 @@ img {
   }
 
   .v1-name {
-    font-size: 1.2rem;
-    margin-bottom: 0.2rem;
+    font-size: 1rem;
+    margin-bottom: 0.1rem;
   }
 
   .v1-title {
-    font-size: 0.7rem;
-    margin-bottom: 0.6rem;
+    font-size: 0.6rem;
+    margin-bottom: 0.3rem;
   }
 
   .v1-tagline {
-    font-size: 0.65rem;
-    max-width: 90vw;
-    line-height: 1.4;
+    font-size: 0.55rem;
+    max-width: 95vw;
+    line-height: 1.2;
   }
 
   .v1-compact-player {
@@ -3191,7 +3194,7 @@ img {
     flex-direction: column;
     height: auto;
     min-height: 100vh;
-    padding: 1.5rem 0;
+    padding: 0;
   }
 
   .v2-hero-frame {
@@ -3210,15 +3213,16 @@ img {
     transform: none;
     top: auto;
     left: auto;
-    margin: 1rem 0;
+    margin: 0.5rem 0;
+    padding: 0 0.5rem;
   }
 
   .v2-name {
-    font-size: 1.4rem;
+    font-size: 1rem;
   }
 
   .v2-subtitle {
-    font-size: 0.75rem;
+    font-size: 0.6rem;
   }
 
   .v2-actions {
@@ -3228,20 +3232,21 @@ img {
     right: auto;
     bottom: auto;
     left: auto;
-    flex-direction: row;
-    gap: 0.6rem;
+    flex-direction: column;
+    gap: 0.5rem;
     justify-content: center;
     width: 100%;
-    padding: 0 1rem;
+    padding: 0 0.5rem;
     flex-wrap: wrap;
   }
 
   .v2-btn-primary,
   .v2-btn-secondary {
     flex: 1;
-    min-width: 120px;
+    min-width: auto;
+    width: 100%;
     min-height: 44px;
-    padding: 0.8rem 1rem;
+    padding: 0.7rem 0.8rem;
     font-size: 0.65rem;
     white-space: normal;
   }
@@ -3275,13 +3280,16 @@ img {
 
   /* V3 MOBILE OPTIMIZATIONS */
   .v3-root {
-    padding: 1rem 0;
+    padding: 0;
   }
 
   .v3-hero-container {
-    max-width: 95%;
-    gap: 1.2rem;
-    padding: 1rem;
+    max-width: 100%;
+    width: 100%;
+    gap: 0.6rem;
+    padding: 0.5rem;
+    padding-bottom: 2.5rem;
+    margin: 0;
   }
 
   .v3-scope {
@@ -3311,18 +3319,18 @@ img {
   }
 
   .v3-callsign {
-    font-size: 1.2rem;
-    margin-bottom: 0.4rem;
+    font-size: 1rem;
+    margin-bottom: 0.1rem;
   }
 
   .v3-role {
-    font-size: 0.7rem;
-    margin-top: 0.4rem;
+    font-size: 0.6rem;
+    margin-top: 0.2rem;
   }
 
   .v3-actions {
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 0.5rem;
     width: 100%;
   }
 
@@ -3330,8 +3338,8 @@ img {
   .v3-btn-secondary {
     width: 100%;
     min-height: 44px;
-    padding: 0.8rem 1rem;
-    font-size: 0.7rem;
+    padding: 0.7rem 0.8rem;
+    font-size: 0.65rem;
   }
 
   .v3-range-info {
@@ -3358,13 +3366,16 @@ img {
 
   /* V4 MOBILE OPTIMIZATIONS */
   .v4-root {
-    padding: 1rem 0;
+    padding: 0;
   }
 
   .v4-hero-container {
-    max-width: 95%;
-    gap: 1.2rem;
-    padding: 1rem;
+    max-width: 100%;
+    width: 100%;
+    gap: 0.6rem;
+    padding: 0.5rem;
+    padding-bottom: 2.5rem;
+    margin: 0;
   }
 
   .v4-accent-lines {
@@ -3381,16 +3392,17 @@ img {
 
   .v4-identity {
     text-align: center;
-    margin: 0.5rem 0;
+    margin: 0.2rem 0;
+    padding: 0 0.5rem;
   }
 
   .v4-tag {
-    font-size: 0.6rem;
+    font-size: 0.5rem;
   }
 
   .v4-name {
-    font-size: 1.2rem;
-    margin: 0.2rem 0;
+    font-size: 1rem;
+    margin: 0.1rem 0;
   }
 
   .v4-pulse-line {
@@ -3398,12 +3410,12 @@ img {
   }
 
   .v4-title {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
   }
 
   .v4-actions {
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 0.5rem;
     width: 100%;
   }
 
@@ -3411,8 +3423,8 @@ img {
   .v4-btn-secondary {
     width: 100%;
     min-height: 44px;
-    padding: 0.8rem 1rem;
-    font-size: 0.7rem;
+    padding: 0.7rem 0.8rem;
+    font-size: 0.65rem;
   }
 
   .v4-bio {
