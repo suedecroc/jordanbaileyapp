@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { LanguageToggle } from "@/components/language-toggle";
 import { useLanguage } from "@/components/language-provider";
-import { FloatingIntroPlayerV3 } from "@/components/floating-intro-player-v3";
+import { FloatingIntroPlayerV4 } from "@/components/floating-intro-player-v4";
 import { coverContent } from "@/lib/home";
 import { contactDetails, getLocalizedText } from "@/lib/site";
 
@@ -79,7 +79,6 @@ export function LandingPage() {
 
   return (
     <div className={`cs-root${revealed ? " cs-root--revealed" : ""}`} ref={stageRef}>
-      <FloatingIntroPlayerV3 />
       {/* Ambient layers */}
       <div className="cs-bg-hex" aria-hidden="true" />
       <div className="cs-particles" aria-hidden="true" />
@@ -151,6 +150,11 @@ export function LandingPage() {
           <p className="cs-nameplate__title">
             {getLocalizedText({ en: "The Voice Actor", de: "Der Sprecher" }, locale)}
           </p>
+        </div>
+
+        {/* Intro reel player */}
+        <div className="cs-reel-wrap">
+          <FloatingIntroPlayerV4 />
         </div>
 
         {/* Lock-in */}

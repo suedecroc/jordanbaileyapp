@@ -1988,6 +1988,240 @@ img {
   }
 }
 
+/* ==========================================================================
+   REEL CARD — Landing Page Demo Player
+   ========================================================================== */
+
+.cs-reel-wrap {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 0 1rem 1.25rem;
+}
+
+.cs-reel-card {
+  width: clamp(260px, 78vw, 360px);
+  background: rgba(5, 7, 18, 0.86);
+  border: 1px solid var(--cs-panel-border);
+  border-radius: var(--radius-xs);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  padding: 1.2rem 1.4rem 1rem;
+  box-shadow:
+    0 0 0 1px rgba(200, 155, 60, 0.07),
+    0 0 36px rgba(200, 155, 60, 0.11),
+    0 20px 56px rgba(0, 0, 0, 0.65);
+  animation: cs-reel-float 5.5s ease-in-out infinite;
+}
+
+@keyframes cs-reel-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-7px); }
+}
+
+/* Header */
+.cs-reel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.cs-reel-eyebrow {
+  font-family: var(--cs-font);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--cs-gold);
+  text-shadow: 0 0 12px rgba(200, 155, 60, 0.45);
+}
+
+/* Waveform bars */
+.cs-reel-waves {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 18px;
+}
+
+.cs-reel-wave-bar {
+  display: block;
+  width: 3px;
+  height: 5px;
+  background: rgba(200, 155, 60, 0.3);
+  border-radius: 2px;
+}
+
+.cs-reel-waves--active .cs-reel-wave-bar {
+  background: var(--cs-gold);
+}
+
+.cs-reel-waves--active .cs-reel-wave-bar:nth-child(1) {
+  animation: cs-wave-bounce 0.7s ease-in-out infinite alternate;
+}
+.cs-reel-waves--active .cs-reel-wave-bar:nth-child(2) {
+  animation: cs-wave-bounce 0.5s ease-in-out 0.08s infinite alternate;
+}
+.cs-reel-waves--active .cs-reel-wave-bar:nth-child(3) {
+  animation: cs-wave-bounce 0.9s ease-in-out 0.16s infinite alternate;
+}
+.cs-reel-waves--active .cs-reel-wave-bar:nth-child(4) {
+  animation: cs-wave-bounce 0.6s ease-in-out 0.06s infinite alternate;
+}
+.cs-reel-waves--active .cs-reel-wave-bar:nth-child(5) {
+  animation: cs-wave-bounce 0.75s ease-in-out 0.12s infinite alternate;
+}
+
+@keyframes cs-wave-bounce {
+  from { height: 4px; }
+  to { height: 17px; }
+}
+
+/* Player row */
+.cs-reel-player-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.cs-reel-play-btn {
+  position: relative;
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(200, 155, 60, 0.26), rgba(200, 155, 60, 0.1));
+  border: 2px solid var(--cs-gold);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 16px rgba(200, 155, 60, 0.28);
+}
+
+.cs-reel-play-btn:hover {
+  background: linear-gradient(135deg, rgba(200, 155, 60, 0.42), rgba(200, 155, 60, 0.2));
+  box-shadow: 0 0 30px rgba(200, 155, 60, 0.5);
+  transform: scale(1.06);
+}
+
+.cs-reel-play-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, rgba(200, 155, 60, 0.22), transparent 68%);
+  animation: cs-reel-play-pulse 2.8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes cs-reel-play-pulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.18); }
+}
+
+.cs-reel-play-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--cs-gold-light);
+  position: relative;
+  z-index: 1;
+}
+
+.cs-reel-play-icon--offset {
+  margin-left: 2px;
+}
+
+/* Track */
+.cs-reel-track {
+  flex: 1;
+  min-width: 0;
+}
+
+.cs-reel-progress-bar {
+  height: 3px;
+  background: rgba(200, 155, 60, 0.16);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 0.45rem;
+}
+
+.cs-reel-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--cs-gold), var(--cs-gold-light));
+  border-radius: 2px;
+  transition: width 0.25s linear;
+  box-shadow: 0 0 8px rgba(200, 155, 60, 0.55);
+}
+
+.cs-reel-time {
+  font-family: var(--cs-font);
+  font-size: 0.56rem;
+  letter-spacing: 0.16em;
+  color: var(--cs-text-dim);
+}
+
+/* Divider */
+.cs-reel-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cs-panel-border), transparent);
+  margin-bottom: 0.9rem;
+}
+
+/* CTAs */
+.cs-reel-ctas {
+  display: flex;
+  gap: 0.55rem;
+}
+
+.cs-reel-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.58rem 0.7rem;
+  border-radius: var(--radius-xs);
+  font-family: var(--cs-font);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  outline: none;
+}
+
+.cs-reel-btn--primary {
+  background: linear-gradient(135deg, rgba(200, 155, 60, 0.28), rgba(200, 155, 60, 0.12));
+  border: 1px solid var(--cs-gold);
+  color: var(--cs-gold-light);
+}
+
+.cs-reel-btn--primary:hover,
+.cs-reel-btn--primary:focus-visible {
+  background: linear-gradient(135deg, rgba(200, 155, 60, 0.44), rgba(200, 155, 60, 0.24));
+  box-shadow: 0 0 18px rgba(200, 155, 60, 0.35);
+}
+
+.cs-reel-btn--secondary {
+  background: transparent;
+  border: 1px solid rgba(11, 196, 227, 0.38);
+  color: var(--cs-cyan);
+}
+
+.cs-reel-btn--secondary:hover,
+.cs-reel-btn--secondary:focus-visible {
+  background: rgba(11, 196, 227, 0.09);
+  border-color: var(--cs-cyan);
+  box-shadow: 0 0 14px rgba(11, 196, 227, 0.22);
+}
+
 /* Reduce motion */
 @media (prefers-reduced-motion: reduce) {
   .cs-root,
