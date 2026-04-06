@@ -263,12 +263,24 @@ export const serviceCards: ServiceCard[] = [
 
 export const aboutPageCopy: LocalizedText[] = [
   {
-    en: "I’m Jordan Bailey, a voice actor, creative, and Tier 3 Operations Engineer based in Atlanta and born in Frankfurt. I care about work that feels clear, intentional, and real, whether that means delivering a strong read, building a thoughtful brand, or supporting complex technical environments behind the scenes. I bring a mix of creativity, technical depth, and emotional intelligence to what I do, along with a calm, grounded presence people can actually trust. My goal is simple: do great work, make it memorable, and never waste motion.",
-    de: "Ich mag Arbeit, die genau weiß, was sie tun will.",
+    en: "Voice actor, Tier 3 IT Operations Engineer, Atlanta-based, Frankfurt-born. I approach voice work the same way I approach high-pressure environments: steady, focused, and right for the moment.",
+    de: "Sprecher, Tier-3-IT-Operations-Engineer, in Atlanta zuhause, in Frankfurt geboren. Ich gehe an Voice-Work genauso ran wie an High-Pressure-Umgebungen: ruhig, fokussiert und genau richtig für den Moment.",
   },
   {
-    en: "Let’s connect and bring your next project to life.",
-    de: "Nicht lauter als nötig. Nicht sauberer als nötig. Einfach exakt.",
+    en: "I come ready to work. Commercial, animation, games, corporate, cinematic — whatever the project calls for, I lock in and find the read that fits. No ego, no overcomplicating it, and no wasting your time.",
+    de: "Ich komme bereit zum Arbeiten. Commercial, Animation, Games, Corporate, Cinematic — was auch immer das Projekt verlangt, ich lock in und finde den passenden Read. Kein Ego, kein Overcomplizieren, und keine Zeitverschwendung.",
+  },
+  {
+    en: "English and German are not two separate modes for me. It’s the same ear, the same standard, and the same voice carrying through both. That’s not a trick. That’s just how I’m built.",
+    de: "Englisch und Deutsch sind für mich keine zwei getrennten Modi. Dasselbe Gehör, derselbe Standard, dieselbe Stimme in beiden Sprachen. Das ist kein Trick. Das ist einfach, wie ich aufgewachsen bin.",
+  },
+  {
+    en: "A clean setup means nothing if the read doesn’t feel real. Connecting with the material is my top priority.",
+    de: "Ein sauberes Setup bedeutet nichts, wenn der Read sich nicht echt anfühlt. Den Read wirklich zu treffen ist meine oberste Priorität.",
+  },
+  {
+    en: "Tell me what the project needs. I’ll take it from there.",
+    de: "Sag mir, was das Projekt braucht. Den Rest übernehme ich.",
   },
 ];
 

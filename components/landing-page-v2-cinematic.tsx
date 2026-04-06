@@ -94,7 +94,16 @@ export function LandingPageV2Cinematic() {
   const progressPercent = duration ? (currentTime / duration) * 100 : 0;
 
   return (
-    <div className={`v2-root${revealed ? " v2-root--revealed" : ""}`} ref={stageRef}>
+    <div
+      className={`v2-root${revealed ? " v2-root--revealed" : ""}`}
+      ref={stageRef}
+      style={{
+        backgroundImage: `url('/media/images/hero.webp')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
+      }}
+    >
       {/* Ambient */}
       <div className="v2-bg-hex" aria-hidden="true" />
       <div className="v2-particles" aria-hidden="true" />
@@ -104,16 +113,8 @@ export function LandingPageV2Cinematic() {
       {/* Audio (hidden) */}
       <audio ref={audioRef} src="/media/reels/intro-demo-reel.mp3" preload="metadata" />
 
-      {/* Hero Frame - Minimal Border, Maximum Impact */}
+      {/* Content Container */}
       <div className="v2-hero-container">
-        <div className="v2-hero-frame">
-          <div className="v2-hero-image" ref={splashRef}>
-            <img src="/media/images/hero.webp" alt="Jordan Bailey" draggable={false} />
-            <div className="v2-hero-overlay" aria-hidden="true" />
-          </div>
-          <div className="v2-hero-border" aria-hidden="true" />
-        </div>
-
         {/* Text Overlay - Minimal */}
         <div className="v2-text-overlay">
           <h1 className="v2-name">JORDAN BAILEY</h1>
@@ -135,6 +136,12 @@ export function LandingPageV2Cinematic() {
               {getLocalizedText({ en: "Listen First", de: "Erst hören" }, locale)}
             </span>
           </button>
+
+          <a href="https://jordanbaileyvoice.com/home" className="v2-btn-enter">
+            <span className="v2-btn-text">
+              {getLocalizedText({ en: "Let's Work", de: "Los geht's" }, locale)}
+            </span>
+          </a>
 
           <Link href="/book" className="v2-btn-secondary">
             <span className="v2-btn-icon">↳</span>

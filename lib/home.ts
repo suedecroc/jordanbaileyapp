@@ -114,8 +114,8 @@ export const pageTwo = {
     de: "Dossier",
   },
   title: {
-    en: "I'm a voice actor with a background in high-pressure technical environments.",
-    de: "Ich bin Sprecher mit Erfahrung in stressigen, technischen Umgebungen.",
+    en: "I'm Jordan Bailey.",
+    de: "Ich bin Jordan Bailey.",
   },
   intro: {
     en: "Tier 3 Operations, escalations, systems that don't behave. That's where I learned how to stay calm, listen closely, and adjust fast. It translates well. Sessions stay clean. Direction lands quickly. My reads are controlled, intentional, and just the way you asked. I'm not here to overcomplicate things. I'm here to get it right.",
