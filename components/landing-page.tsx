@@ -9,6 +9,13 @@ import { LandingPageV4Zeri } from "./landing-page-v4-zeri";
 export function LandingPage() {
   const [version, setVersion] = useState<"v1" | "v2" | "v3" | "v4">("v2");
 
+  const buttonConfigs = [
+    { id: "v1", label: "COMMERCIAL", color: "#c89b3c" },
+    { id: "v2", label: "CINEMATIC", color: "#0bc4e3" },
+    { id: "v3", label: "PRECISE", color: "#a0643c" },
+    { id: "v4", label: "SCHNELL", color: "#8a2be2" },
+  ];
+
   return (
     <>
       {version === "v1" && <LandingPageV1Hextech />}
@@ -16,91 +23,48 @@ export function LandingPage() {
       {version === "v3" && <LandingPageV3Jhin />}
       {version === "v4" && <LandingPageV4Zeri />}
 
-      {/* Version Toggle (top-left) */}
+      {/* Design Toggle Buttons - Top Left (Iteration 1: Minimal Bar) */}
       <div
         style={{
           position: "fixed",
-          top: "1rem",
-          left: "1rem",
+          top: "2rem",
+          left: "2rem",
           zIndex: 9999,
-          background: "rgba(0,0,0,0.9)",
-          padding: "0.8rem 1.2rem",
-          border: "1px solid #0bc4e3",
+          display: "flex",
+          gap: "0.4rem",
+          flexWrap: "nowrap",
+          background: "rgba(5, 7, 18, 0.85)",
+          padding: "0.5rem",
           borderRadius: "4px",
-          fontFamily: "'Cinzel', serif",
-          fontSize: "0.65rem",
-          color: "#0bc4e3",
-          letterSpacing: "0.1em",
-          textTransform: "uppercase",
+          border: "1px solid rgba(200, 155, 60, 0.3)",
+          backdropFilter: "blur(4px)",
         }}
       >
-        <div style={{ marginBottom: "0.6rem", fontWeight: "bold" }}>Landing Page Design</div>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.4rem" }}>
+        {buttonConfigs.map((btn) => (
           <button
+            key={btn.id}
             type="button"
-            onClick={() => setVersion("v1")}
+            onClick={() => setVersion(btn.id as "v1" | "v2" | "v3" | "v4")}
             style={{
-              background: version === "v1" ? "#c89b3c" : "transparent",
-              border: "1px solid " + (version === "v1" ? "#f0e0a0" : "#c89b3c"),
-              color: version === "v1" ? "#000" : "#c89b3c",
-              padding: "0.4rem 0.6rem",
+              background: version === btn.id ? btn.color : "transparent",
+              border: `1px solid ${btn.color}`,
+              color: version === btn.id ? (btn.id === "v4" ? "#e0ff41" : "#000") : btn.color,
+              padding: "0.25rem 0.6rem",
               cursor: "pointer",
-              fontSize: "0.6rem",
+              fontSize: "0.5rem",
+              fontFamily: "Georgia, 'Garamond', serif",
+              fontWeight: version === btn.id ? "bold" : "600",
+              letterSpacing: "0.06em",
+              textTransform: "uppercase",
               transition: "all 0.2s",
-              fontWeight: version === "v1" ? "bold" : "normal",
+              borderRadius: "2px",
+              boxShadow: version === btn.id ? `0 0 8px ${btn.color}66` : "none",
+              whiteSpace: "nowrap",
             }}
           >
-            Hextech
+            {btn.label}
           </button>
-          <button
-            type="button"
-            onClick={() => setVersion("v2")}
-            style={{
-              background: version === "v2" ? "#0bc4e3" : "transparent",
-              border: "1px solid #0bc4e3",
-              color: version === "v2" ? "#000" : "#0bc4e3",
-              padding: "0.4rem 0.6rem",
-              cursor: "pointer",
-              fontSize: "0.6rem",
-              transition: "all 0.2s",
-              fontWeight: version === "v2" ? "bold" : "normal",
-            }}
-          >
-            Cinematic
-          </button>
-          <button
-            type="button"
-            onClick={() => setVersion("v3")}
-            style={{
-              background: version === "v3" ? "#a0643c" : "transparent",
-              border: "1px solid #a0643c",
-              color: version === "v3" ? "#fff" : "#a0643c",
-              padding: "0.4rem 0.6rem",
-              cursor: "pointer",
-              fontSize: "0.6rem",
-              transition: "all 0.2s",
-              fontWeight: version === "v3" ? "bold" : "normal",
-            }}
-          >
-            Performance
-          </button>
-          <button
-            type="button"
-            onClick={() => setVersion("v4")}
-            style={{
-              background: version === "v4" ? "#8a2be2" : "transparent",
-              border: "1px solid #8a2be2",
-              color: version === "v4" ? "#e0ff41" : "#8a2be2",
-              padding: "0.4rem 0.6rem",
-              cursor: "pointer",
-              fontSize: "0.6rem",
-              transition: "all 0.2s",
-              fontWeight: version === "v4" ? "bold" : "normal",
-            }}
-          >
-            Speed
-          </button>
-        </div>
+        ))}
       </div>
     </>
   );

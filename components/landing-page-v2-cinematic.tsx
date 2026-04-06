@@ -145,53 +145,25 @@ export function LandingPageV2Cinematic() {
         </div>
       </div>
 
-      {/* Floating Minimal Player - Bottom Right */}
+      {/* Compact Pill Player - Top Right */}
       <div
-        className="v2-floating-player"
+        className="v2-compact-player"
         onMouseEnter={() => setShowPlayer(true)}
         onMouseLeave={() => setShowPlayer(false)}
       >
-        {/* Collapsed Disk Icon */}
         <button
           type="button"
-          className={`v2-player-disk${playing ? " v2-player-disk--playing" : ""}`}
+          className={`v2-compact-button${playing ? " v2-compact-button--playing" : ""}`}
           onClick={toggleAudio}
           aria-label={playing ? "Pause" : "Play"}
         >
-          <span className="v2-player-disk__icon">{playing ? "◌" : "●"}</span>
+          {playing ? "⏸" : "▶"}
         </button>
 
-        {/* Expanded Player Panel */}
         {showPlayer && (
-          <div className="v2-player-expanded">
-            <div className="v2-player-header">
-              <span className="v2-player-title">Demo Reel</span>
-              <button
-                type="button"
-                className="v2-player-close"
-                onClick={() => setShowPlayer(false)}
-                aria-label="Close"
-              >
-                ×
-              </button>
-            </div>
-
-            <div className="v2-player-progress-bar">
-              <div className="v2-player-progress-fill" style={{ width: `${progressPercent}%` }} />
-            </div>
-
-            <div className="v2-player-time">
-              {formatTime(currentTime)} / {formatTime(duration)}
-            </div>
-
-            <button
-              type="button"
-              className="v2-player-play-btn"
-              onClick={toggleAudio}
-              aria-label={playing ? "Pause" : "Play"}
-            >
-              {playing ? "⏸ Pause" : "▶ Play"}
-            </button>
+          <div className="v2-compact-panel">
+            <div className="v2-compact-bar" style={{ width: `${progressPercent}%` }} />
+            <div className="v2-compact-time">{formatTime(currentTime)}</div>
           </div>
         )}
       </div>

@@ -13,6 +13,7 @@ export function LandingPageV1Hextech() {
   const [playing, setPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
+  const [showPlayer, setShowPlayer] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const splashRef = useRef<HTMLDivElement>(null);
@@ -145,21 +146,27 @@ export function LandingPageV1Hextech() {
         </div>
       </div>
 
-      {/* Floating Audio Player - Bottom Right */}
-      <div className="v1-floating-player">
-        <div className="v1-player-disk" aria-hidden="true" />
+      {/* Compact Pill Player - Top Right */}
+      <div
+        className="v1-compact-player"
+        onMouseEnter={() => setShowPlayer(true)}
+        onMouseLeave={() => setShowPlayer(false)}
+      >
         <button
           type="button"
-          className={`v1-player-button${playing ? " v1-player-button--playing" : ""}`}
+          className={`v1-compact-button${playing ? " v1-compact-button--playing" : ""}`}
           onClick={toggleAudio}
           aria-label={playing ? "Pause" : "Play"}
         >
-          <span className="v1-player-icon">{playing ? "⏸" : "▶"}</span>
+          {playing ? "⏸" : "▶"}
         </button>
-        <div className="v1-player-progress" style={{ width: `${progressPercent}%` }} />
-        <div className="v1-player-time">
-          {formatTime(currentTime)} / {formatTime(duration)}
-        </div>
+
+        {showPlayer && (
+          <div className="v1-compact-panel">
+            <div className="v1-compact-bar" style={{ width: `${progressPercent}%` }} />
+            <div className="v1-compact-time">{formatTime(currentTime)}</div>
+          </div>
+        )}
       </div>
 
       {/* Name & Info Card */}

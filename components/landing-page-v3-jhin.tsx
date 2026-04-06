@@ -13,6 +13,7 @@ export function LandingPageV3Jhin() {
   const [playing, setPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
+  const [showPlayer, setShowPlayer] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const splashRef = useRef<HTMLDivElement>(null);
@@ -156,14 +157,27 @@ export function LandingPageV3Jhin() {
         </div>
       </div>
 
-      <div className="v3-precision-player">
-        <div className="v3-player-reticle" aria-hidden="true" />
-        <button type="button" className={`v3-player-trigger${playing ? " v3-player-trigger--firing" : ""}`} onClick={toggleAudio} aria-label={playing ? "Pause" : "Play"}>
+      {/* Compact Pill Player - Top Right */}
+      <div
+        className="v3-compact-player"
+        onMouseEnter={() => setShowPlayer(true)}
+        onMouseLeave={() => setShowPlayer(false)}
+      >
+        <button
+          type="button"
+          className={`v3-compact-button${playing ? " v3-compact-button--playing" : ""}`}
+          onClick={toggleAudio}
+          aria-label={playing ? "Pause" : "Play"}
+        >
           {playing ? "⏸" : "▶"}
         </button>
-        <div className="v3-player-barrel" aria-hidden="true" />
-        <div className="v3-player-ammo" style={{ width: `${progressPercent}%` }} />
-        <div className="v3-player-time">{formatTime(currentTime)}</div>
+
+        {showPlayer && (
+          <div className="v3-compact-panel">
+            <div className="v3-compact-bar" style={{ width: `${progressPercent}%` }} />
+            <div className="v3-compact-time">{formatTime(currentTime)}</div>
+          </div>
+        )}
       </div>
 
       <div className="v3-range-info">

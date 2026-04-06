@@ -40,8 +40,8 @@ export function getLocalizedText(text: LocalizedText, locale: Locale) {
 export const contactDetails = {
   email: "jrdnbailey23@gmail.com",
   emailHref: "mailto:jrdnbailey23@gmail.com",
-  phoneDisplay: "678-559-9787",
-  phoneHref: "tel:+16785599787",
+  phoneDisplay: "404-913-9124",
+  phoneHref: "tel:+14049139124",
   instagramHandle: "young_link3",
   instagramHref: "https://instagram.com/young_link3",
   linkedinHref: "https://www.linkedin.com/in/jordanbailey23",

@@ -13,6 +13,7 @@ export function LandingPageV4Zeri() {
   const [playing, setPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
+  const [showPlayer, setShowPlayer] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const splashRef = useRef<HTMLDivElement>(null);
@@ -150,13 +151,27 @@ export function LandingPageV4Zeri() {
         </div>
       </div>
 
-      <div className="v4-energy-player">
-        <div className="v4-player-core" aria-hidden="true" />
-        <button type="button" className={`v4-player-btn${playing ? " v4-player-btn--charging" : ""}`} onClick={toggleAudio} aria-label={playing ? "Pause" : "Play"}>
-          <span>{playing ? "⏸" : "⚡"}</span>
+      {/* Compact Pill Player - Top Right */}
+      <div
+        className="v4-compact-player"
+        onMouseEnter={() => setShowPlayer(true)}
+        onMouseLeave={() => setShowPlayer(false)}
+      >
+        <button
+          type="button"
+          className={`v4-compact-button${playing ? " v4-compact-button--playing" : ""}`}
+          onClick={toggleAudio}
+          aria-label={playing ? "Pause" : "Play"}
+        >
+          {playing ? "⏸" : "⚡"}
         </button>
-        <div className="v4-player-charge" style={{ width: `${progressPercent}%` }} />
-        <div className="v4-player-time">{formatTime(currentTime)}</div>
+
+        {showPlayer && (
+          <div className="v4-compact-panel">
+            <div className="v4-compact-bar" style={{ width: `${progressPercent}%` }} />
+            <div className="v4-compact-time">{formatTime(currentTime)}</div>
+          </div>
+        )}
       </div>
 
       <div className="v4-bio">
