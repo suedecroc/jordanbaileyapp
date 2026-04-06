@@ -3191,10 +3191,14 @@ img {
 
   /* V2 MOBILE OPTIMIZATIONS */
   .v2-hero-container {
+    flex: 0 0 100vw !important;
+    width: 100vw !important;
     flex-direction: column;
     height: auto;
     min-height: 100vh;
     padding: 0;
+    margin-left: calc(-50vw + 50%);
+    box-sizing: border-box;
   }
 
   .v2-hero-frame {
@@ -3210,15 +3214,22 @@ img {
 
   .v2-text-overlay {
     position: relative;
-    transform: none;
+    transform: none !important;
+    animation: none !important;
     top: auto;
     left: auto;
     margin: 0.5rem 0;
     padding: 0 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .v2-name {
     font-size: 1rem;
+    letter-spacing: 0.08em;
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow: hidden;
   }
 
   .v2-subtitle {
@@ -3252,13 +3263,15 @@ img {
   }
 
   .v2-tagline {
-    position: relative;
-    transform: none;
-    bottom: auto;
-    left: auto;
+    position: absolute;
+    bottom: 1rem;
+    left: 0;
+    right: 0;
+    transform: none !important;
+    animation: none !important;
     width: 100%;
-    padding: 1.5rem 1rem;
-    margin: 1rem 0 0;
+    padding: 0 1rem;
+    margin: 0;
   }
 
   .v2-tagline p {
