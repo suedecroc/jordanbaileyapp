@@ -82,7 +82,7 @@ export function LandingPage() {
               fontWeight: version === "v3" ? "bold" : "normal",
             }}
           >
-            Jhin
+            Performance
           </button>
           <button
             type="button"
@@ -98,7 +98,7 @@ export function LandingPage() {
               fontWeight: version === "v4" ? "bold" : "normal",
             }}
           >
-            Zeri
+            Speed
           </button>
         </div>
       </div>
