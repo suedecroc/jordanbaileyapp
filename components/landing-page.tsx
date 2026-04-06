@@ -1,206 +1,107 @@
 "use client";
 
-// Force rebuild - deploying v3 player
-import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-
-import { LanguageToggle } from "@/components/language-toggle";
-import { useLanguage } from "@/components/language-provider";
-import { FloatingIntroPlayerV4 } from "@/components/floating-intro-player-v4";
-import { coverContent } from "@/lib/home";
-import { contactDetails, getLocalizedText } from "@/lib/site";
-
-
-const loreCards = [
-  {
-    label: { en: "Origin", de: "Herkunft" },
-    value: { en: "Frankfurt → Atlanta", de: "Frankfurt → Atlanta" },
-  },
-  {
-    label: { en: "Languages", de: "Sprachen" },
-    value: { en: "English / German", de: "Englisch / Deutsch" },
-  },
-  {
-    label: { en: "Tier", de: "Tier" },
-    value: { en: "Tier 3 Operations Engineer", de: "Tier 3 Operations Engineer" },
-  },
-  {
-    label: { en: "Class", de: "Klasse" },
-    value: { en: "Voice Actor", de: "Sprecher" },
-  },
-];
+import { useState } from "react";
+import { LandingPageV1Hextech } from "./landing-page-v1-hextech";
+import { LandingPageV2Cinematic } from "./landing-page-v2-cinematic";
+import { LandingPageV3Jhin } from "./landing-page-v3-jhin";
+import { LandingPageV4Zeri } from "./landing-page-v4-zeri";
 
 export function LandingPage() {
-  const { locale } = useLanguage();
-  const [revealed, setRevealed] = useState(false);
-  const stageRef = useRef<HTMLDivElement>(null);
-  const splashRef = useRef<HTMLDivElement>(null);
-  const floatRef = useRef<HTMLDivElement>(null);
-
-  // Entrance reveal
-  useEffect(() => {
-    const t = setTimeout(() => setRevealed(true), 120);
-    return () => clearTimeout(t);
-  }, []);
-
-  // Parallax on mouse move
-  useEffect(() => {
-    const stage = stageRef.current;
-    if (!stage) return;
-
-    const onMove = (e: MouseEvent) => {
-      const rect = stage.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-      if (splashRef.current) {
-        splashRef.current.style.transform = `translate(${x * 14}px, ${y * 9}px) scale(1.06)`;
-      }
-      if (floatRef.current) {
-        floatRef.current.style.transform = `translate(${x * -8}px, ${y * -5}px)`;
-      }
-    };
-
-    const onLeave = () => {
-      if (splashRef.current) {
-        splashRef.current.style.transform = "translate(0,0) scale(1.06)";
-      }
-      if (floatRef.current) {
-        floatRef.current.style.transform = "translate(0,0)";
-      }
-    };
-
-    stage.addEventListener("mousemove", onMove);
-    stage.addEventListener("mouseleave", onLeave);
-    return () => {
-      stage.removeEventListener("mousemove", onMove);
-      stage.removeEventListener("mouseleave", onLeave);
-    };
-  }, []);
+  const [version, setVersion] = useState<"v1" | "v2" | "v3" | "v4">("v2");
 
   return (
-    <div className={`cs-root${revealed ? " cs-root--revealed" : ""}`} ref={stageRef}>
-      {/* Ambient layers */}
-      <div className="cs-bg-hex" aria-hidden="true" />
-      <div className="cs-particles" aria-hidden="true" />
-      <div className="cs-scanline" aria-hidden="true" />
-      <div className="cs-vignette" aria-hidden="true" />
+    <>
+      {version === "v1" && <LandingPageV1Hextech />}
+      {version === "v2" && <LandingPageV2Cinematic />}
+      {version === "v3" && <LandingPageV3Jhin />}
+      {version === "v4" && <LandingPageV4Zeri />}
 
-      {/* === LEFT PANEL === */}
-      <aside className="cs-panel cs-panel--left">
-        <div className="cs-panel__cap cs-panel__cap--top" aria-hidden="true" />
-
-        <header className="cs-panel__head">
-          <span className="cs-label">SPECIALIZATIONS</span>
-        </header>
-
-        <div className="cs-lore-grid">
-          {loreCards.map((c) => (
-            <div key={c.label.en} className="cs-lore-card">
-              <span className="cs-lore-card__label">{getLocalizedText(c.label, locale)}</span>
-              <span className="cs-lore-card__value">{getLocalizedText(c.value, locale)}</span>
-            </div>
-          ))}
+      {/* Version Toggle (top-left) */}
+      <div
+        style={{
+          position: "fixed",
+          top: "1rem",
+          left: "1rem",
+          zIndex: 9999,
+          background: "rgba(0,0,0,0.9)",
+          padding: "0.8rem 1.2rem",
+          border: "1px solid #0bc4e3",
+          borderRadius: "4px",
+          fontFamily: "'Cinzel', serif",
+          fontSize: "0.65rem",
+          color: "#0bc4e3",
+          letterSpacing: "0.1em",
+          textTransform: "uppercase",
+        }}
+      >
+        <div style={{ marginBottom: "0.6rem", fontWeight: "bold" }}>Landing Page Design</div>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.4rem" }}>
+          <button
+            type="button"
+            onClick={() => setVersion("v1")}
+            style={{
+              background: version === "v1" ? "#c89b3c" : "transparent",
+              border: "1px solid " + (version === "v1" ? "#f0e0a0" : "#c89b3c"),
+              color: version === "v1" ? "#000" : "#c89b3c",
+              padding: "0.4rem 0.6rem",
+              cursor: "pointer",
+              fontSize: "0.6rem",
+              transition: "all 0.2s",
+              fontWeight: version === "v1" ? "bold" : "normal",
+            }}
+          >
+            Hextech
+          </button>
+          <button
+            type="button"
+            onClick={() => setVersion("v2")}
+            style={{
+              background: version === "v2" ? "#0bc4e3" : "transparent",
+              border: "1px solid #0bc4e3",
+              color: version === "v2" ? "#000" : "#0bc4e3",
+              padding: "0.4rem 0.6rem",
+              cursor: "pointer",
+              fontSize: "0.6rem",
+              transition: "all 0.2s",
+              fontWeight: version === "v2" ? "bold" : "normal",
+            }}
+          >
+            Cinematic
+          </button>
+          <button
+            type="button"
+            onClick={() => setVersion("v3")}
+            style={{
+              background: version === "v3" ? "#a0643c" : "transparent",
+              border: "1px solid #a0643c",
+              color: version === "v3" ? "#fff" : "#a0643c",
+              padding: "0.4rem 0.6rem",
+              cursor: "pointer",
+              fontSize: "0.6rem",
+              transition: "all 0.2s",
+              fontWeight: version === "v3" ? "bold" : "normal",
+            }}
+          >
+            Jhin
+          </button>
+          <button
+            type="button"
+            onClick={() => setVersion("v4")}
+            style={{
+              background: version === "v4" ? "#8a2be2" : "transparent",
+              border: "1px solid #8a2be2",
+              color: version === "v4" ? "#e0ff41" : "#8a2be2",
+              padding: "0.4rem 0.6rem",
+              cursor: "pointer",
+              fontSize: "0.6rem",
+              transition: "all 0.2s",
+              fontWeight: version === "v4" ? "bold" : "normal",
+            }}
+          >
+            Zeri
+          </button>
         </div>
-
-        <div className="cs-panel__divider" aria-hidden="true" />
-
-        <div className="cs-lang-wrap">
-          <LanguageToggle className="cs-lang" />
-        </div>
-
-        <div className="cs-panel__cap cs-panel__cap--bot" aria-hidden="true" />
-      </aside>
-
-      {/* === CENTER STAGE === */}
-      <main className="cs-center">
-        {/* Splash */}
-        <div className="cs-splash-frame">
-          <div className="cs-splash-img" ref={splashRef}>
-            <img
-              src="/media/images/hero.webp"
-              alt="Jordan Bailey"
-              draggable={false}
-            />
-          </div>
-          <div className="cs-splash-veil" aria-hidden="true" />
-          <div className="cs-splash-rim" aria-hidden="true" />
-
-          {/* Floating ornament layer */}
-          <div className="cs-float-layer" ref={floatRef} aria-hidden="true">
-            <div className="cs-ornament cs-ornament--tl" />
-            <div className="cs-ornament cs-ornament--tr" />
-            <div className="cs-ornament cs-ornament--bl" />
-            <div className="cs-ornament cs-ornament--br" />
-            <div className="cs-hex-ring cs-hex-ring--outer" />
-            <div className="cs-hex-ring cs-hex-ring--inner" />
-          </div>
-        </div>
-
-        {/* Nameplate */}
-        <div className="cs-nameplate">
-          <p className="cs-nameplate__eyebrow">
-            {getLocalizedText(coverContent.eyebrow, locale)}
-          </p>
-          <div className="cs-nameplate__divider" aria-hidden="true">
-            <span />
-            <span className="cs-nameplate__roman">I</span>
-            <span />
-          </div>
-          <h1 className="cs-nameplate__name">Jordan Bailey</h1>
-          <p className="cs-nameplate__title">
-            {getLocalizedText({ en: "The Voice Actor", de: "Der Sprecher" }, locale)}
-          </p>
-        </div>
-
-        {/* Intro reel player */}
-        <div className="cs-reel-wrap">
-          <FloatingIntroPlayerV4 />
-        </div>
-
-        {/* Lock-in */}
-        <div className="cs-action-bar">
-          <Link href="/home" className="cs-lock-in">
-            <span className="cs-lock-in__glow" aria-hidden="true" />
-            <span className="cs-lock-in__label">
-              {getLocalizedText({ en: "ENTER", de: "EINTRETEN" }, locale)}
-            </span>
-            <span className="cs-lock-in__sub">
-              {getLocalizedText({ en: "Step into Act I", de: "Tritt in Akt I ein" }, locale)}
-            </span>
-          </Link>
-        </div>
-      </main>
-
-      {/* === RIGHT PANEL === */}
-      <aside className="cs-panel cs-panel--right">
-        <div className="cs-panel__cap cs-panel__cap--top" aria-hidden="true" />
-
-        <header className="cs-panel__head">
-          <span className="cs-label">CHAMPION LORE</span>
-        </header>
-
-        <div className="cs-lore-body">
-          <p className="cs-lore-text">
-            {getLocalizedText(coverContent.body, locale)}
-          </p>
-          <blockquote className="cs-epigraph">
-            In carnage, I bloom, like a flower in the dawn
-          </blockquote>
-        </div>
-
-        <div className="cs-panel__divider" aria-hidden="true" />
-
-        <div className="cs-cta-wrap">
-          <Link href="/book" className="cs-book-btn">
-            <span>BOOK THIS CHAMPION</span>
-          </Link>
-          <a href={contactDetails.emailHref} className="cs-inquiry-link">
-            {getLocalizedText({ en: "Send Inquiry", de: "Anfrage senden" }, locale)}
-          </a>
-        </div>
-
-        <div className="cs-panel__cap cs-panel__cap--bot" aria-hidden="true" />
-      </aside>
-    </div>
+      </div>
+    </>
   );
 }
