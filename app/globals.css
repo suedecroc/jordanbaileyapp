@@ -182,7 +182,6 @@ textarea {
     border-color var(--transition-default),
     background-color var(--transition-default),
     transform var(--transition-default),
-    box-shadow var(--transition-default),
     opacity var(--transition-default);
 }
 
@@ -1194,6 +1193,7 @@ img {
       color var(--transition-fast),
       border-color var(--transition-fast),
       background-color var(--transition-fast),
+      transform var(--transition-fast),
       opacity var(--transition-fast);
   }
 }
@@ -1271,6 +1271,8 @@ img {
   inset: 0;
   z-index: 0;
   pointer-events: none;
+  contain: paint;
+  will-change: background-position;
   background-image:
     radial-gradient(1.5px 1.5px at 8% 14%, rgba(200, 155, 60, 0.7), transparent),
     radial-gradient(1px 1px at 18% 72%, rgba(11, 196, 227, 0.6), transparent),
@@ -1649,6 +1651,7 @@ img {
   aspect-ratio: 1;
   border-color: rgba(200, 155, 60, 0.12);
   animation: cs-ring-spin 40s linear infinite;
+  will-change: transform;
 }
 
 .cs-hex-ring--inner {
@@ -1656,6 +1659,7 @@ img {
   aspect-ratio: 1;
   border-color: rgba(11, 196, 227, 0.1);
   animation: cs-ring-spin 28s linear infinite reverse;
+  will-change: transform;
 }
 
 @keyframes cs-ring-spin {
@@ -1894,29 +1898,43 @@ img {
   text-decoration: none;
   cursor: pointer;
   overflow: hidden;
-  transition: all 0.22s ease;
+  transition: background 0.22s ease, transform 0.22s ease;
+  box-shadow: 0 0 24px rgba(200, 155, 60, 0.28), inset 0 0 14px rgba(200, 155, 60, 0.07);
+}
+
+/* Glow pulse via opacity on a pseudo layer — avoids animating box-shadow */
+.cs-lock-in::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(200, 155, 60, 0.18), transparent 70%);
+  opacity: 0;
   animation: cs-lock-in-pulse 3s ease-in-out infinite;
+  pointer-events: none;
+  will-change: opacity;
 }
 
 @keyframes cs-lock-in-pulse {
-  0%, 100% { box-shadow: 0 0 18px rgba(200, 155, 60, 0.25), inset 0 0 12px rgba(200, 155, 60, 0.06); }
-  50% { box-shadow: 0 0 34px rgba(200, 155, 60, 0.42), inset 0 0 20px rgba(200, 155, 60, 0.1); }
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
 }
 
 .cs-lock-in__glow {
   position: absolute;
   top: 0;
-  left: -100%;
+  left: 0;
   width: 60%;
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255, 230, 150, 0.18), transparent);
+  transform: translateX(-200%);
   animation: cs-sheen 4s ease-in-out infinite;
   pointer-events: none;
+  will-change: transform;
 }
 
 @keyframes cs-sheen {
-  0%, 70% { left: -100%; }
-  100% { left: 200%; }
+  0%, 70% { transform: translateX(-200%); }
+  100% { transform: translateX(250%); }
 }
 
 .cs-lock-in__label {
@@ -1972,6 +1990,23 @@ img {
   .cs-hex-ring--inner {
     width: 58%;
   }
+
+  /* Kill expensive animations on mobile/tablet */
+  .cs-particles {
+    animation: none;
+  }
+
+  .cs-hex-ring--outer,
+  .cs-hex-ring--inner {
+    animation: none;
+  }
+
+  /* Remove costly backdrop-filter on mobile — use solid bg instead */
+  .cs-reel-card {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(5, 7, 18, 0.96);
+  }
 }
 
 @media (max-width: 480px) {
@@ -2014,6 +2049,8 @@ img {
     0 0 36px rgba(200, 155, 60, 0.11),
     0 20px 56px rgba(0, 0, 0, 0.65);
   animation: cs-reel-float 5.5s ease-in-out infinite;
+  will-change: transform;
+  contain: layout paint;
 }
 
 @keyframes cs-reel-float {
@@ -2050,9 +2087,12 @@ img {
 .cs-reel-wave-bar {
   display: block;
   width: 3px;
-  height: 5px;
+  height: 17px;
   background: rgba(200, 155, 60, 0.3);
   border-radius: 2px;
+  transform: scaleY(0.25);
+  transform-origin: bottom;
+  will-change: transform;
 }
 
 .cs-reel-waves--active .cs-reel-wave-bar {
@@ -2076,8 +2116,8 @@ img {
 }
 
 @keyframes cs-wave-bounce {
-  from { height: 4px; }
-  to { height: 17px; }
+  from { transform: scaleY(0.22); }
+  to { transform: scaleY(1); }
 }
 
 /* Player row */
@@ -2118,6 +2158,7 @@ img {
   background: radial-gradient(circle at 50% 50%, rgba(200, 155, 60, 0.22), transparent 68%);
   animation: cs-reel-play-pulse 2.8s ease-in-out infinite;
   pointer-events: none;
+  will-change: opacity, transform;
 }
 
 @keyframes cs-reel-play-pulse {
@@ -2226,6 +2267,7 @@ img {
 @media (prefers-reduced-motion: reduce) {
   .cs-root,
   .cs-lock-in,
+  .cs-lock-in::after,
   .cs-splash-img,
   .cs-float-layer,
   .cs-ornament--tl,
@@ -2235,12 +2277,19 @@ img {
   .cs-hex-ring--outer,
   .cs-hex-ring--inner,
   .cs-particles,
-  .cs-lock-in__glow {
+  .cs-lock-in__glow,
+  .cs-reel-card,
+  .cs-reel-play-glow,
+  .cs-reel-wave-bar {
     animation: none !important;
     transition: none !important;
   }
 
   .cs-root {
     opacity: 1;
+  }
+
+  .cs-reel-wave-bar {
+    transform: scaleY(0.6);
   }
 }

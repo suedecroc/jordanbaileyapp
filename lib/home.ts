@@ -71,7 +71,7 @@ export const pageOne = {
     src: "/media/home/voice-impression.mp4",
     poster: "/media/home/voice-impression-poster.png",
   },
-  cards: [] satisfies SupportCard[],
+  cards: [] as SupportCard[],
   reaction: {
     label: {
       en: "Visual evidence",
@@ -134,7 +134,7 @@ export const pageTwo = {
     { en: "English and German", de: "Englisch und Deutsch" },
     { en: "Tier 3 Ops experience", de: "Tier-3-Ops Erfahrung" },
   ] satisfies LocalizedText[],
-  detailCards: [] satisfies LocalizedText[],
+  detailCards: [] as LocalizedText[],
   primaryCta: {
     en: "Book now",
     de: "Jetzt buchen",
