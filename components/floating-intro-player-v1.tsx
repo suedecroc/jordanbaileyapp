@@ -28,12 +28,12 @@ export function FloatingIntroPlayerV1() {
               Intro Reel
             </p>
             <div className="flex gap-1 mt-1">
-              {[...Array(8)].map((_, i) => (
+              {[6, 10, 8, 12, 5, 9, 7, 11].map((h, i) => (
                 <div
                   key={i}
                   className="w-1 bg-amber-400/40 rounded-full"
                   style={{
-                    height: `${4 + Math.random() * 8}px`,
+                    height: `${h}px`,
                     opacity: isPlaying ? 0.8 : 0.4,
                   }}
                 />
