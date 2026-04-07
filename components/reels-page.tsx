@@ -43,6 +43,37 @@ export function ReelsPage() {
                     <ArrowRight className="ml-3 h-4 w-4" />
                   </ButtonLink>
                 </div>
+
+                <div className="reels-left-tags mt-8">
+                  {pageThree.tags.map((tag) => (
+                    <span key={tag.en} className="paper-tag paper-tag--soft">
+                      {getLocalizedText(tag, locale)}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="reels-left-card mt-6">
+                  <p className="cue-label">{getLocalizedText({ en: "What you can expect", de: "Was du erwarten kannst" }, locale)}</p>
+                  <p className="mt-3 text-base leading-7 text-muted">
+                    {getLocalizedText(
+                      {
+                        en: "Every read carries its own tone. I find it quick and stay in the pocket. Just the right energy, delivered just the way you imagined.",
+                        de: "Ich \"mache keine Stimmen.\" Ich werde die Stimme. Klar, kontrolliert und genau das, was der Moment verlangt.",
+                      },
+                      locale,
+                    )}
+                  </p>
+                  <div className="stage-rule mt-5" />
+                  <p className="mt-5 text-base leading-7 text-muted">
+                    {getLocalizedText(
+                      {
+                        en: "I know when to leave space and when to take control of it. Pacing isn't a technique. It's instinct.",
+                        de: "Ich weiß, wann ich Raum lasse und wann ich ihn übernehme. Pacing ist keine Technik. Es ist Instinkt.",
+                      },
+                      locale,
+                    )}
+                  </p>
+                </div>
               </div>
             </FadeIn>
 
@@ -85,6 +116,7 @@ export function ReelsPage() {
                       className="reels-video"
                       controls
                       playsInline
+                      muted
                       preload="metadata"
                       poster={pageThree.video.poster}
                       aria-label={getLocalizedText(pageThree.video.alt, locale)}
