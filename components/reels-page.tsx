@@ -32,7 +32,10 @@ export function ReelsPage() {
                   {getLocalizedText(pageThree.body, locale)}
                 </p>
                 <p className="stage-epigraph mt-6">
-                  I am a singer without a song
+                  {getLocalizedText(
+                    { en: "I am a singer without a song", de: "Ein Sänger ohne Lied." },
+                    locale,
+                  )}
                 </p>
                 <div className="mt-7">
                   <ButtonLink href="/book">

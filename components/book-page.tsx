@@ -111,7 +111,12 @@ export function BookPage() {
                       locale,
                     )}
                   </p>
-                  <p className="stage-epigraph mt-4">HOW LOVELY!</p>
+                  <p className="stage-epigraph mt-4">
+                    {getLocalizedText(
+                      { en: "HOW LOVELY!", de: "WIE SCHÖN!" },
+                      locale,
+                    )}
+                  </p>
                   <p className="mt-3 text-sm leading-6 text-muted">
                     {getLocalizedText(
                       {

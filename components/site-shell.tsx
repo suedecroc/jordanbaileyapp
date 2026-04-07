@@ -18,30 +18,27 @@ function PageTurnStage({ children }: { children: ReactNode }) {
   }
 
   return (
-    <AnimatePresence mode="wait" initial={false}>
+    <AnimatePresence mode="sync" initial={false}>
       <m.div
         key={pathname}
         className="route-stage"
         initial={{
           opacity: 0,
-          x: 18,
-          scale: 0.996,
+          scale: 0.997,
         }}
         animate={{
           opacity: 1,
-          x: 0,
           scale: 1,
           transition: {
-            duration: 0.32,
+            duration: 0.2,
             ease: [0.22, 1, 0.36, 1] as const,
           },
         }}
         exit={{
           opacity: 0,
-          x: -14,
           scale: 0.998,
           transition: {
-            duration: 0.18,
+            duration: 0.12,
             ease: [0.4, 0, 1, 1] as const,
           },
         }}
@@ -55,21 +52,27 @@ function PageTurnStage({ children }: { children: ReactNode }) {
 export function SiteShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const isLandingRoute = pathname === "/";
+  const isStudioRoute = pathname?.startsWith("/studio") ?? false;
+  const isCoverRoute = isLandingRoute || isStudioRoute;
+
+  if (isStudioRoute) {
+    return <>{children}</>;
+  }
 
   return (
-    <div className={cn("site-shell", isLandingRoute && "site-shell--cover")}>
+    <div className={cn("site-shell", isCoverRoute && "site-shell--cover")}>
       <div className="site-shell__backdrop" aria-hidden="true" />
       <div className="site-shell__glow site-shell__glow--left" aria-hidden="true" />
       <div className="site-shell__glow site-shell__glow--right" aria-hidden="true" />
 
-      {!isLandingRoute ? <Navbar /> : null}
+      {!isCoverRoute ? <Navbar /> : null}
 
-      <main className={cn("site-main", isLandingRoute && "site-main--cover")}>
-        {isLandingRoute ? children : <PageTurnStage>{children}</PageTurnStage>}
+      <main className={cn("site-main", isCoverRoute && "site-main--cover")}>
+        {isCoverRoute ? children : <PageTurnStage>{children}</PageTurnStage>}
       </main>
 
-      {!isLandingRoute ? <InteriorUtilities /> : null}
-      {!isLandingRoute ? <SiteFooter /> : null}
+      {!isCoverRoute ? <InteriorUtilities /> : null}
+      {!isCoverRoute ? <SiteFooter /> : null}
     </div>
   );
 }

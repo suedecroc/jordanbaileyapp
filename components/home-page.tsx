@@ -264,7 +264,7 @@ export function HomePage() {
                 </span>
                 <span className="paper-tag">
                   {getLocalizedText(
-                    { en: "Tier 3 calm if things get ugly", de: "Ruhig, wenn die Produktion wild wird" },
+                    { en: "Tier 3 calm if things get ugly", de: "Tier-3-Ruhe, wenn's hart wird" },
                     locale,
                   )}
                 </span>

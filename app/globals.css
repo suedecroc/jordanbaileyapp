@@ -250,6 +250,7 @@ img {
   position: relative;
   z-index: var(--z-base);
   flex: 1;
+  overflow-x: clip;
   padding: 7.35rem 0 2.5rem;
 }
 
