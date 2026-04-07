@@ -132,7 +132,7 @@ export const pageTwo = {
   markers: [
     { en: "Games, animation, commercial, cinematic", de: "Games, Animation, Commercial, Cinematic" },
     { en: "English and German", de: "Englisch und Deutsch" },
-    { en: "Tier 3 Ops experience", de: "Tier-3-Ops Erfahrung" },
+    { en: "Tier 3 IT Operations background", de: "Tier-3-IT-Operations Hintergrund" },
   ] satisfies LocalizedText[],
   detailCards: [] as LocalizedText[],
   primaryCta: {

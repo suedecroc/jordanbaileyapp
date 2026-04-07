@@ -58,7 +58,7 @@ export function ReelsPage() {
                     {getLocalizedText(
                       {
                         en: "Every read carries its own tone. I find it quick and stay in the pocket. Just the right energy, delivered just the way you imagined.",
-                        de: "Ich \"mache keine Stimmen.\" Ich werde die Stimme. Klar, kontrolliert und genau das, was der Moment verlangt.",
+                        de: "Jeder Read hat seinen eigenen Ton. Ich finde ihn schnell und bleibe drin. Genau die richtige Energie, genau so wie du es dir vorgestellt hast.",
                       },
                       locale,
                     )}
