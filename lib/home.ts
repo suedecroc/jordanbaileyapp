@@ -134,7 +134,20 @@ export const pageTwo = {
     { en: "English and German", de: "Englisch und Deutsch" },
     { en: "Tier 3 IT Operations background", de: "Tier-3-IT-Operations Hintergrund" },
   ] satisfies LocalizedText[],
-  detailCards: [] as LocalizedText[],
+  detailCards: [
+    {
+      en: "Direction lands fast. I take notes, ask one question if I need to, and get back in the booth. No round-trips.",
+      de: "Direction sitzt schnell. Ich mache Notizen, stelle eine Frage wenn nötig, und gehe zurück ins Booth. Kein Hin-und-Her.",
+    },
+    {
+      en: "I don't need the session to be about me. The project comes first. I'm here to serve the material.",
+      de: "Die Session muss nicht um mich gehen. Das Projekt steht an erster Stelle. Ich bin hier, um dem Material zu dienen.",
+    },
+    {
+      en: "If the first take isn't right, I already know why. Adjustments are fast because the listening was already there.",
+      de: "Wenn der erste Take nicht stimmt, weiß ich bereits warum. Anpassungen sind schnell, weil das Zuhören schon da war.",
+    },
+  ] satisfies LocalizedText[],
   primaryCta: {
     en: "Book now",
     de: "Jetzt buchen",

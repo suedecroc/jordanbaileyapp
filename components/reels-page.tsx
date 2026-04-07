@@ -15,7 +15,7 @@ export function ReelsPage() {
   const { locale } = useLanguage();
 
   return (
-    <section className="section-anchor pb-12 pt-3 sm:pb-16 sm:pt-4">
+    <section className="section-anchor pb-8 pt-3 sm:pb-10 sm:pt-4">
       <Container>
         <div className="book-page book-page--paper p-5 sm:p-7 lg:p-8">
           <div className="grid gap-5 xl:grid-cols-[minmax(0,0.78fr)_minmax(320px,0.58fr)] xl:items-start">
