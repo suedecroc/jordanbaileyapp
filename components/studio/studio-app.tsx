@@ -342,6 +342,13 @@ export function StudioApp() {
           ))}
         </div>
         <div className="studio__header-actions">
+          <button
+            className="studio__ghost"
+            onClick={() => setPaletteOpen(true)}
+            aria-label="open command palette"
+          >
+            menu
+          </button>
           <button className="studio__ghost" onClick={() => setShowHistory((v) => !v)}>
             {showHistory ? "close" : `vault · ${history.length}`}
           </button>
@@ -468,12 +475,24 @@ export function StudioApp() {
               rows={5}
             />
             <div className="studio__paper-foot">
-              <span>⌘ + ⏎ to send it · ⌘ + K for the palette</span>
-              {idea ? (
-                <button type="button" className="studio__ghost" onClick={clearDraft}>
-                  clear
+              <span className="studio__paper-tip">
+                tap send · or ⌘⏎ if you&apos;ve got a keyboard
+              </span>
+              <div className="studio__paper-actions">
+                {idea ? (
+                  <button type="button" className="studio__ghost" onClick={clearDraft}>
+                    clear
+                  </button>
+                ) : null}
+                <button
+                  type="button"
+                  className="studio__send"
+                  onClick={generate}
+                  disabled={busy || !idea.trim() || platforms.length === 0}
+                >
+                  {busy ? "cooking…" : "send →"}
                 </button>
-              ) : null}
+              </div>
             </div>
           </div>
         </div>
@@ -583,7 +602,7 @@ export function StudioApp() {
             </button>
           </div>
           <p className="studio__lever-foot">
-            ⌘ + ⏎ from the Spark works too. We don&apos;t make you click.
+            Tap send up top, or ⌘⏎ from the Spark. We don&apos;t make you scroll.
           </p>
         </div>
       </section>
