@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cinzel, Cormorant_Garamond, Instrument_Sans } from "next/font/google";
+import { Abril_Fatface, Cinzel, Cormorant_Garamond, Instrument_Sans } from "next/font/google";
 
 import { LanguageProvider } from "@/components/language-provider";
 import { MotionProvider } from "@/components/motion-provider";
@@ -26,6 +26,13 @@ const cinzelFont = Cinzel({
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "600", "700", "900"],
+});
+
+const abrilFont = Abril_Fatface({
+  variable: "--font-abril",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400"],
 });
 
 export const metadata: Metadata = {
@@ -67,7 +74,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${bodyFont.variable} ${displayFont.variable} ${cinzelFont.variable} h-full antialiased`}
+      className={`${bodyFont.variable} ${displayFont.variable} ${cinzelFont.variable} ${abrilFont.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-background text-foreground">
         <LanguageProvider>

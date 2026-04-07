@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/studio/cron/refresh-drop-times",
+      "schedule": "0 10 * * 1"
+    }
+  ]
+}
