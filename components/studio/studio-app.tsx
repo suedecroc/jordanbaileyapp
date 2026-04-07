@@ -48,10 +48,32 @@ type HistoryEntry = {
   platforms: PlatformId[];
   at: number;
   data: GenerateResponse["data"];
+  starred?: boolean;
+  shippedAt?: number | null;
+  shippedTo?: PlatformId | null;
 };
 
 const HISTORY_KEY = "gigasuede.history.v1";
 const PREFS_KEY = "gigasuede.prefs.v1";
+const DRAFT_KEY = "gigasuede.draft.v1";
+
+function bundleCaption(c: Caption): string {
+  return [
+    c.caption,
+    c.cta ? `\n\n${c.cta}` : "",
+    c.hashtags?.length ? `\n\n${c.hashtags.map((t) => `#${t}`).join(" ")}` : "",
+  ].join("");
+}
+
+function bundleAll(results: PlatformResult[]): string {
+  return results
+    .map((r) => {
+      const head = `— ${platformLabel(r.platform)} —`;
+      const body = r.captions.map((c, i) => `${i + 1}.\n${bundleCaption(c)}`).join("\n\n");
+      return `${head}\n\n${body}`;
+    })
+    .join("\n\n\n");
+}
 
 function loadHistory(): HistoryEntry[] {
   if (typeof window === "undefined") return [];
@@ -113,7 +135,11 @@ export function StudioApp() {
   const [strategy, setStrategy] = useState<string | null>(null);
   const [history, setHistory] = useState<HistoryEntry[]>([]);
   const [showHistory, setShowHistory] = useState(false);
+  const [vaultQuery, setVaultQuery] = useState("");
+  const [vaultStarsOnly, setVaultStarsOnly] = useState(false);
+  const [paletteOpen, setPaletteOpen] = useState(false);
   const resultsRef = useRef<HTMLDivElement | null>(null);
+  const ideaRef = useRef<HTMLTextAreaElement | null>(null);
 
   useEffect(() => {
     setHistory(loadHistory());
@@ -129,8 +155,31 @@ export function StudioApp() {
         }
       }
     } catch {}
+    // Restore draft idea (autosave)
+    const draft = localStorage.getItem(DRAFT_KEY);
+    if (draft) setIdea(draft);
     const fromUrl = new URLSearchParams(window.location.search).get("v");
     if (fromUrl === "v1" || fromUrl === "v2" || fromUrl === "v3") setVariant(fromUrl);
+  }, []);
+
+  // Autosave the idea draft on every keystroke.
+  useEffect(() => {
+    if (idea) localStorage.setItem(DRAFT_KEY, idea);
+    else localStorage.removeItem(DRAFT_KEY);
+  }, [idea]);
+
+  // ⌘K command palette — global shortcut.
+  useEffect(() => {
+    function onKeyDown(e: KeyboardEvent) {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setPaletteOpen((v) => !v);
+      } else if (e.key === "Escape") {
+        setPaletteOpen(false);
+      }
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
 
   useEffect(() => {
@@ -183,6 +232,8 @@ export function StudioApp() {
       const next = [entry, ...history];
       setHistory(next);
       saveHistory(next);
+      // Once a generation is in the vault, the draft has done its job — clear it.
+      localStorage.removeItem(DRAFT_KEY);
       requestAnimationFrame(() => {
         resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
       });
@@ -212,6 +263,39 @@ export function StudioApp() {
     setStrategy(entry.data?.strategy ?? null);
     setShowHistory(false);
   }
+
+  function toggleStar(id: string) {
+    setHistory((prev) => {
+      const next = prev.map((h) => (h.id === id ? { ...h, starred: !h.starred } : h));
+      saveHistory(next);
+      return next;
+    });
+  }
+
+  function deleteEntry(id: string) {
+    setHistory((prev) => {
+      const next = prev.filter((h) => h.id !== id);
+      saveHistory(next);
+      return next;
+    });
+  }
+
+  function clearDraft() {
+    setIdea("");
+    localStorage.removeItem(DRAFT_KEY);
+    ideaRef.current?.focus();
+  }
+
+  const filteredHistory = history.filter((h) => {
+    if (vaultStarsOnly && !h.starred) return false;
+    if (!vaultQuery.trim()) return true;
+    const q = vaultQuery.trim().toLowerCase();
+    return (
+      h.idea.toLowerCase().includes(q) ||
+      h.tone.toLowerCase().includes(q) ||
+      h.platforms.some((p) => platformLabel(p).toLowerCase().includes(q))
+    );
+  });
 
   async function logout() {
     await fetch("/api/studio/auth", { method: "DELETE" });
@@ -302,20 +386,59 @@ export function StudioApp() {
 
       {showHistory ? (
         <section className="studio__history">
-          {history.length === 0 ? (
-            <div className="studio__empty">the vault is empty</div>
+          <div className="studio__vault-toolbar">
+            <input
+              type="search"
+              value={vaultQuery}
+              onChange={(e) => setVaultQuery(e.target.value)}
+              placeholder="search the vault — idea, tone, platform"
+              className="studio__vault-search"
+            />
+            <button
+              type="button"
+              className={`studio__ghost ${vaultStarsOnly ? "is-on" : ""}`}
+              onClick={() => setVaultStarsOnly((v) => !v)}
+              aria-pressed={vaultStarsOnly}
+            >
+              {vaultStarsOnly ? "★ stars" : "☆ stars"}
+            </button>
+          </div>
+          {filteredHistory.length === 0 ? (
+            <div className="studio__empty">
+              {history.length === 0 ? "the vault is empty" : "no matches"}
+            </div>
           ) : (
-            history.map((h) => (
-              <button
-                key={h.id}
-                className="studio__history-item"
-                onClick={() => loadFromHistory(h)}
-              >
-                <div className="studio__history-idea">{h.idea}</div>
-                <div className="studio__history-meta">
-                  {h.platforms.map(platformLabel).join(" · ")} · {h.tone}
+            filteredHistory.map((h) => (
+              <div key={h.id} className="studio__history-row">
+                <button
+                  className="studio__history-item"
+                  onClick={() => loadFromHistory(h)}
+                >
+                  <div className="studio__history-idea">{h.idea}</div>
+                  <div className="studio__history-meta">
+                    {h.platforms.map(platformLabel).join(" · ")} · {h.tone}
+                    {h.shippedAt ? " · shipped" : ""}
+                  </div>
+                </button>
+                <div className="studio__history-actions">
+                  <button
+                    type="button"
+                    className="studio__ghost"
+                    onClick={() => toggleStar(h.id)}
+                    aria-label={h.starred ? "unstar" : "star"}
+                  >
+                    {h.starred ? "★" : "☆"}
+                  </button>
+                  <button
+                    type="button"
+                    className="studio__ghost"
+                    onClick={() => deleteEntry(h.id)}
+                    aria-label="delete"
+                  >
+                    ✕
+                  </button>
                 </div>
-              </button>
+              </div>
             ))
           )}
         </section>
@@ -336,6 +459,7 @@ export function StudioApp() {
           <div className="studio__paper">
             <div className="studio__paper-tape" aria-hidden="true">★ ★ ★</div>
             <textarea
+              ref={ideaRef}
               value={idea}
               onChange={(e) => setIdea(e.target.value)}
               onKeyDown={onKey}
@@ -343,7 +467,14 @@ export function StudioApp() {
               className="studio__textarea"
               rows={5}
             />
-            <div className="studio__paper-foot">⌘ + ⏎ to send it</div>
+            <div className="studio__paper-foot">
+              <span>⌘ + ⏎ to send it · ⌘ + K for the palette</span>
+              {idea ? (
+                <button type="button" className="studio__ghost" onClick={clearDraft}>
+                  clear
+                </button>
+              ) : null}
+            </div>
           </div>
         </div>
       </section>
@@ -475,6 +606,15 @@ export function StudioApp() {
         {results ? (
           <section className="studio__results">
             {strategy ? <div className="studio__strategy">{strategy}</div> : null}
+            <div className="studio__results-toolbar">
+              <button
+                type="button"
+                className="studio__ghost"
+                onClick={() => copyText(bundleAll(results))}
+              >
+                copy bundle
+              </button>
+            </div>
             {results.map((r) => (
               <div key={r.platform} className="studio__platform-block">
                 <div className="studio__platform-header">
@@ -487,11 +627,7 @@ export function StudioApp() {
                 </div>
                 <div className="studio__captions">
                   {r.captions.map((c, i) => {
-                    const full = [
-                      c.caption,
-                      c.cta ? `\n\n${c.cta}` : "",
-                      c.hashtags?.length ? `\n\n${c.hashtags.map((t) => `#${t}`).join(" ")}` : "",
-                    ].join("");
+                    const full = bundleCaption(c);
                     return (
                       <article key={i} className="studio__caption">
                         <pre className="studio__caption-text">{c.caption}</pre>
@@ -521,6 +657,92 @@ export function StudioApp() {
           </section>
         ) : null}
       </div>
+
+      {paletteOpen ? (
+        <div
+          className="studio__palette"
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setPaletteOpen(false)}
+        >
+          <div className="studio__palette-card" onClick={(e) => e.stopPropagation()}>
+            <div className="studio__palette-eyebrow">Command Palette</div>
+            <button
+              type="button"
+              className="studio__palette-item"
+              onClick={() => {
+                setPaletteOpen(false);
+                ideaRef.current?.focus();
+                ideaRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+              }}
+            >
+              <span>Focus the spark</span>
+              <kbd>Spark</kbd>
+            </button>
+            <button
+              type="button"
+              className="studio__palette-item"
+              onClick={() => {
+                setPaletteOpen(false);
+                generate();
+              }}
+              disabled={busy || !idea.trim() || platforms.length === 0}
+            >
+              <span>Generate</span>
+              <kbd>⌘⏎</kbd>
+            </button>
+            <button
+              type="button"
+              className="studio__palette-item"
+              onClick={() => {
+                setPaletteOpen(false);
+                setShowHistory(true);
+              }}
+            >
+              <span>Open the vault</span>
+              <kbd>{history.length}</kbd>
+            </button>
+            {results ? (
+              <button
+                type="button"
+                className="studio__palette-item"
+                onClick={() => {
+                  copyText(bundleAll(results));
+                  setPaletteOpen(false);
+                }}
+              >
+                <span>Copy bundle</span>
+                <kbd>copy</kbd>
+              </button>
+            ) : null}
+            {VARIANTS.map((v) => (
+              <button
+                key={v.id}
+                type="button"
+                className="studio__palette-item"
+                onClick={() => {
+                  pickVariant(v.id);
+                  setPaletteOpen(false);
+                }}
+              >
+                <span>Switch to {v.label}</span>
+                <kbd>{v.desc}</kbd>
+              </button>
+            ))}
+            <button
+              type="button"
+              className="studio__palette-item studio__palette-item--danger"
+              onClick={() => {
+                setPaletteOpen(false);
+                logout();
+              }}
+            >
+              <span>Lock the studio</span>
+              <kbd>lock</kbd>
+            </button>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
