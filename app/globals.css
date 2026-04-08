@@ -226,8 +226,9 @@ img {
 
 .site-shell__glow {
   border-radius: var(--radius-full);
-  filter: blur(14px);
   opacity: 0.56;
+  /* Softness comes from the gradient itself rather than filter: blur,
+     which forced a per-frame repaint of the fixed layer on scroll. */
 }
 
 .site-shell__glow--left {
@@ -235,7 +236,7 @@ img {
   top: 4rem;
   width: 19rem;
   height: 19rem;
-  background: radial-gradient(circle, rgba(186, 143, 104, 0.2), transparent 64%);
+  background: radial-gradient(circle, rgba(186, 143, 104, 0.2), rgba(186, 143, 104, 0.08) 38%, transparent 78%);
 }
 
 .site-shell__glow--right {
@@ -243,7 +244,7 @@ img {
   top: 14rem;
   width: 14rem;
   height: 14rem;
-  background: radial-gradient(circle, rgba(103, 67, 36, 0.12), transparent 68%);
+  background: radial-gradient(circle, rgba(103, 67, 36, 0.12), rgba(103, 67, 36, 0.05) 40%, transparent 82%);
 }
 
 .site-main {

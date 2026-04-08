@@ -1,6 +1,5 @@
 "use client";
 
-import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 
@@ -10,43 +9,11 @@ import { SiteFooter } from "@/components/site-footer";
 import { cn } from "@/lib/utils";
 
 function PageTurnStage({ children }: { children: ReactNode }) {
-  const pathname = usePathname();
-  const prefersReducedMotion = useReducedMotion();
-
-  if (prefersReducedMotion) {
-    return <div className="route-stage">{children}</div>;
-  }
-
-  return (
-    <AnimatePresence mode="sync" initial={false}>
-      <m.div
-        key={pathname}
-        className="route-stage"
-        initial={{
-          opacity: 0,
-          scale: 0.997,
-        }}
-        animate={{
-          opacity: 1,
-          scale: 1,
-          transition: {
-            duration: 0.2,
-            ease: [0.22, 1, 0.36, 1] as const,
-          },
-        }}
-        exit={{
-          opacity: 0,
-          scale: 0.998,
-          transition: {
-            duration: 0.12,
-            ease: [0.4, 0, 1, 1] as const,
-          },
-        }}
-      >
-        {children}
-      </m.div>
-    </AnimatePresence>
-  );
+  // Route changes are instant. The per-block FadeIn on each page handles
+  // the entry feel — wrapping a whole route in AnimatePresence with
+  // mode="sync" was double-mounting the DOM on every nav and stalling
+  // the transition between Act I-IV.
+  return <div className="route-stage">{children}</div>;
 }
 
 export function SiteShell({ children }: { children: ReactNode }) {
