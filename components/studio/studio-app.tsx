@@ -1043,7 +1043,7 @@ export function StudioApp({ account }: StudioAppProps = {}) {
 
           <Divider />
 
-          {/* ACT I — THE SPARK */}
+          {/* ACT I — THE SAUCE */}
           <section className="studio__act studio__act--left">
             <div className="studio__act-numeral" aria-hidden="true">
               01
@@ -1051,7 +1051,7 @@ export function StudioApp({ account }: StudioAppProps = {}) {
             <div className="studio__act-body">
               <div className="studio__act-label">
                 <span className="studio__act-tag">Act One</span>
-                <h2 className="studio__act-title">The Spark</h2>
+                <h2 className="studio__act-title">The Sauce</h2>
                 <p className="studio__act-desc">
                   Drop the raw thought. One line, three, doesn&apos;t matter. Type how you talk —
                   typos, half-thoughts, all of it. We polish on the other side.
@@ -1247,7 +1247,7 @@ export function StudioApp({ account }: StudioAppProps = {}) {
                 </button>
               </div>
               <p className="studio__lever-foot">
-                Tap send up top, or ⌘⏎ from the Spark. We don&apos;t make you scroll.
+                Tap send up top, or ⌘⏎ from the Sauce. We don&apos;t make you scroll.
               </p>
             </div>
           </section>
@@ -1529,7 +1529,7 @@ export function StudioApp({ account }: StudioAppProps = {}) {
                 });
               }}
             >
-              <span>Focus the spark</span>
+              <span>Focus the sauce</span>
               <kbd>cook</kbd>
             </button>
             <button

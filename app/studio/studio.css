@@ -376,7 +376,7 @@
   display: flex;
   width: max-content;
   gap: 36px;
-  animation: studio-ticker 40s linear infinite;
+  animation: studio-ticker 120s linear infinite;
   will-change: transform;
 }
 .studio__ticker-text {
