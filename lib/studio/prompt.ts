@@ -110,10 +110,14 @@ You must return ONLY valid JSON matching this shape — no preamble, no markdown
       ]
     }
   ],
-  "strategy": "<one short line: feed / reel / story, best time in EST, and any push (shorter / cleaner / riskier / more premium). Keep it under 200 chars.>"
+  "strategy": "<one short line: feed / reel / story, best time in EST, and any push (shorter / cleaner / riskier / more premium). Keep it under 200 chars.>",
+  "story_slides": ["<slide idea 1 — one sharp line>", "<slide idea 2>", "<slide idea 3>"],
+  "shot_notes": "<brief production direction: what to shoot, how to frame it, what light or detail earns the caption. One to two sentences. null if the idea is purely copy-based.>",
+  "follow_up_hook": "<one-line angle for a next-day follow-up post that builds on this drop. null if nothing obvious.>"
 }
 
 Return 2–3 captions per requested platform. Each caption must be fully usable without edits.
+story_slides, shot_notes, and follow_up_hook apply to the content as a whole — not per platform.
 `.trim();
 
 export function buildUserMessage(params: {

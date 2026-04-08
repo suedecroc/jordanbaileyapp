@@ -1640,3 +1640,1697 @@
   flex-wrap: wrap;
   margin-top: 4px;
 }
+
+/* ============================================================
+   GIGASUEDE STUDIO — NAVIGATION TABS & NEW VIEWS
+   Pipeline · Buyers · Today · Content Pack extras
+   ============================================================ */
+
+/* ============ NAV TABS ============ */
+.studio__nav {
+  display: flex;
+  padding: 0 22px 0;
+  border-bottom: 1px solid currentColor;
+  margin-bottom: 0;
+}
+.studio__nav-tab {
+  flex: 1;
+  background: transparent;
+  border: 0;
+  border-right: 1px solid currentColor;
+  color: inherit;
+  padding: 13px 8px;
+  font-family: var(--font-abril), serif;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0.45;
+  transition: opacity 0.15s, background 0.15s;
+}
+.studio__nav-tab:last-child { border-right: 0; }
+.studio__nav-tab.is-on { opacity: 1; background: rgba(255, 255, 255, 0.06); }
+.studio__nav-tab:hover:not(.is-on) { opacity: 0.75; }
+
+/* ============ SHARED VIEW CONTAINER ============ */
+.studio__view {
+  padding: 40px 22px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.studio__view-header {
+  padding-bottom: 18px;
+  border-bottom: 1px solid currentColor;
+}
+.studio__view-title {
+  font-family: var(--font-abril), serif;
+  font-size: clamp(30px, 6vw, 50px);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  margin: 0 0 8px;
+  color: var(--primary2, currentColor);
+}
+.studio__view-desc {
+  font-size: 14px;
+  line-height: 1.5;
+  opacity: 0.65;
+  margin: 0;
+}
+
+/* ============ PIPELINE STAGE FILTER PILLS ============ */
+.studio__pipe-stages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.studio__pipe-stage-btn {
+  background: transparent;
+  border: 1px solid currentColor;
+  color: inherit;
+  padding: 7px 13px;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.15s, background 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.studio__pipe-stage-btn.is-on { opacity: 1; background: rgba(255, 255, 255, 0.07); }
+.studio__pipe-stage-btn:hover:not(.is-on) { opacity: 0.8; }
+.studio__pipe-count {
+  display: inline-block;
+  background: currentColor;
+  color: var(--bg-base, #1c0707);
+  border-radius: 2px;
+  padding: 1px 5px;
+  font-size: 10px;
+  font-weight: 800;
+  min-width: 17px;
+  text-align: center;
+}
+
+/* ============ PIPELINE TOOLBAR ============ */
+.studio__pipe-toolbar { display: flex; gap: 8px; }
+
+/* ============ ADD FORM (shared by Pipeline + Buyers) ============ */
+.studio__pipe-add {
+  border: 1px solid currentColor;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.025);
+}
+.studio__pipe-add-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.studio__pipe-input {
+  background: rgba(0, 0, 0, 0.32);
+  border: 1px solid currentColor;
+  color: inherit;
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  opacity: 0.85;
+  transition: opacity 0.15s;
+}
+.studio__pipe-input:focus { opacity: 1; }
+.studio__pipe-idea { resize: vertical; }
+.studio__pipe-select {
+  background: rgba(0, 0, 0, 0.32);
+  border: 1px solid currentColor;
+  color: inherit;
+  padding: 10px 10px;
+  font-family: inherit;
+  font-size: 13px;
+  flex: 1;
+  min-width: 120px;
+  outline: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* ============ SMALL GO BUTTON ============ */
+.studio__go--sm { font-size: 12px; padding: 10px 20px; }
+
+/* ============ GHOST VARIANTS ============ */
+.studio__ghost--danger { opacity: 0.5; }
+.studio__ghost--danger:hover { opacity: 1; color: #ff4a1a !important; }
+.studio__ghost--sm { padding: 6px 10px; font-size: 10px; }
+
+/* ============ PIPELINE ITEM LIST ============ */
+.studio__pipe-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.studio__pipe-item {
+  border: 1px solid currentColor;
+  background: rgba(255, 255, 255, 0.02);
+  transition: background 0.12s;
+}
+.studio__pipe-item--high { border-left: 3px solid var(--primary2, currentColor); }
+.studio__pipe-item.is-starred { border-left: 3px solid var(--hot, #ff6a13); }
+.studio__pipe-item-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.12s;
+}
+.studio__pipe-item-head:hover { background: rgba(255, 255, 255, 0.035); }
+.studio__pipe-item-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+.studio__pipe-item-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.studio__pipe-item-idea {
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  opacity: 0.9;
+}
+.studio__pipe-stage-tag,
+.studio__pipe-platform-tag {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  padding: 3px 7px;
+  border: 1px solid currentColor;
+  opacity: 0.65;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.studio__pipe-priority { font-size: 14px; opacity: 0.8; flex-shrink: 0; }
+.studio__pipe-star { font-size: 13px; opacity: 0.7; flex-shrink: 0; }
+.studio__pipe-chevron {
+  font-size: 16px;
+  opacity: 0.5;
+  width: 16px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.studio__pipe-item-detail {
+  padding: 14px 14px 16px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.studio__pipe-meta-row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  opacity: 0.55;
+}
+.studio__pipe-caption { display: flex; flex-direction: column; gap: 4px; }
+.studio__pipe-caption--highlight { background: rgba(255, 176, 32, 0.07); padding: 8px; }
+.studio__pipe-caption-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  opacity: 0.5;
+}
+.studio__pipe-caption-text { font-size: 13px; line-height: 1.5; opacity: 0.85; }
+.studio__pipe-actions { display: flex; gap: 6px; flex-wrap: wrap; padding-top: 4px; }
+
+/* ============ BUYERS SPECIFIC ============ */
+.studio__buyers-stats {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.12);
+}
+.studio__buyers-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  opacity: 0.8;
+}
+.studio__buyers-stat--alert { color: var(--hot, #ff6a13); opacity: 1; font-weight: 700; }
+.studio__buyers-toolbar { display: flex; gap: 8px; flex-wrap: wrap; }
+.studio__buyers-spend {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  padding: 3px 8px;
+  flex-shrink: 0;
+}
+.studio__buyers-spend--whale    { background: var(--primary2, #ffd23f); color: #1a0600; }
+.studio__buyers-spend--regular  { background: var(--primary, #ffb020); color: #1a0600; }
+.studio__buyers-spend--occasional { border: 1px solid currentColor; opacity: 0.65; }
+.studio__buyers-spend--lurker   { opacity: 0.35; border: 1px dashed currentColor; }
+.studio__buyers-flag {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--hot, #ff6a13);
+  border: 1px solid var(--hot, #ff6a13);
+  padding: 2px 6px;
+  flex-shrink: 0;
+}
+.studio__buyers-days { font-size: 11px; opacity: 0.5; flex-shrink: 0; }
+.studio__buyers-days.is-stale  { color: var(--hot, #ff6a13); opacity: 1; }
+.studio__buyers-total { font-size: 11px; opacity: 0.7; flex-shrink: 0; }
+
+/* ============ TODAY VIEW ============ */
+.studio__today-drops {
+  padding: 18px;
+  border: 1px solid currentColor;
+  background: rgba(255, 255, 255, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.studio__today-section-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  opacity: 0.5;
+}
+.studio__today-slots { display: flex; flex-direction: column; gap: 10px; }
+.studio__today-slot {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.studio__today-slot-time {
+  font-family: var(--font-abril), serif;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  color: var(--primary2, currentColor);
+  flex-shrink: 0;
+}
+.studio__today-slot-platform {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  opacity: 0.65;
+  flex-shrink: 0;
+}
+.studio__today-slot-note { font-size: 12px; opacity: 0.45; font-style: italic; }
+.studio__today-insights { display: flex; flex-direction: column; gap: 8px; }
+.studio__today-card {
+  padding: 16px 18px;
+  border: 1px solid currentColor;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.studio__today-card--critical { border-left: 3px solid var(--primary2, currentColor); }
+.studio__today-card--high     { border-left: 3px solid var(--hot, #ff6a13); }
+.studio__today-card--medium   { opacity: 0.82; }
+.studio__today-card--info     { opacity: 0.6; border-style: dashed; }
+.studio__today-card-label { font-size: 14px; font-weight: 700; line-height: 1.3; }
+.studio__today-card-body { font-size: 13px; line-height: 1.55; opacity: 0.72; }
+.studio__today-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}
+.studio__today-mini-card {
+  padding: 12px 14px;
+  border: 1px solid currentColor;
+  background: rgba(255, 255, 255, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.studio__today-mini-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.studio__today-mini-idea { font-size: 13px; opacity: 0.8; line-height: 1.4; }
+.studio__today-mini-note { font-size: 12px; opacity: 0.55; font-style: italic; }
+
+/* ============ CONTENT PACK (story slides, shot notes, follow-up hook) ============ */
+.studio__pack {
+  margin: 0 22px 18px;
+  padding: 16px 18px;
+  border: 1px dashed currentColor;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  opacity: 0.88;
+}
+.studio__pack-block { display: flex; flex-direction: column; gap: 8px; }
+.studio__pack-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  opacity: 0.55;
+}
+.studio__pack-list {
+  margin: 0;
+  padding: 0 0 0 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.studio__pack-item { font-size: 13px; line-height: 1.5; opacity: 0.85; }
+.studio__pack-body { font-size: 13px; line-height: 1.55; opacity: 0.85; font-style: italic; }
+
+/* ============ VAULT TOOLBAR ============ */
+.studio__vault-toolbar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+}
+.studio__vault-search {
+  flex: 1;
+  min-width: 160px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid currentColor;
+  color: inherit;
+  padding: 9px 12px;
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
+}
+.studio__history-row { display: flex; align-items: stretch; gap: 6px; }
+.studio__history-actions { display: flex; gap: 4px; align-items: center; }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 520px) {
+  .studio__nav-tab { font-size: 9px; padding: 11px 4px; letter-spacing: 0.1em; }
+  .studio__pipe-add-row { flex-direction: column; }
+  .studio__pipe-select { min-width: 100%; }
+  .studio__today-slot { gap: 8px; }
+  .studio__view-title { font-size: 26px; }
+  .studio__pack { margin: 0 0 18px; }
+}
+
+/* ============================================================
+   FEATURE PACK — chips, sync, calendar, media, outcome, spend
+   ============================================================ */
+
+/* ============ SYNC DOT ============ */
+.studio__sync {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  font-size: 14px;
+  opacity: 0.5;
+  transition: opacity 0.15s;
+}
+.studio__sync--pulling { opacity: 0.8; animation: studio-bulb 1.2s ease-in-out infinite; }
+.studio__sync--synced  { opacity: 0.9; color: var(--primary2, currentColor); }
+.studio__sync--offline { opacity: 0.7; color: #ff4a1a; }
+
+/* ============ BRAIN-DUMP CLASSIFICATION CHIPS ============ */
+.studio__chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 12px 0;
+  border-top: 1px dashed rgba(255, 255, 255, 0.12);
+}
+.studio__chips-label {
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  opacity: 0.5;
+  margin-right: 4px;
+}
+.studio__chip {
+  display: inline-block;
+  background: transparent;
+  border: 1px solid currentColor;
+  color: inherit;
+  padding: 4px 10px;
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  opacity: 0.55;
+  transition: opacity 0.15s, background 0.15s;
+}
+.studio__chip.is-on {
+  opacity: 1;
+  background: var(--primary2, currentColor);
+  color: #1a0600;
+}
+.studio__chip:hover:not(.is-on) { opacity: 0.85; }
+.studio__chip--meta { cursor: default; opacity: 0.55; border-style: dashed; }
+
+/* ============ CONTENT OUTCOME (winner / flop) ============ */
+.studio__pipe-outcome {
+  font-size: 10px !important;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  padding: 2px 6px;
+}
+.studio__pipe-outcome--winner {
+  background: var(--primary2, #ffd23f);
+  color: #1a0600;
+}
+.studio__pipe-outcome--flop {
+  border: 1px dashed currentColor;
+  opacity: 0.55;
+}
+
+/* ============ MEDIA THUMB ============ */
+.studio__pipe-media {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.studio__pipe-media-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border: 1px solid currentColor;
+  display: block;
+}
+
+/* ============ PIPELINE CALENDAR ============ */
+.studio__pipe-calendar {
+  padding: 16px;
+  border: 1px solid currentColor;
+  background: rgba(255, 255, 255, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.studio__pipe-cal-day {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.studio__pipe-cal-date {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  opacity: 0.75;
+  padding-bottom: 4px;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.12);
+}
+.studio__pipe-cal-date.is-past { opacity: 0.35; text-decoration: line-through; }
+.studio__pipe-cal-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border: 1px solid currentColor;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+.studio__pipe-cal-item:hover { background: rgba(255, 255, 255, 0.04); }
+.studio__pipe-cal-idea {
+  font-size: 12px;
+  opacity: 0.85;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
+}
+
+/* ============ BUYERS REVENUE ROLLUP ============ */
+.studio__buyers-revenue {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 16px;
+  border: 1px solid currentColor;
+  background: rgba(255, 255, 255, 0.03);
+}
+.studio__buyers-rev-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+}
+.studio__buyers-rev-label {
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  opacity: 0.5;
+}
+.studio__buyers-rev-value {
+  font-family: var(--font-abril), serif;
+  font-size: 24px;
+  line-height: 1;
+  color: var(--primary2, currentColor);
+  letter-spacing: -0.01em;
+}
+
+/* ============ BUYERS SPEND LOG ============ */
+.studio__buyers-spend-log {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 4px;
+}
+.studio__buyers-spend-input-row {
+  display: flex;
+  gap: 6px;
+  align-items: stretch;
+}
+.studio__buyers-spend-input-row .studio__pipe-input {
+  flex: 1;
+  max-width: 180px;
+}
+.studio__buyers-spend-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-top: 4px;
+}
+.studio__buyers-spend-entry {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 12px;
+}
+.studio__buyers-spend-amt {
+  font-family: var(--font-abril), serif;
+  font-size: 14px;
+  color: var(--primary2, currentColor);
+  min-width: 50px;
+}
+.studio__buyers-spend-when { opacity: 0.5; font-size: 10px; }
+.studio__buyers-spend-note { opacity: 0.65; font-style: italic; font-size: 11px; }
+
+/* ============ TODAY REVENUE ============ */
+.studio__today-revenue {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.studio__today-rev-card {
+  padding: 16px 18px;
+  border: 1px solid currentColor;
+  background: rgba(255, 255, 255, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.studio__today-rev-label {
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  opacity: 0.5;
+}
+.studio__today-rev-value {
+  font-family: var(--font-abril), serif;
+  font-size: 28px;
+  line-height: 1;
+  color: var(--primary2, currentColor);
+  letter-spacing: -0.01em;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 520px) {
+  .studio__buyers-revenue { grid-template-columns: 1fr; }
+  .studio__pipe-media-img { width: 88px; height: 88px; }
+}
+
+/* ============================================================
+   PALETTE REFINEMENT — hierarchy through contrast, not opacity
+   Orange stays the star. Bone/paper is the supporting cast.
+   ============================================================ */
+
+.studio.v1 {
+  --paper: #ead4a8;
+  --paper-rgb: 234, 212, 168;
+}
+.studio.v2 {
+  --paper: #e8c4a0;
+  --paper-rgb: 232, 196, 160;
+}
+.studio.v3 {
+  --paper: #d4bfa0;
+  --paper-rgb: 212, 191, 160;
+}
+
+/* ---------- Section eyebrows / labels → paper, not orange ---------- */
+.studio__today-section-label,
+.studio__pipe-caption-label,
+.studio__buyers-rev-label,
+.studio__today-rev-label,
+.studio__chips-label,
+.studio__pack-label,
+.studio__colophon-eyebrow {
+  color: var(--paper);
+  opacity: 0.7;
+}
+
+/* ---------- Stage + platform tags → neutral paper pills ---------- */
+.studio.v1 .studio__pipe-stage-tag,
+.studio.v1 .studio__pipe-platform-tag,
+.studio.v2 .studio__pipe-stage-tag,
+.studio.v2 .studio__pipe-platform-tag,
+.studio.v3 .studio__pipe-stage-tag,
+.studio.v3 .studio__pipe-platform-tag {
+  color: var(--paper);
+  border-color: rgba(var(--paper-rgb), 0.55);
+  background: rgba(var(--paper-rgb), 0.05);
+  opacity: 1;
+}
+
+/* ---------- Nav tabs: paper-dim off, marigold on ---------- */
+.studio.v1 .studio__nav-tab,
+.studio.v2 .studio__nav-tab,
+.studio.v3 .studio__nav-tab {
+  color: var(--paper);
+  border-color: rgba(var(--paper-rgb), 0.45);
+  border-bottom-color: transparent;
+  opacity: 0.55;
+}
+.studio.v1 .studio__nav,
+.studio.v2 .studio__nav,
+.studio.v3 .studio__nav {
+  border-bottom-color: rgba(var(--paper-rgb), 0.45);
+}
+.studio.v1 .studio__nav-tab.is-on,
+.studio.v2 .studio__nav-tab.is-on,
+.studio.v3 .studio__nav-tab.is-on {
+  color: var(--primary2);
+  border-color: var(--primary2);
+  background: rgba(255, 176, 32, 0.1);
+  opacity: 1;
+}
+
+/* ---------- Stage filter pills ---------- */
+.studio.v1 .studio__pipe-stage-btn,
+.studio.v2 .studio__pipe-stage-btn,
+.studio.v3 .studio__pipe-stage-btn {
+  color: var(--paper);
+  border-color: rgba(var(--paper-rgb), 0.5);
+  opacity: 0.6;
+}
+.studio.v1 .studio__pipe-stage-btn.is-on,
+.studio.v2 .studio__pipe-stage-btn.is-on,
+.studio.v3 .studio__pipe-stage-btn.is-on {
+  color: var(--primary2);
+  border-color: var(--primary2);
+  background: rgba(255, 176, 32, 0.1);
+  opacity: 1;
+}
+.studio__pipe-count {
+  background: var(--paper);
+  color: #1a0600;
+}
+
+/* ---------- Classification chips ---------- */
+.studio.v1 .studio__chip,
+.studio.v2 .studio__chip,
+.studio.v3 .studio__chip {
+  color: var(--paper);
+  border-color: rgba(var(--paper-rgb), 0.5);
+  opacity: 0.72;
+}
+.studio.v1 .studio__chip.is-on,
+.studio.v2 .studio__chip.is-on,
+.studio.v3 .studio__chip.is-on {
+  color: #1a0600;
+  background: var(--primary2);
+  border-color: var(--primary2);
+  opacity: 1;
+}
+
+/* ---------- Ghost buttons ---------- */
+.studio.v1 .studio__ghost,
+.studio.v2 .studio__ghost,
+.studio.v3 .studio__ghost {
+  color: var(--paper);
+  border-color: rgba(var(--paper-rgb), 0.5);
+  opacity: 0.78;
+}
+.studio.v1 .studio__ghost:hover:not(:disabled):not(.studio__ghost--danger),
+.studio.v2 .studio__ghost:hover:not(:disabled):not(.studio__ghost--danger),
+.studio.v3 .studio__ghost:hover:not(:disabled):not(.studio__ghost--danger) {
+  color: var(--primary2);
+  border-color: var(--primary2);
+  background: rgba(255, 176, 32, 0.08);
+  opacity: 1;
+}
+.studio.v1 .studio__ghost.is-on,
+.studio.v2 .studio__ghost.is-on,
+.studio.v3 .studio__ghost.is-on {
+  color: var(--primary2);
+  border-color: var(--primary2);
+  background: rgba(255, 176, 32, 0.1);
+  opacity: 1;
+}
+
+/* ---------- Meta row (theme/vibe/reuse) → paper dim ---------- */
+.studio.v1 .studio__pipe-meta-row,
+.studio.v2 .studio__pipe-meta-row,
+.studio.v3 .studio__pipe-meta-row {
+  color: var(--paper);
+  opacity: 0.6;
+}
+
+/* ---------- Item idea text → bright ink ---------- */
+.studio.v1 .studio__pipe-item-idea,
+.studio.v2 .studio__pipe-item-idea,
+.studio.v3 .studio__pipe-item-idea {
+  color: var(--ink);
+  opacity: 0.96;
+}
+
+/* ---------- Today insight cards ---------- */
+.studio.v1 .studio__today-card-label,
+.studio.v2 .studio__today-card-label,
+.studio.v3 .studio__today-card-label {
+  color: var(--ink);
+  opacity: 1;
+}
+.studio.v1 .studio__today-card-body,
+.studio.v2 .studio__today-card-body,
+.studio.v3 .studio__today-card-body {
+  color: var(--paper);
+  opacity: 0.7;
+}
+.studio__today-card {
+  border-color: rgba(var(--paper-rgb), 0.38);
+}
+.studio__today-card--critical { border-left-color: var(--primary2); }
+.studio__today-card--high     { border-left-color: var(--hot); }
+
+/* ---------- Today drop slot supporting text ---------- */
+.studio.v1 .studio__today-slot-platform,
+.studio.v2 .studio__today-slot-platform,
+.studio.v3 .studio__today-slot-platform {
+  color: var(--paper);
+  opacity: 0.85;
+}
+.studio.v1 .studio__today-slot-note,
+.studio.v2 .studio__today-slot-note,
+.studio.v3 .studio__today-slot-note {
+  color: var(--paper);
+  opacity: 0.55;
+}
+.studio__today-drops {
+  border-color: rgba(var(--paper-rgb), 0.4);
+}
+
+/* ---------- Revenue cards ---------- */
+.studio__today-rev-card,
+.studio__buyers-revenue {
+  border-color: rgba(var(--paper-rgb), 0.4);
+}
+
+/* ---------- View header description ---------- */
+.studio.v1 .studio__view-desc,
+.studio.v2 .studio__view-desc,
+.studio.v3 .studio__view-desc {
+  color: var(--paper);
+  opacity: 0.68;
+}
+.studio__view-header {
+  border-bottom-color: rgba(var(--paper-rgb), 0.35);
+}
+
+/* ---------- Pipeline item borders + backgrounds ---------- */
+.studio.v1 .studio__pipe-item,
+.studio.v2 .studio__pipe-item,
+.studio.v3 .studio__pipe-item {
+  border-color: rgba(var(--paper-rgb), 0.32);
+}
+.studio__pipe-item--high { border-left-color: var(--primary2); }
+.studio__pipe-item.is-starred { border-left-color: var(--hot); }
+.studio.v1 .studio__pipe-item-detail,
+.studio.v2 .studio__pipe-item-detail,
+.studio.v3 .studio__pipe-item-detail {
+  border-top-color: rgba(var(--paper-rgb), 0.22);
+}
+.studio__pipe-item-head:hover {
+  background: rgba(var(--paper-rgb), 0.05);
+}
+
+/* ---------- Pipeline add form ---------- */
+.studio.v1 .studio__pipe-add,
+.studio.v2 .studio__pipe-add,
+.studio.v3 .studio__pipe-add {
+  border-color: rgba(var(--paper-rgb), 0.4);
+}
+.studio.v1 .studio__pipe-input,
+.studio.v2 .studio__pipe-input,
+.studio.v3 .studio__pipe-input {
+  border-color: rgba(var(--paper-rgb), 0.5);
+  color: var(--ink);
+}
+.studio__pipe-input:focus {
+  border-color: var(--primary2) !important;
+}
+.studio.v1 .studio__pipe-select,
+.studio.v2 .studio__pipe-select,
+.studio.v3 .studio__pipe-select {
+  border-color: rgba(var(--paper-rgb), 0.5);
+  color: var(--ink);
+}
+
+/* ---------- Buyers stats strip ---------- */
+.studio.v1 .studio__buyers-stat,
+.studio.v2 .studio__buyers-stat,
+.studio.v3 .studio__buyers-stat {
+  color: var(--paper);
+  opacity: 0.85;
+}
+.studio__buyers-stats {
+  border-bottom-color: rgba(var(--paper-rgb), 0.22);
+}
+
+/* Buyer total column → keep subtle, not shouty */
+.studio.v1 .studio__buyers-total,
+.studio.v2 .studio__buyers-total,
+.studio.v3 .studio__buyers-total {
+  color: var(--paper);
+  opacity: 0.88;
+}
+.studio.v1 .studio__buyers-days,
+.studio.v2 .studio__buyers-days,
+.studio.v3 .studio__buyers-days {
+  color: var(--paper);
+  opacity: 0.5;
+}
+.studio__buyers-days.is-stale {
+  color: var(--hot);
+  opacity: 1;
+}
+
+/* ---------- Calendar ---------- */
+.studio.v1 .studio__pipe-calendar,
+.studio.v2 .studio__pipe-calendar,
+.studio.v3 .studio__pipe-calendar {
+  border-color: rgba(var(--paper-rgb), 0.4);
+}
+.studio.v1 .studio__pipe-cal-date,
+.studio.v2 .studio__pipe-cal-date,
+.studio.v3 .studio__pipe-cal-date {
+  color: var(--paper);
+  border-bottom-color: rgba(var(--paper-rgb), 0.25);
+}
+.studio.v1 .studio__pipe-cal-item,
+.studio.v2 .studio__pipe-cal-item,
+.studio.v3 .studio__pipe-cal-item {
+  border-color: rgba(var(--paper-rgb), 0.35);
+  color: var(--ink);
+}
+
+/* ---------- Content pack block ---------- */
+.studio.v1 .studio__pack,
+.studio.v2 .studio__pack,
+.studio.v3 .studio__pack {
+  border-color: rgba(var(--paper-rgb), 0.4);
+}
+.studio.v1 .studio__pack-item,
+.studio.v2 .studio__pack-item,
+.studio.v3 .studio__pack-item,
+.studio.v1 .studio__pack-body,
+.studio.v2 .studio__pack-body,
+.studio.v3 .studio__pack-body {
+  color: var(--ink);
+  opacity: 0.9;
+}
+
+/* ---------- Spend log entries ---------- */
+.studio__buyers-spend-amt {
+  color: var(--primary2);
+}
+.studio.v1 .studio__buyers-spend-when,
+.studio.v2 .studio__buyers-spend-when,
+.studio.v3 .studio__buyers-spend-when {
+  color: var(--paper);
+  opacity: 0.55;
+}
+.studio.v1 .studio__buyers-spend-note,
+.studio.v2 .studio__buyers-spend-note,
+.studio.v3 .studio__buyers-spend-note {
+  color: var(--paper);
+  opacity: 0.75;
+}
+
+/* ---------- Mini cards in Today ---------- */
+.studio.v1 .studio__today-mini-card,
+.studio.v2 .studio__today-mini-card,
+.studio.v3 .studio__today-mini-card {
+  border-color: rgba(var(--paper-rgb), 0.35);
+}
+.studio.v1 .studio__today-mini-idea,
+.studio.v2 .studio__today-mini-idea,
+.studio.v3 .studio__today-mini-idea {
+  color: var(--ink);
+  opacity: 0.9;
+}
+.studio.v1 .studio__today-mini-note,
+.studio.v2 .studio__today-mini-note,
+.studio.v3 .studio__today-mini-note {
+  color: var(--paper);
+  opacity: 0.6;
+}
+
+/* ---------- Sync dot ---------- */
+.studio__sync--synced  { color: var(--paper); opacity: 0.6; }
+
+/* ---------- Empty state ---------- */
+.studio.v1 .studio__empty,
+.studio.v2 .studio__empty,
+.studio.v3 .studio__empty {
+  color: var(--paper);
+  opacity: 0.55;
+}
+
+/* ============================================================
+   JESTERMAXX — MODE chip, clickable wordmark, vine quote card
+   ============================================================ */
+
+.studio__hero-mode {
+  display: inline-block;
+  margin: -4px auto 10px;
+  padding: 4px 12px;
+  font-family: var(--font-abril), serif;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--paper);
+  border: 1px solid rgba(var(--paper-rgb), 0.45);
+  background: rgba(var(--paper-rgb), 0.05);
+  animation: studio-mode-in 500ms ease-out;
+}
+@keyframes studio-mode-in {
+  from { opacity: 0; transform: translateY(-3px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.studio__hero-mark {
+  cursor: pointer;
+  user-select: none;
+  transition: transform 120ms ease-out;
+}
+.studio__hero-mark:active { transform: scale(0.98); }
+
+.studio__vine-card {
+  text-align: center;
+  padding: 30px 28px 22px;
+  max-width: 440px;
+}
+.studio__vine-quote {
+  font-family: var(--font-abril), serif;
+  font-size: 22px;
+  line-height: 1.3;
+  color: var(--primary2);
+  margin: 16px 0 8px;
+  font-style: italic;
+}
+.studio__vine-sub {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--paper);
+  opacity: 0.6;
+  margin-bottom: 16px;
+}
+
+/* ============================================================
+   POLISH PASS — vault overlay, spacing, hover states, rhythm
+   ============================================================ */
+
+/* ---------- Shared overlay scrim (vault + palette + vine) ---------- */
+.studio__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 3, 2, 0.78);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 80;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 60px 20px 40px;
+  overflow-y: auto;
+  animation: studio-overlay-in 180ms ease-out;
+}
+@keyframes studio-overlay-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Make the existing palette overlay use the same scrim */
+.studio__palette {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 3, 2, 0.78);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 80;
+  animation: studio-overlay-in 180ms ease-out;
+}
+
+/* ---------- Vault modal panel ---------- */
+.studio__vault-panel {
+  width: 100%;
+  max-width: 640px;
+  max-height: calc(100vh - 100px);
+  background: var(--bg-elev);
+  border: 1px solid rgba(var(--paper-rgb), 0.35);
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  animation: studio-vault-in 220ms ease-out;
+}
+@keyframes studio-vault-in {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.studio__vault-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 22px 14px;
+  border-bottom: 1px dashed rgba(var(--paper-rgb), 0.22);
+}
+.studio__vault-eyebrow {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--paper);
+  opacity: 0.65;
+  margin-bottom: 4px;
+}
+.studio__vault-title {
+  font-family: var(--font-abril), serif;
+  font-size: 28px;
+  line-height: 1;
+  color: var(--primary2);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.studio__vault-panel .studio__vault-toolbar {
+  padding: 14px 22px;
+  border-bottom: 1px dashed rgba(var(--paper-rgb), 0.22);
+  margin-bottom: 0;
+}
+
+.studio__vault-panel .studio__vault-search {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(var(--paper-rgb), 0.4);
+  color: var(--ink);
+  font-size: 13px;
+  padding: 10px 14px;
+}
+.studio__vault-panel .studio__vault-search:focus {
+  border-color: var(--primary2);
+  outline: none;
+}
+
+.studio__vault-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px 22px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.studio__vault-row {
+  display: flex;
+  align-items: stretch;
+  gap: 6px;
+}
+.studio__vault-item {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+  padding: 12px 14px;
+  background: rgba(var(--paper-rgb), 0.03);
+  border: 1px solid rgba(var(--paper-rgb), 0.3);
+  color: var(--ink);
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 120ms, border-color 120ms;
+}
+.studio__vault-item:hover {
+  background: rgba(var(--paper-rgb), 0.07);
+  border-color: var(--primary2);
+}
+.studio__vault-item-idea {
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  margin-bottom: 4px;
+}
+.studio__vault-item-meta {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--paper);
+  opacity: 0.55;
+}
+.studio__vault-row-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Hide the legacy inline .studio__history (keep class for any migrations) */
+.studio__history { display: none; }
+
+/* ---------- Ghost button size normalization ---------- */
+.studio__ghost {
+  padding: 8px 14px;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.studio__ghost--sm {
+  padding: 6px 10px;
+  font-size: 10px;
+  min-width: 30px;
+  text-align: center;
+}
+
+/* ---------- Header actions: tighter + aligned ---------- */
+.studio__header-actions {
+  gap: 6px;
+  align-items: center;
+}
+
+/* ---------- Hero MODE chip: subtler + centered ---------- */
+.studio__hero-mode {
+  font-size: 9px;
+  padding: 5px 14px;
+  opacity: 0.75;
+  transition: opacity 200ms;
+}
+
+/* ---------- Hero blurb: slightly more breathing room ---------- */
+.studio__hero-blurb {
+  margin-top: 20px;
+}
+
+/* ---------- Nav tabs: cleaner active state ---------- */
+.studio__nav {
+  padding: 0 22px;
+  gap: 0;
+}
+.studio__nav-tab {
+  padding: 14px 8px;
+  border-width: 1px;
+  transition: opacity 160ms, background 160ms, color 160ms;
+}
+
+/* ---------- View header: tighter rhythm ---------- */
+.studio__view {
+  padding: 36px 22px 80px;
+  gap: 24px;
+}
+.studio__view-header {
+  padding-bottom: 14px;
+}
+.studio__view-title {
+  margin: 0 0 6px;
+}
+.studio__view-desc {
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+/* ---------- Pipeline items: consistent padding, nicer hover ---------- */
+.studio__pipe-item-head {
+  padding: 13px 15px;
+  gap: 10px;
+}
+.studio__pipe-item-left {
+  gap: 9px;
+}
+.studio__pipe-item-detail {
+  padding: 14px 15px 16px;
+  gap: 12px;
+}
+.studio__pipe-meta-row {
+  gap: 14px;
+  font-size: 10px;
+}
+
+/* ---------- Pipeline stage filter pills: tighter ---------- */
+.studio__pipe-stages {
+  gap: 5px;
+}
+.studio__pipe-stage-btn {
+  padding: 7px 11px;
+  font-size: 10px;
+}
+
+/* ---------- Buyers revenue: tighter grid gap ---------- */
+.studio__buyers-revenue {
+  gap: 8px;
+  padding: 18px 20px;
+}
+.studio__buyers-rev-value {
+  font-size: 26px;
+}
+
+/* ---------- Today revenue cards: tighter ---------- */
+.studio__today-revenue {
+  gap: 8px;
+}
+.studio__today-rev-card {
+  padding: 18px 20px;
+}
+.studio__today-rev-value {
+  font-size: 30px;
+}
+
+/* ---------- Today insight cards: cleaner spacing ---------- */
+.studio__today-insights {
+  gap: 8px;
+}
+.studio__today-card {
+  padding: 16px 18px;
+  gap: 6px;
+}
+.studio__today-card-label {
+  font-size: 14px;
+  line-height: 1.35;
+}
+.studio__today-card-body {
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+/* ---------- Today drop slots: tighter gap ---------- */
+.studio__today-drops {
+  padding: 18px 20px;
+  gap: 12px;
+}
+.studio__today-slots {
+  gap: 8px;
+}
+.studio__today-slot {
+  gap: 10px;
+}
+.studio__today-slot-time {
+  font-size: 20px;
+}
+
+/* ---------- Mini cards: consistency ---------- */
+.studio__today-mini-card {
+  padding: 11px 14px;
+  gap: 5px;
+}
+
+/* ---------- Content pack (generator results): tighter ---------- */
+.studio__pack {
+  padding: 16px 18px;
+  gap: 14px;
+}
+
+/* ---------- Chips: tighter rhythm ---------- */
+.studio__chips {
+  gap: 5px;
+  padding: 10px 12px 2px;
+}
+.studio__chip {
+  padding: 4px 9px;
+  font-size: 9px;
+}
+
+/* ---------- Buyers stats: tighter ---------- */
+.studio__buyers-stats {
+  gap: 10px;
+  padding: 10px 0;
+  flex-wrap: wrap;
+}
+.studio__buyers-stat {
+  font-size: 11px;
+  gap: 5px;
+}
+
+/* ---------- Spend entries: tighter ---------- */
+.studio__buyers-spend-list {
+  gap: 2px;
+}
+.studio__buyers-spend-entry {
+  gap: 8px;
+  padding: 1px 0;
+}
+.studio__buyers-spend-amt {
+  font-size: 13px;
+  min-width: 48px;
+}
+
+/* ---------- Calendar: tighter dates ---------- */
+.studio__pipe-calendar {
+  padding: 14px 16px;
+  gap: 12px;
+}
+.studio__pipe-cal-item {
+  padding: 8px 11px;
+}
+
+/* ---------- Add forms: consistent ---------- */
+.studio__pipe-add {
+  padding: 16px;
+  gap: 9px;
+}
+.studio__pipe-input {
+  padding: 10px 12px;
+  font-size: 13px;
+}
+.studio__pipe-select {
+  padding: 10px 10px;
+  font-size: 12px;
+}
+
+/* ---------- Focus rings (accessibility + polish) ---------- */
+.studio__textarea:focus,
+.studio__vault-search:focus,
+.studio__pipe-input:focus {
+  outline: none;
+  border-color: var(--primary2);
+  box-shadow: 0 0 0 2px rgba(255, 210, 63, 0.15);
+}
+
+/* ---------- Scrollbar styling for vault body ---------- */
+.studio__vault-body::-webkit-scrollbar {
+  width: 8px;
+}
+.studio__vault-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+.studio__vault-body::-webkit-scrollbar-thumb {
+  background: rgba(var(--paper-rgb), 0.25);
+  border-radius: 4px;
+}
+.studio__vault-body::-webkit-scrollbar-thumb:hover {
+  background: rgba(var(--paper-rgb), 0.4);
+}
+
+/* ---------- Mobile polish ---------- */
+@media (max-width: 520px) {
+  .studio__vault-panel { max-height: calc(100vh - 60px); }
+  .studio__overlay { padding: 30px 14px 20px; }
+  .studio__vault-header { padding: 18px 16px 12px; }
+  .studio__vault-title { font-size: 24px; }
+  .studio__vault-panel .studio__vault-toolbar { padding: 12px 16px; }
+  .studio__vault-body { padding: 12px 16px 16px; }
+  .studio__view { padding: 28px 16px 60px; }
+  .studio__view-title { font-size: 26px; }
+  .studio__pipe-item-head { padding: 12px 13px; }
+  .studio__pipe-item-detail { padding: 12px 13px 14px; }
+  .studio__today-rev-value { font-size: 24px; }
+  .studio__buyers-rev-value { font-size: 20px; }
+  .studio__hero-mode { font-size: 8px; padding: 4px 10px; letter-spacing: 0.2em; }
+}
+
+/* ============================================================
+   GIGASUEDE STUDIO — REACTIVE LAYER
+   nav badges · sliding tab indicator · count-up · toasts · activity feed
+   ============================================================ */
+
+/* ---------- nav: relative for sliding indicator ---------- */
+.studio__nav { position: relative; }
+.studio__nav-tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  z-index: 1;
+}
+.studio__nav-tab-label { display: inline-block; }
+
+/* ---------- nav count badges ---------- */
+.studio__nav-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: currentColor;
+  color: var(--bg, #0e0604);
+  font-family: var(--font-instrument), system-ui, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+  transform: translateY(-1px);
+}
+.studio__nav-badge--alert {
+  background: #ff4a1a;
+  color: #fff;
+  animation: studioBadgePulse 2.4s ease-in-out infinite;
+}
+@keyframes studioBadgePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 74, 26, 0.55); }
+  50%      { box-shadow: 0 0 0 6px rgba(255, 74, 26, 0); }
+}
+
+/* ---------- sliding tab indicator ---------- */
+.studio__nav-indicator {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 3px;
+  background: var(--primary2, currentColor);
+  border-radius: 2px 2px 0 0;
+  transition: transform 380ms cubic-bezier(0.4, 0.0, 0.2, 1),
+              width 380ms cubic-bezier(0.4, 0.0, 0.2, 1);
+  pointer-events: none;
+  box-shadow: 0 0 12px 0 currentColor;
+  z-index: 0;
+}
+.studio.v1 .studio__nav-indicator { background: var(--primary2); }
+.studio.v2 .studio__nav-indicator { background: var(--primary, #ff7a1f); height: 4px; }
+.studio.v3 .studio__nav-indicator {
+  background: var(--primary, #f5b400);
+  height: 4px;
+  border-radius: 0;
+}
+
+/* On the active tab, drop the heavy bg fill — the indicator carries it now */
+.studio__nav-tab.is-on { background: transparent; }
+.studio.v1 .studio__nav-tab.is-on,
+.studio.v2 .studio__nav-tab.is-on,
+.studio.v3 .studio__nav-tab.is-on {
+  background: transparent;
+}
+
+/* ---------- topbar activity button + pip ---------- */
+.studio__ghost--activity { position: relative; }
+.studio__activity-pip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 6px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: #ff4a1a;
+  color: #fff;
+  font-family: var(--font-instrument), system-ui, sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1;
+  animation: studioBadgePulse 2.4s ease-in-out infinite;
+}
+
+/* ---------- count-up cards: subtle highlight tick ---------- */
+.studio__today-rev-card--countup .studio__today-rev-value {
+  font-variant-numeric: tabular-nums;
+  transition: color 200ms;
+}
+
+/* ---------- toasts ---------- */
+.studio__toast-stack {
+  position: fixed;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 1000;
+  pointer-events: none;
+  max-width: calc(100vw - 32px);
+}
+.studio__toast {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: rgba(14, 6, 4, 0.94);
+  color: #f7efe1;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  font-family: var(--font-instrument), system-ui, sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 210, 63, 0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: studioToastIn 280ms cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
+.studio__toast-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--primary2, #ffd23f);
+  box-shadow: 0 0 8px currentColor;
+  flex-shrink: 0;
+}
+.studio__toast--good .studio__toast-dot { background: #79f0a1; }
+.studio__toast--warn .studio__toast-dot { background: #ffb84a; }
+.studio__toast--danger .studio__toast-dot { background: #ff4a1a; }
+.studio__toast-msg { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 70vw; }
+@keyframes studioToastIn {
+  from { transform: translateY(14px) scale(0.96); opacity: 0; }
+  to   { transform: translateY(0) scale(1); opacity: 1; }
+}
+.studio.v2 .studio__toast { border-radius: 18px; }
+.studio.v3 .studio__toast { border-radius: 0; border-width: 2px; }
+
+/* ---------- activity feed overlay ---------- */
+.studio__activity-overlay {}
+.studio__activity-panel {
+  background: var(--paper, #f7efe1);
+  color: var(--ink, #0e0604);
+  width: min(560px, 100%);
+  max-height: calc(100vh - 80px);
+  border: 2px solid currentColor;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+}
+.studio.v3 .studio__activity-panel { border-radius: 0; border-width: 3px; }
+.studio.v2 .studio__activity-panel { border-radius: 16px; }
+
+.studio__activity-head-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.studio__activity-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 6px 0 14px;
+}
+.studio__activity-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.studio__activity-row {
+  display: grid;
+  grid-template-columns: 78px 1fr auto;
+  align-items: baseline;
+  gap: 12px;
+  padding: 11px 22px;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.12);
+  font-size: 13px;
+  animation: studioActivityIn 280ms ease-out;
+}
+.studio__activity-row:last-child { border-bottom: 0; }
+.studio__activity-kind {
+  font-family: var(--font-abril), serif;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+.studio__activity-msg {
+  font-family: var(--font-instrument), system-ui, sans-serif;
+  line-height: 1.4;
+  word-break: break-word;
+}
+.studio__activity-time {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: lowercase;
+  opacity: 0.5;
+  white-space: nowrap;
+}
+.studio__activity-row--ship .studio__activity-kind,
+.studio__activity-row--generate .studio__activity-kind,
+.studio__activity-row--spend .studio__activity-kind,
+.studio__activity-row--outcome .studio__activity-kind {
+  color: var(--primary2, #c2410c);
+  opacity: 1;
+}
+@keyframes studioActivityIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 520px) {
+  .studio__nav-tab { gap: 5px; }
+  .studio__nav-badge { min-width: 16px; height: 16px; font-size: 9px; }
+  .studio__activity-panel { max-height: calc(100vh - 60px); }
+  .studio__activity-row { grid-template-columns: 64px 1fr auto; padding: 10px 16px; font-size: 12px; gap: 8px; }
+  .studio__toast { font-size: 12px; padding: 10px 14px; }
+}
+
