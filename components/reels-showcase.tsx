@@ -16,7 +16,7 @@ export function ReelsShowcase({
 }) {
   const { locale } = useLanguage();
   const [activeId, setActiveId] = useState(
-    reels.find((reel) => reel.featured)?.id ?? reels[0]?.id ?? "commercial",
+    reels.find((reel) => reel.featured)?.id ?? reels[0]?.id ?? "cinematic",
   );
   const [isPending, transition] = useTransition();
 
