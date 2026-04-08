@@ -93,7 +93,16 @@ export function LandingPageV4Zeri() {
   const progressPercent = duration ? (currentTime / duration) * 100 : 0;
 
   return (
-    <div className={`v4-root${revealed ? " v4-root--revealed" : ""}`} ref={stageRef}>
+    <div
+      className={`v4-root${revealed ? " v4-root--revealed" : ""}`}
+      ref={stageRef}
+      style={{
+        backgroundImage: `url('/media/images/hero.webp')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
+      }}
+    >
       <div className="v4-bg-energy" aria-hidden="true" />
       <div className="v4-electric-lines" aria-hidden="true" />
       <div className="v4-vignette" aria-hidden="true" />
@@ -108,24 +117,6 @@ export function LandingPageV4Zeri() {
       </div>
 
       <div className="v4-hero-container">
-        <div className="v4-hero-frame">
-          <div className="v4-frame-glow v4-frame-glow--purple" aria-hidden="true" />
-          <div className="v4-frame-glow v4-frame-glow--cyan" aria-hidden="true" />
-
-          <div className="v4-hero-image" ref={splashRef}>
-            <img src="/media/images/hero.webp" alt="Jordan Bailey" draggable={false} />
-            <div className="v4-hero-energy" aria-hidden="true" />
-          </div>
-
-          <div className="v4-frame-border" aria-hidden="true" />
-          <div className="v4-corner-spark" aria-hidden="true">
-            <span className="v4-spark v4-spark--tl" />
-            <span className="v4-spark v4-spark--tr" />
-            <span className="v4-spark v4-spark--bl" />
-            <span className="v4-spark v4-spark--br" />
-          </div>
-        </div>
-
         <div className="v4-identity">
           <div className="v4-tag" aria-hidden="true">&lt; / &gt;</div>
           <h1 className="v4-name">JORDAN BAILEY</h1>

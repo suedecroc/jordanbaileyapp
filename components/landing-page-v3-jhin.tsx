@@ -99,7 +99,16 @@ export function LandingPageV3Jhin() {
   const progressPercent = duration ? (currentTime / duration) * 100 : 0;
 
   return (
-    <div className={`v3-root${revealed ? " v3-root--revealed" : ""}`} ref={stageRef}>
+    <div
+      className={`v3-root${revealed ? " v3-root--revealed" : ""}`}
+      ref={stageRef}
+      style={{
+        backgroundImage: `url('/media/images/hero.webp')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
+      }}
+    >
       <div className="v3-bg-gradient" aria-hidden="true" />
       <div className="v3-mist" aria-hidden="true" />
       <div className="v3-vignette" aria-hidden="true" />
@@ -115,24 +124,6 @@ export function LandingPageV3Jhin() {
       </div>
 
       <div className="v3-hero-container">
-        <div className="v3-target-frame">
-          <div className="v3-frame-accent v3-frame-accent--gold" aria-hidden="true" />
-          <div className="v3-frame-accent v3-frame-accent--red" aria-hidden="true" />
-
-          <div className="v3-hero-image" ref={splashRef}>
-            <img src="/media/images/hero.webp" alt="Jordan Bailey" draggable={false} />
-            <div className="v3-hero-glow" aria-hidden="true" />
-          </div>
-
-          <div className="v3-frame-border" aria-hidden="true" />
-          <div className="v3-corner-markers" aria-hidden="true">
-            <span className="v3-marker v3-marker--tl" />
-            <span className="v3-marker v3-marker--tr" />
-            <span className="v3-marker v3-marker--bl" />
-            <span className="v3-marker v3-marker--br" />
-          </div>
-        </div>
-
         <div className="v3-precision-info">
           <h1 className="v3-callsign">JORDAN BAILEY</h1>
           <div className="v3-info-divider" aria-hidden="true" />

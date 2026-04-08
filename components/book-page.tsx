@@ -15,26 +15,26 @@ export function BookPage() {
   const { locale } = useLanguage();
 
   return (
-    <section className="section-anchor pb-8 pt-3 sm:pb-10 sm:pt-4">
+    <section className="section-anchor pb-5 pt-1 sm:pb-7 sm:pt-2">
       <Container>
-        <div className="book-page book-page--paper p-5 sm:p-7 lg:p-8">
-          <div className="grid gap-6 xl:grid-cols-[minmax(0,0.78fr)_minmax(320px,0.58fr)] xl:items-start">
+        <div className="book-page book-page--paper p-4 sm:p-5 lg:p-7">
+          <div className="grid gap-5 xl:grid-cols-[minmax(0,0.78fr)_minmax(320px,0.58fr)] xl:items-start">
             <FadeIn>
               <div>
                 <div className="book-page__number">
                   <span className="folio-pill">{pageFour.folio}</span>
                   <p className="cue-label">{getLocalizedText(pageFour.cue, locale)}</p>
                 </div>
-                <p className="stage-epigraph mt-5 max-w-[38rem]">
+                <p className="stage-epigraph mt-3.5 max-w-[38rem]">
                   {getLocalizedText(pageFour.availabilityQuote, locale)}
                 </p>
-                <h1 className="mt-5 max-w-[13ch] font-serif text-[2.85rem] leading-[0.9] tracking-[0.01em] text-foreground sm:text-[3.8rem]">
+                <h1 className="mt-3.5 max-w-[13ch] font-serif text-[2.85rem] leading-[0.9] tracking-[0.01em] text-foreground sm:text-[3.8rem]">
                   {getLocalizedText(pageFour.title, locale)}
                 </h1>
-                <p className="mt-4 max-w-[35rem] text-base leading-7 text-muted-strong sm:text-lg sm:leading-8">
+                <p className="mt-3 max-w-[35rem] text-base leading-7 text-muted-strong sm:text-lg sm:leading-8">
                   {getLocalizedText(pageFour.body, locale)}
                 </p>
-                <div className="mt-6 flex flex-wrap gap-2.5">
+                <div className="mt-5 flex flex-wrap gap-2.5">
                   {pageFour.formMarkers.map((marker) => (
                     <span key={marker.en} className="paper-tag">
                       {getLocalizedText(marker, locale)}
@@ -59,25 +59,25 @@ export function BookPage() {
             </FadeIn>
           </div>
 
-          <div className="stage-rule mt-7" />
+          <div className="stage-rule mt-5" />
 
-          <div className="mt-7 grid gap-6 xl:grid-cols-[minmax(0,0.78fr)_minmax(300px,0.42fr)] xl:items-start">
+          <div className="mt-5 grid gap-5 xl:grid-cols-[minmax(0,0.78fr)_minmax(300px,0.42fr)] xl:items-start">
             <FadeIn>
               <div id="booking-form" className="scroll-mt-32">
                 <BookingForm />
               </div>
             </FadeIn>
 
-            <div className="grid gap-5">
+            <div className="grid gap-4">
               <FadeIn delay={0.08}>
-                <div className="paper-panel rounded-[1.15rem] p-5 sm:p-6">
+                <div className="paper-panel rounded-[1.15rem] p-4 sm:p-5">
                   <p className="cue-label cue-label--ink">
                     {getLocalizedText(
                       { en: "How this usually goes", de: "Wie es meistens läuft" },
                       locale,
                     )}
                   </p>
-                  <div className="mt-5 grid grid-cols-2 gap-3">
+                  <div className="mt-4 grid grid-cols-2 gap-3">
                     {pageFour.duoImages.map((image) => (
                       <div key={image.src} className="min-w-0">
                         <div className="duo-card aspect-square">
@@ -96,22 +96,22 @@ export function BookPage() {
                       </div>
                     ))}
                   </div>
-                  <div className="paper-rule mt-5" />
-                  <p className="mt-4 text-base leading-7 paper-muted">
+                  <div className="paper-rule mt-4" />
+                  <p className="mt-3 text-base leading-7 paper-muted">
                     {getLocalizedText(pageFour.duoCaption, locale)}
                   </p>
                 </div>
               </FadeIn>
 
               <FadeIn delay={0.12}>
-                <aside className="panel-soft rounded-[1.15rem] p-5 sm:p-6">
+                <aside className="panel-soft rounded-[1.15rem] p-4 sm:p-5">
                   <p className="cue-label">
                     {getLocalizedText(
                       { en: "Need the fast route?", de: "Brauchst du den schnellen Weg?" },
                       locale,
                     )}
                   </p>
-                  <p className="stage-epigraph mt-4">
+                  <p className="stage-epigraph mt-3">
                     {getLocalizedText(
                       { en: "HOW LOVELY!", de: "WIE SCHÖN!" },
                       locale,
@@ -126,7 +126,7 @@ export function BookPage() {
                       locale,
                     )}
                   </p>
-                  <div className="mt-5 grid gap-3">
+                  <div className="mt-4 grid gap-3">
                     <ButtonLink
                       href={contactDetails.emailHref}
                       variant="secondary"

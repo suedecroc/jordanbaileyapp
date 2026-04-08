@@ -13,10 +13,10 @@ export function AboutPage() {
   const { locale } = useLanguage();
 
   return (
-    <section className="section-anchor pb-8 pt-3 sm:pb-10 sm:pt-4">
+    <section className="section-anchor pb-5 pt-1 sm:pb-7 sm:pt-2">
       <Container>
-        <div className="book-page book-page--paper p-5 sm:p-7 lg:p-8">
-          <div className="grid gap-6 xl:grid-cols-[minmax(0,0.94fr)_minmax(320px,0.46fr)]">
+        <div className="book-page book-page--paper p-4 sm:p-5 lg:p-7">
+          <div className="grid gap-5 xl:grid-cols-[minmax(0,0.94fr)_minmax(320px,0.46fr)]">
             <FadeIn>
               <div>
                 <div className="book-page__number">
@@ -25,11 +25,11 @@ export function AboutPage() {
                     {getLocalizedText(pageTwo.cue, locale)}
                   </p>
                 </div>
-                <h1 className="mt-5 max-w-[13ch] font-serif text-[2.85rem] leading-[0.9] tracking-[0.01em] paper-ink sm:text-[3.8rem]">
+                <h1 className="mt-3.5 max-w-[13ch] font-serif text-[2.85rem] leading-[0.9] tracking-[0.01em] paper-ink sm:text-[3.8rem]">
                   {getLocalizedText(pageTwo.title, locale)}
                 </h1>
-                <div className="paper-rule mt-5" />
-                <div className="mt-5 max-w-[38rem] space-y-5 text-base leading-8 paper-muted sm:text-lg">
+                <div className="paper-rule mt-4" />
+                <div className="mt-4 max-w-[38rem] space-y-4 text-base leading-8 paper-muted sm:text-lg">
                   {aboutPageCopy.map((paragraph) => (
                     <p key={paragraph.en}>{getLocalizedText(paragraph, locale)}</p>
                   ))}
@@ -38,21 +38,21 @@ export function AboutPage() {
             </FadeIn>
 
             <FadeIn delay={0.08}>
-              <aside className="panel rounded-[1.15rem] p-5 sm:p-6">
+              <aside className="panel rounded-[1.15rem] p-4 sm:p-5">
                 <p className="cue-label">
                   {getLocalizedText(
                     { en: "Act II / how I work", de: "Akt II / Dossiernotizen" },
                     locale,
                   )}
                 </p>
-                <h2 className="mt-5 font-serif text-[2rem] leading-[0.95] text-foreground">
+                <h2 className="mt-3.5 font-serif text-[2rem] leading-[0.95] text-foreground">
                   {getLocalizedText(pageTwo.bilingualTitle, locale)}
                 </h2>
-                <p className="mt-4 text-base leading-7 text-muted">
+                <p className="mt-3 text-base leading-7 text-muted">
                   {getLocalizedText(pageTwo.bilingualBody, locale)}
                 </p>
-                <div className="stage-rule mt-5" />
-                <ul className="mt-5 grid gap-2.5">
+                <div className="stage-rule mt-4" />
+                <ul className="mt-4 grid gap-2.5">
                   {pageTwo.markers.map((marker) => (
                     <li key={marker.en}>
                       <span className="paper-tag paper-tag--soft">
@@ -61,7 +61,7 @@ export function AboutPage() {
                     </li>
                   ))}
                 </ul>
-                <div className="mt-6 grid gap-3">
+                <div className="mt-5 grid gap-3">
                   <ButtonLink href="/reels">
                     {getLocalizedText({ en: "Go hear the work", de: "Zu Seite III" }, locale)}
                     <ArrowRight className="ml-3 h-4 w-4" />
@@ -77,16 +77,16 @@ export function AboutPage() {
             </FadeIn>
           </div>
 
-          <div className="mt-6 grid gap-4 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,0.92fr)]">
+          <div className="mt-5 grid gap-3.5 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,0.92fr)]">
             <FadeIn>
-              <div className="sheet-card rounded-[1.15rem] p-5 sm:p-6">
+              <div className="sheet-card rounded-[1.15rem] p-4 sm:p-5">
                 <p className="cue-label">
                   {getLocalizedText(
                     { en: "Where it matters", de: "Wo es trifft" },
                     locale,
                   )}
                 </p>
-                <div className="mt-4 space-y-4">
+                <div className="mt-3 space-y-3">
                   <p className="text-base leading-7 text-muted">
                     {getLocalizedText(
                       {
@@ -110,14 +110,14 @@ export function AboutPage() {
             </FadeIn>
 
             <FadeIn delay={0.05}>
-              <div className="sheet-card rounded-[1.15rem] p-5 sm:p-6">
+              <div className="sheet-card rounded-[1.15rem] p-4 sm:p-5">
                 <p className="cue-label">
                   {getLocalizedText(
                     { en: "How I move", de: "Wie ich arbeite" },
                     locale,
                   )}
                 </p>
-                <div className="mt-4 space-y-4">
+                <div className="mt-3 space-y-3">
                   {pageTwo.detailCards.map((card) => (
                     <p key={card.en} className="text-base leading-7 text-muted">
                       {getLocalizedText(card, locale)}

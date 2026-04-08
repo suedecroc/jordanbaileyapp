@@ -15,29 +15,29 @@ export function ReelsPage() {
   const { locale } = useLanguage();
 
   return (
-    <section className="section-anchor pb-8 pt-3 sm:pb-10 sm:pt-4">
+    <section className="section-anchor pb-5 pt-1 sm:pb-7 sm:pt-2">
       <Container>
-        <div className="book-page book-page--paper p-5 sm:p-7 lg:p-8">
-          <div className="grid gap-5 xl:grid-cols-[minmax(0,0.78fr)_minmax(320px,0.58fr)] xl:items-start">
+        <div className="book-page book-page--paper p-4 sm:p-5 lg:p-7">
+          <div className="grid gap-4 xl:grid-cols-[minmax(0,0.78fr)_minmax(320px,0.58fr)] xl:items-start">
             <FadeIn>
               <div>
                 <div className="book-page__number">
                   <span className="folio-pill">{pageThree.folio}</span>
                   <p className="cue-label">{getLocalizedText(pageThree.cue, locale)}</p>
                 </div>
-                <h1 className="mt-5 max-w-[13ch] font-serif text-[2.85rem] leading-[0.9] tracking-[0.01em] text-foreground sm:text-[3.8rem]">
+                <h1 className="mt-3.5 max-w-[13ch] font-serif text-[2.85rem] leading-[0.9] tracking-[0.01em] text-foreground sm:text-[3.8rem]">
                   {getLocalizedText(pageThree.title, locale)}
                 </h1>
-                <p className="mt-4 max-w-[35rem] text-base leading-7 text-muted-strong sm:text-lg sm:leading-8">
+                <p className="mt-3 max-w-[35rem] text-base leading-7 text-muted-strong sm:text-lg sm:leading-8">
                   {getLocalizedText(pageThree.body, locale)}
                 </p>
-                <p className="stage-epigraph mt-6">
+                <p className="stage-epigraph mt-4">
                   {getLocalizedText(
                     { en: "I am a singer without a song", de: "Ein Sänger ohne Lied." },
                     locale,
                   )}
                 </p>
-                <div className="mt-7">
+                <div className="mt-5">
                   <ButtonLink href="/book">
                     {getLocalizedText(
                       { en: "If it hits, book it", de: "Wenn es landet, buch es" },
@@ -47,7 +47,7 @@ export function ReelsPage() {
                   </ButtonLink>
                 </div>
 
-                <div className="reels-left-tags mt-8">
+                <div className="reels-left-tags mt-6">
                   {pageThree.tags.map((tag) => (
                     <span key={tag.en} className="paper-tag paper-tag--soft">
                       {getLocalizedText(tag, locale)}
@@ -55,7 +55,7 @@ export function ReelsPage() {
                   ))}
                 </div>
 
-                <div className="reels-left-card mt-6">
+                <div className="reels-left-card mt-5">
                   <p className="cue-label">{getLocalizedText({ en: "What you can expect", de: "Was du erwarten kannst" }, locale)}</p>
                   <p className="mt-3 text-base leading-7 text-muted">
                     {getLocalizedText(
@@ -66,8 +66,8 @@ export function ReelsPage() {
                       locale,
                     )}
                   </p>
-                  <div className="stage-rule mt-5" />
-                  <p className="mt-5 text-base leading-7 text-muted">
+                  <div className="stage-rule mt-4" />
+                  <p className="mt-4 text-base leading-7 text-muted">
                     {getLocalizedText(
                       {
                         en: "I know when to leave space and when to take control of it. Pacing isn't a technique. It's instinct.",
@@ -132,9 +132,9 @@ export function ReelsPage() {
             </FadeIn>
           </div>
 
-          <div className="stage-rule mt-7" />
+          <div className="stage-rule mt-5" />
 
-          <div className="listening-stage mt-7">
+          <div className="listening-stage mt-5">
             <ReelsShowcase mode="page" />
           </div>
         </div>
