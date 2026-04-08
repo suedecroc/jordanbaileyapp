@@ -290,6 +290,16 @@ export const reelsShowcaseCopy = {
     en: "Commercial, corporate, games, animation, whatever lane you throw me in, I’m not sanding all the personality off it first.",
     de: "Wähl die Spur und ich treffe sie, ohne vorher jede Persönlichkeit wegzuschleifen.",
   },
+  pagePanelParagraphs: [
+    {
+      en: "I've always had a feel for tone, pacing, and where a read actually lives. I can usually find that fast. Once I do, I stay there and let the work speak without adding a bunch of extra noise.",
+      de: "I've always had a feel for tone, pacing, and where a read actually lives. I can usually find that fast. Once I do, I stay there and let the work speak without adding a bunch of extra noise.",
+    },
+    {
+      en: "Some reads need control. Some need ease. Some need a little danger in them. Whatever the lane is, I know how to lock in and deliver it just the way you drew it up.",
+      de: "Some reads need control. Some need ease. Some need a little danger in them. Whatever the lane is, I know how to lock in and deliver it just the way you drew it up.",
+    },
+  ] satisfies LocalizedText[],
   bullets: [
     { en: "Easy to direct. Fast on pickups.", de: "Direction-friendly und schnell bei Pickups." },
     { en: "Commercial and corporate without sounding like a salesman.", de: "Echter Ton vor falschem Hochglanz." },

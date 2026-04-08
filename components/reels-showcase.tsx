@@ -1,6 +1,5 @@
 "use client";
 
-import { m } from "framer-motion";
 import { useMemo, useState, useTransition } from "react";
 
 import { useLanguage } from "@/components/language-provider";
@@ -11,12 +10,14 @@ import { cn } from "@/lib/utils";
 
 export function ReelsShowcase({
   mode = "home",
+  stacked = false,
 }: {
   mode?: "home" | "page";
+  stacked?: boolean;
 }) {
   const { locale } = useLanguage();
   const [activeId, setActiveId] = useState(
-    reels.find((reel) => reel.featured)?.id ?? reels[0]?.id ?? "commercial",
+    reels.find((reel) => reel.featured)?.id ?? reels[0]?.id ?? "cinematic",
   );
   const [isPending, transition] = useTransition();
 
@@ -48,10 +49,12 @@ export function ReelsShowcase({
     <div
       id={mode === "home" ? "featured-reel" : undefined}
       className={cn(
-        "grid gap-5 xl:items-start",
-        mode === "page"
-          ? "xl:grid-cols-[minmax(0,0.9fr)_minmax(300px,0.42fr)]"
-          : "2xl:grid-cols-[minmax(0,0.9fr)_minmax(280px,0.45fr)]",
+        "grid gap-5",
+        stacked
+          ? "grid-cols-1"
+          : mode === "page"
+            ? "xl:grid-cols-[minmax(0,0.9fr)_minmax(300px,0.42fr)] xl:items-start"
+            : "2xl:grid-cols-[minmax(0,0.9fr)_minmax(280px,0.45fr)] 2xl:items-start",
       )}
     >
       <div
@@ -78,15 +81,9 @@ export function ReelsShowcase({
           {description}
         </p>
 
-        <m.div
-          key={activeReel.id}
-          className="mt-6"
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] as const }}
-        >
+        <div className="mt-6">
           <ReelPlayer key={activeReel.id} reel={activeReel} compact={mode === "home"} />
-        </m.div>
+        </div>
       </div>
 
       <div className="grid gap-4">
@@ -116,17 +113,29 @@ export function ReelsShowcase({
           <p className="cue-label cue-label--ink">
             {getLocalizedText(reelsShowcaseCopy.panelTitle, locale)}
           </p>
-          <p className="mt-4 text-base leading-7 paper-muted">
-            {getLocalizedText(reelsShowcaseCopy.panelBody, locale)}
-          </p>
-          <div className="paper-rule mt-5" />
-          <ul className="mt-5 grid gap-3">
-            {reelsShowcaseCopy.bullets.map((item) => (
-              <li key={item.en} className="text-sm leading-6 paper-muted">
-                {getLocalizedText(item, locale)}
-              </li>
-            ))}
-          </ul>
+          {mode === "page" ? (
+            <div className="mt-4 grid gap-4">
+              {reelsShowcaseCopy.pagePanelParagraphs.map((para) => (
+                <p key={para.en} className="text-base leading-7 paper-muted">
+                  {getLocalizedText(para, locale)}
+                </p>
+              ))}
+            </div>
+          ) : (
+            <>
+              <p className="mt-4 text-base leading-7 paper-muted">
+                {getLocalizedText(reelsShowcaseCopy.panelBody, locale)}
+              </p>
+              <div className="paper-rule mt-5" />
+              <ul className="mt-5 grid gap-3">
+                {reelsShowcaseCopy.bullets.map((item) => (
+                  <li key={item.en} className="text-sm leading-6 paper-muted">
+                    {getLocalizedText(item, locale)}
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
         </div>
 
         <p

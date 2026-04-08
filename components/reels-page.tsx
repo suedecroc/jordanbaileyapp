@@ -77,12 +77,16 @@ export function ReelsPage() {
                     )}
                   </p>
                 </div>
+
+                <div className="listening-stage mt-5">
+                  <ReelsShowcase mode="page" stacked />
+                </div>
               </div>
             </FadeIn>
 
             <FadeIn delay={0.08}>
               <div className="reels-side-stack">
-                <div className="hero-portrait min-h-[360px] sm:min-h-[420px]">
+                <div className="hero-portrait reels-hero-portrait">
                   <Image
                     src={pageThree.heroImage.src}
                     alt={getLocalizedText(pageThree.heroImage.alt, locale)}
@@ -90,7 +94,7 @@ export function ReelsPage() {
                     height={1600}
                     priority
                     sizes="(max-width: 1279px) 100vw, 38vw"
-                    className="h-full min-h-[360px] w-full object-cover object-[center_28%] sm:min-h-[420px]"
+                    className="h-full w-full object-cover object-[center_28%]"
                   />
                 </div>
 
@@ -120,7 +124,7 @@ export function ReelsPage() {
                       controls
                       playsInline
                       muted
-                      preload="metadata"
+                      preload="none"
                       poster={pageThree.video.poster}
                       aria-label={getLocalizedText(pageThree.video.alt, locale)}
                     >
@@ -132,11 +136,6 @@ export function ReelsPage() {
             </FadeIn>
           </div>
 
-          <div className="stage-rule mt-5" />
-
-          <div className="listening-stage mt-5">
-            <ReelsShowcase mode="page" />
-          </div>
         </div>
       </Container>
     </section>

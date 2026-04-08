@@ -120,7 +120,7 @@ export function ReelPlayer({
             : "border-[rgba(223,194,155,0.22)] shadow-[0_0_0_1px_rgba(223,194,155,0.06),0_22px_36px_rgba(8,6,5,0.26)]"),
       )}
     >
-      <audio ref={audioRef} preload="metadata">
+      <audio ref={audioRef} preload="none">
         <source src={reel.src} type={reel.mimeType} />
       </audio>
 

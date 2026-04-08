@@ -10,7 +10,7 @@ export type NavigationItem = {
 };
 
 export type ReelItem = {
-  id: "commercial" | "cinematic" | "audiobook" | "narration" | "promo" | "character";
+  id: "cinematic" | "audiobook" | "promo" | "character";
   label: LocalizedText;
   title: LocalizedText;
   description: LocalizedText;
@@ -76,23 +76,6 @@ export const navigationItems: NavigationItem[] = [
 
 export const reels: ReelItem[] = [
   {
-    id: "commercial",
-    label: { en: "Commercial", de: "Commercial" },
-    title: { en: "Commercial", de: "Commercial" },
-    description: {
-      en: "Clean, human, believable. No salesman cosplay. Just the line landing where it should.",
-      de: "Klar, natürlich und glaubwürdig. Kein falscher Ansager-Lack. Einfach eine Zeile, die da landet, wo sie soll.",
-    },
-    note: {
-      en: "No fake varnish.",
-      de: "Sauber gelesen. Schweres Landing.",
-    },
-    src: "/media/reels/commercial-demo.m4a",
-    mimeType: "audio/mp4",
-    category: "featured",
-    featured: true,
-  },
-  {
     id: "cinematic",
     label: { en: "Cinematic", de: "Cinematic" },
     title: { en: "Cinematic", de: "Cinematic" },
@@ -107,6 +90,7 @@ export const reels: ReelItem[] = [
     src: "/media/reels/cinematic-demo.mp3",
     mimeType: "audio/mpeg",
     category: "featured",
+    featured: true,
   },
   {
     id: "audiobook",
@@ -122,22 +106,6 @@ export const reels: ReelItem[] = [
     },
     src: "/media/reels/audiobook-demo.mp3",
     mimeType: "audio/mpeg",
-    category: "featured",
-  },
-  {
-    id: "narration",
-    label: { en: "Narration", de: "Narration" },
-    title: { en: "Narration", de: "Narration" },
-    description: {
-      en: "Clear thought. Steady pace. Zero sleep mode.",
-      de: "Ruhig, menschlich und exakt. Man folgt der Stimme, statt mit ihr zu ringen.",
-    },
-    note: {
-      en: "Human all the way through.",
-      de: "Poliert, nicht künstlich.",
-    },
-    src: "/media/reels/narration-demo.m4a",
-    mimeType: "audio/mp4",
     category: "featured",
   },
   {
