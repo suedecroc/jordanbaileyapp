@@ -15,17 +15,17 @@ export function HomePage() {
   const { locale } = useLanguage();
 
   return (
-    <section className="section-anchor pb-8 pt-3 sm:pb-10 sm:pt-4">
-      <Container className="space-y-5 sm:space-y-6">
-        <section className="book-page book-page--paper p-5 sm:p-6 lg:p-8">
-          <div className="grid gap-5 xl:grid-cols-[minmax(0,0.78fr)_minmax(320px,0.7fr)] xl:items-start">
+    <section className="section-anchor pb-5 pt-1 sm:pb-7 sm:pt-2">
+      <Container className="space-y-4 sm:space-y-5">
+        <section className="book-page book-page--paper p-4 sm:p-5 lg:p-7">
+          <div className="grid gap-4 xl:grid-cols-[minmax(0,0.78fr)_minmax(320px,0.7fr)] xl:items-start">
             <FadeIn>
               <div>
                 <div className="book-page__number">
                   <span className="folio-pill">{pageOne.folio}</span>
                   <p className="cue-label">{getLocalizedText(pageOne.cue, locale)}</p>
                 </div>
-                <p className="stage-kicker mt-5">
+                <p className="stage-kicker mt-3.5">
                   {getLocalizedText(
                     {
                       en: "Act I / quick read of the room",
@@ -34,16 +34,16 @@ export function HomePage() {
                     locale,
                   )}
                 </p>
-                <h1 className="mt-4 max-w-[13ch] font-serif text-[2.85rem] leading-[0.9] tracking-[0.01em] text-foreground sm:text-[4.13rem]">
+                <h1 className="mt-3 max-w-[13ch] font-serif text-[2.85rem] leading-[0.9] tracking-[0.01em] text-foreground sm:text-[4.13rem]">
                   {getLocalizedText(pageOne.title, locale)}
                 </h1>
-                <p className="mt-4 max-w-[38rem] text-base leading-7 text-muted-strong sm:text-lg sm:leading-8">
+                <p className="mt-3.5 max-w-[38rem] text-base leading-7 text-muted-strong sm:text-lg sm:leading-8">
                   {getLocalizedText(pageOne.body, locale)}
                 </p>
-                <p className="mt-5 max-w-[34rem] text-sm font-semibold uppercase tracking-[0.18em] text-accent-strong sm:text-[0.92rem]">
+                <p className="mt-4 max-w-[34rem] text-sm font-semibold uppercase tracking-[0.18em] text-accent-strong sm:text-[0.92rem]">
                   {getLocalizedText(pageOne.capabilityQuote, locale)}
                 </p>
-                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <div className="mt-5 flex flex-col gap-3 sm:flex-row">
                   <ButtonLink href="/book" className="sm:min-w-[194px]">
                     {getLocalizedText(pageOne.primaryCta, locale)}
                   </ButtonLink>
@@ -59,18 +59,18 @@ export function HomePage() {
             </FadeIn>
 
             <FadeIn delay={0.08}>
-              <div className="grid gap-4">
-                <div className="panel-soft rounded-[1.2rem] p-5 sm:p-6">
+              <div className="grid gap-3.5">
+                <div className="panel-soft rounded-[1.2rem] p-4 sm:p-5">
                   <p className="cue-label">
                     {getLocalizedText(pageOne.video.eyebrow, locale)}
                   </p>
-                  <h2 className="mt-4 max-w-[14ch] font-serif text-[2.04rem] leading-[0.96] text-foreground">
+                  <h2 className="mt-3 max-w-[14ch] font-serif text-[2.04rem] leading-[0.96] text-foreground">
                     {getLocalizedText(pageOne.video.title, locale)}
                   </h2>
-                  <p className="mt-4 text-base leading-7 text-muted">
+                  <p className="mt-3 text-base leading-7 text-muted">
                     {getLocalizedText(pageOne.video.body, locale)}
                   </p>
-                  <div className="home-video-frame mt-5">
+                  <div className="home-video-frame mt-4">
                     <video
                       className="home-video"
                       controls
@@ -84,14 +84,14 @@ export function HomePage() {
                   </div>
                 </div>
 
-                <div className="panel-soft rounded-[1.2rem] p-5 sm:p-6">
+                <div className="panel-soft rounded-[1.2rem] p-4 sm:p-5">
                   <p className="cue-label">
                     {getLocalizedText(
                       { en: "German / English", de: "Bilingualer Vorteil" },
                       locale,
                     )}
                   </p>
-                  <h2 className="mt-4 max-w-[12ch] font-serif text-[2.33rem] leading-[0.90] text-foreground">
+                  <h2 className="mt-3 max-w-[12ch] font-serif text-[2.33rem] leading-[0.90] text-foreground">
                     {getLocalizedText(
                       {
                         en: "English and German should both sound like me.",
@@ -100,7 +100,7 @@ export function HomePage() {
                       locale,
                     )}
                   </h2>
-                  <p className="mt-4 text-base leading-7 text-muted">
+                  <p className="mt-3 text-base leading-7 text-muted">
                     {getLocalizedText(
                       {
                         en: "That matters for casting, adaptation, pickups, and trust. If the tone drops when the language switches, the job’s not done.",
@@ -111,24 +111,24 @@ export function HomePage() {
                   </p>
                 </div>
 
-                <article className="sheet-card rounded-[1.15rem] p-4 sm:p-5">
+                <article className="sheet-card rounded-[1.15rem] p-3.5 sm:p-4">
                   <p className="cue-label">
                     {getLocalizedText(pageOne.reaction.label, locale)}
                   </p>
-                  <h2 className="mt-4 font-serif text-[2rem] leading-none text-foreground">
+                  <h2 className="mt-3 font-serif text-[2rem] leading-none text-foreground">
                     {getLocalizedText(pageOne.reaction.title, locale)}
                   </h2>
-                  <div className="hero-portrait mt-4 min-h-[250px]">
+                  <div className="hero-portrait mt-3 min-h-[230px]">
                     <Image
                       src={pageOne.reaction.src}
                       alt={getLocalizedText(pageOne.reaction.alt, locale)}
                       width={1200}
                       height={900}
                       sizes="(max-width: 1024px) 100vw, 30vw"
-                      className="h-full min-h-[250px] w-full object-cover object-[center_18%]"
+                      className="h-full min-h-[230px] w-full object-cover object-[center_18%]"
                     />
                   </div>
-                  <p className="mt-4 text-sm leading-6 text-muted">
+                  <p className="mt-3 text-sm leading-6 text-muted">
                     {getLocalizedText(pageOne.reaction.caption, locale)}
                   </p>
                 </article>
@@ -136,21 +136,21 @@ export function HomePage() {
             </FadeIn>
           </div>
 
-          <div className="stage-rule mt-7" />
+          <div className="stage-rule mt-5" />
 
-          <div className="mt-7">
+          <div className="mt-5">
             <ReelsShowcase mode="home" />
           </div>
 
-          <div className="mt-5 grid gap-4 lg:grid-cols-3">
+          <div className="mt-4 grid gap-3.5 lg:grid-cols-3">
             {pageOne.cards.map((card, index) => (
               <FadeIn key={card.title.en} delay={index * 0.04}>
-                <article className="sheet-card rounded-[1.15rem] p-5">
+                <article className="sheet-card rounded-[1.15rem] p-4">
                   <p className="cue-label">{getLocalizedText(card.eyebrow, locale)}</p>
-                  <h2 className="mt-4 max-w-[12ch] font-serif text-[1.95rem] leading-[0.96] text-foreground">
+                  <h2 className="mt-3 max-w-[12ch] font-serif text-[1.95rem] leading-[0.96] text-foreground">
                     {getLocalizedText(card.title, locale)}
                   </h2>
-                  <p className="mt-4 text-base leading-7 text-muted">
+                  <p className="mt-3 text-base leading-7 text-muted">
                     {getLocalizedText(card.body, locale)}
                   </p>
                 </article>
@@ -158,23 +158,23 @@ export function HomePage() {
             ))}
           </div>
 
-          <div className="mt-5 grid gap-5 lg:grid-cols-[minmax(0,0.68fr)_minmax(300px,0.32fr)]">
+          <div className="mt-4 grid gap-4 lg:grid-cols-[minmax(0,0.68fr)_minmax(300px,0.32fr)]">
             <FadeIn>
-              <div className="paper-panel rounded-[1.15rem] p-6 sm:p-7">
+              <div className="paper-panel rounded-[1.15rem] p-5 sm:p-6">
                 <div className="book-page__number">
                   <span className="folio-pill folio-pill--ink">II</span>
                   <p className="cue-label cue-label--ink">
                     {getLocalizedText(pageOne.teaser.eyebrow, locale)}
                   </p>
                 </div>
-                <h2 className="mt-5 font-serif text-[2.4rem] leading-[0.95] paper-ink">
+                <h2 className="mt-3.5 font-serif text-[2.4rem] leading-[0.95] paper-ink">
                   {getLocalizedText(pageOne.teaser.title, locale)}
                 </h2>
-                <p className="mt-4 max-w-xl text-base leading-7 paper-muted">
+                <p className="mt-3 max-w-xl text-base leading-7 paper-muted">
                   {getLocalizedText(pageOne.teaser.body, locale)}
                 </p>
-                <div className="paper-rule mt-6" />
-                <div className="mt-6">
+                <div className="paper-rule mt-4" />
+                <div className="mt-4">
                   <ButtonLink href="/about" variant="secondary">
                     {getLocalizedText(
                       { en: "Turn to the dossier", de: "Zum Dossier" },
@@ -187,11 +187,11 @@ export function HomePage() {
             </FadeIn>
 
             <FadeIn delay={0.08}>
-              <aside className="panel-soft rounded-[1.15rem] p-5 sm:p-6">
+              <aside className="panel-soft rounded-[1.15rem] p-4 sm:p-5">
                 <p className="cue-label">
                   {getLocalizedText({ en: "Next up", de: "Nächste Seiten" }, locale)}
                 </p>
-                <div className="mt-5 grid gap-3">
+                <div className="mt-4 grid gap-3">
                   {navigationItems.slice(1).map((item) => (
                     <ButtonLink
                       key={item.href}
@@ -209,19 +209,19 @@ export function HomePage() {
           </div>
         </section>
 
-        <section className="grid gap-5 xl:grid-cols-[minmax(0,0.7fr)_minmax(280px,0.3fr)]">
+        <section className="grid gap-4 xl:grid-cols-[minmax(0,0.7fr)_minmax(280px,0.3fr)]">
           <FadeIn>
-            <div className="paper-panel rounded-[1.15rem] p-6 sm:p-7">
+            <div className="paper-panel rounded-[1.15rem] p-5 sm:p-6">
               <p className="cue-label cue-label--ink">
                 {getLocalizedText(contactCopy.eyebrow, locale)}
               </p>
-              <h2 className="mt-4 font-serif text-[2.4rem] leading-[0.95] paper-ink">
+              <h2 className="mt-3 font-serif text-[2.4rem] leading-[0.95] paper-ink">
                 {getLocalizedText(contactCopy.title, locale)}
               </h2>
-              <p className="mt-4 max-w-2xl text-base leading-7 paper-muted">
+              <p className="mt-3 max-w-2xl text-base leading-7 paper-muted">
                 {getLocalizedText(contactCopy.body, locale)}
               </p>
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-5 flex flex-col gap-3 sm:flex-row">
                 <ButtonLink href="/book">
                   {getLocalizedText({ en: "Open Page IV", de: "Seite IV öffnen" }, locale)}
                 </ButtonLink>
@@ -236,14 +236,14 @@ export function HomePage() {
           </FadeIn>
 
           <FadeIn delay={0.08}>
-            <aside className="sheet-card rounded-[1.15rem] p-5 sm:p-6">
+            <aside className="sheet-card rounded-[1.15rem] p-4 sm:p-5">
               <p className="cue-label">
                 {getLocalizedText(
                   { en: "Quick read", de: "Kurzfassung" },
                   locale,
                 )}
               </p>
-              <div className="mt-5 grid gap-2.5">
+              <div className="mt-4 grid gap-2.5">
                 <span className="paper-tag">
                   {getLocalizedText(
                     { en: "Games / animation / cinematic", de: "Games / Animation / Cinematic" },

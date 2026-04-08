@@ -94,7 +94,16 @@ export function LandingPageV1Hextech() {
   const progressPercent = duration ? (currentTime / duration) * 100 : 0;
 
   return (
-    <div className={`v1-root${revealed ? " v1-root--revealed" : ""}`} ref={stageRef}>
+    <div
+      className={`v1-root${revealed ? " v1-root--revealed" : ""}`}
+      ref={stageRef}
+      style={{
+        backgroundImage: `url('/media/images/hero.webp')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
+      }}
+    >
       {/* Ambient */}
       <div className="v1-bg-hex" aria-hidden="true" />
       <div className="v1-particles" aria-hidden="true" />
@@ -104,26 +113,8 @@ export function LandingPageV1Hextech() {
       {/* Audio (hidden) */}
       <audio ref={audioRef} src="/media/reels/intro-demo-reel.mp3" preload="metadata" />
 
-      {/* Hero Frame Container */}
+      {/* Content Overlay Container */}
       <div className="v1-hero-container">
-        {/* Outer Gold Border */}
-        <div className="v1-hero-outer-frame">
-          {/* Inner Cyan Glow */}
-          <div className="v1-hero-inner-frame">
-            {/* Hero Image */}
-            <div className="v1-hero-image" ref={splashRef}>
-              <img src="/media/images/hero.webp" alt="Jordan Bailey" draggable={false} />
-              <div className="v1-hero-veil" aria-hidden="true" />
-            </div>
-
-            {/* Corner Ornaments */}
-            <div className="v1-corner-ornament v1-corner-ornament--tl" aria-hidden="true" />
-            <div className="v1-corner-ornament v1-corner-ornament--tr" aria-hidden="true" />
-            <div className="v1-corner-ornament v1-corner-ornament--bl" aria-hidden="true" />
-            <div className="v1-corner-ornament v1-corner-ornament--br" aria-hidden="true" />
-          </div>
-        </div>
-
         {/* Action Buttons */}
         <div className="v1-actions">
           <button

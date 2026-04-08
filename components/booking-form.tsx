@@ -37,7 +37,7 @@ export function BookingForm() {
   }, [state.status]);
 
   return (
-    <div className="sheet-card rounded-[1.9rem] p-6 sm:p-8">
+    <div className="sheet-card rounded-[1.9rem] p-5 sm:p-6">
       <form ref={formRef} action={formAction} className="grid gap-5">
         <div className="grid gap-5 sm:grid-cols-2">
           {bookingFields.slice(0, 2).map((field) => (

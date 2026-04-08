@@ -354,7 +354,7 @@
 
 /* ============ ROOT SHELL ============ */
 .studio {
-  max-width: 980px;
+  max-width: 1240px;
   margin: 0 auto;
   padding: 0 0 120px;
   min-height: 100dvh;
@@ -3519,15 +3519,23 @@
 /* ---------- activity feed overlay ---------- */
 .studio__activity-overlay {}
 .studio__activity-panel {
-  background: var(--paper, #f7efe1);
-  color: var(--ink, #0e0604);
+  /* Reuses the vault-panel look so the shared vault-header/eyebrow/title
+     classes stay legible. Using --paper here inverted every child color
+     (eyebrow was paper-on-paper, title was orange-on-cream, ghost buttons
+     disappeared). The dark elev background fixes all of it in one move. */
   width: min(560px, 100%);
-  max-height: calc(100vh - 80px);
-  border: 2px solid currentColor;
+  max-height: calc(100vh - 100px);
+  background: var(--bg-elev);
+  color: inherit;
+  border: 1px solid rgba(var(--paper-rgb), 0.35);
   border-radius: 6px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6);
+  animation: studio-vault-in 220ms ease-out;
+}
+.studio__activity-panel .studio__activity-row {
+  border-bottom-color: rgba(var(--paper-rgb), 0.12);
 }
 .studio.v3 .studio__activity-panel { border-radius: 0; border-width: 3px; }
 .studio.v2 .studio__activity-panel { border-radius: 16px; }
