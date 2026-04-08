@@ -113,17 +113,29 @@ export function ReelsShowcase({
           <p className="cue-label cue-label--ink">
             {getLocalizedText(reelsShowcaseCopy.panelTitle, locale)}
           </p>
-          <p className="mt-4 text-base leading-7 paper-muted">
-            {getLocalizedText(reelsShowcaseCopy.panelBody, locale)}
-          </p>
-          <div className="paper-rule mt-5" />
-          <ul className="mt-5 grid gap-3">
-            {reelsShowcaseCopy.bullets.map((item) => (
-              <li key={item.en} className="text-sm leading-6 paper-muted">
-                {getLocalizedText(item, locale)}
-              </li>
-            ))}
-          </ul>
+          {mode === "page" ? (
+            <div className="mt-4 grid gap-4">
+              {reelsShowcaseCopy.pagePanelParagraphs.map((para) => (
+                <p key={para.en} className="text-base leading-7 paper-muted">
+                  {getLocalizedText(para, locale)}
+                </p>
+              ))}
+            </div>
+          ) : (
+            <>
+              <p className="mt-4 text-base leading-7 paper-muted">
+                {getLocalizedText(reelsShowcaseCopy.panelBody, locale)}
+              </p>
+              <div className="paper-rule mt-5" />
+              <ul className="mt-5 grid gap-3">
+                {reelsShowcaseCopy.bullets.map((item) => (
+                  <li key={item.en} className="text-sm leading-6 paper-muted">
+                    {getLocalizedText(item, locale)}
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
         </div>
 
         <p
