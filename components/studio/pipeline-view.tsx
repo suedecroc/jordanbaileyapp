@@ -88,10 +88,11 @@ async function compressImage(file: File, maxWidth = 720, quality = 0.72): Promis
 
 type Props = {
   onSendToGenerator: (idea: string, platform: PlatformId) => void;
+  lockPlatform?: PlatformId;
 };
 
-export function PipelineView({ onSendToGenerator }: Props) {
-  const [items, setItems] = useState<PipelineItem[]>([]);
+export function PipelineView({ onSendToGenerator, lockPlatform }: Props) {
+  const [allItems, setAllItems] = useState<PipelineItem[]>([]);
   const [filterStage, setFilterStage] = useState<ContentStage | "all">("all");
   const [winnersOnly, setWinnersOnly] = useState(false);
   const [expandedId, setExpandedId] = useState<string | null>(null);
@@ -99,7 +100,12 @@ export function PipelineView({ onSendToGenerator }: Props) {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [uploadTargetId, setUploadTargetId] = useState<string | null>(null);
   const [newIdea, setNewIdea] = useState("");
-  const [newPlatform, setNewPlatform] = useState<PlatformId>("feetfinder");
+  const [newPlatform, setNewPlatform] = useState<PlatformId>(lockPlatform ?? "feetfinder");
+  // When lockPlatform is set, the view shows only that account's items.
+  // Mutations still operate on the full pipeline (allItems) so we don't lose other accounts.
+  const items = lockPlatform
+    ? allItems.filter((i) => i.platform === lockPlatform)
+    : allItems;
   const [newStage, setNewStage] = useState<ContentStage>("idea");
   const [newTheme, setNewTheme] = useState("");
   const [newVibe, setNewVibe] = useState("");
@@ -107,7 +113,7 @@ export function PipelineView({ onSendToGenerator }: Props) {
   const [newMediaNote, setNewMediaNote] = useState("");
 
   useEffect(() => {
-    setItems(loadPipeline());
+    setAllItems(loadPipeline());
   }, []);
 
   const sorted = [...items].sort((a, b) => {
@@ -146,8 +152,8 @@ export function PipelineView({ onSendToGenerator }: Props) {
       createdAt: Date.now(),
       repurposePotential: "medium",
     };
-    const next = [item, ...items];
-    setItems(next);
+    const next = [item, ...allItems];
+    setAllItems(next);
     savePipeline(next);
     setAdding(false);
     setNewIdea("");
@@ -158,13 +164,13 @@ export function PipelineView({ onSendToGenerator }: Props) {
   }
 
   function moveStage(id: string, stage: ContentStage) {
-    const item = items.find((i) => i.id === id);
-    const next = items.map((i) =>
+    const item = allItems.find((i) => i.id === id);
+    const next = allItems.map((i) =>
       i.id === id
         ? { ...i, stage, ...(stage === "posted" ? { postedAt: Date.now() } : {}) }
         : i,
     );
-    setItems(next);
+    setAllItems(next);
     savePipeline(next);
     if (item) {
       logActivity(
@@ -178,19 +184,19 @@ export function PipelineView({ onSendToGenerator }: Props) {
   }
 
   function toggleStar(id: string) {
-    const item = items.find((i) => i.id === id);
-    const next = items.map((i) => (i.id === id ? { ...i, starred: !i.starred } : i));
-    setItems(next);
+    const item = allItems.find((i) => i.id === id);
+    const next = allItems.map((i) => (i.id === id ? { ...i, starred: !i.starred } : i));
+    setAllItems(next);
     savePipeline(next);
     if (item) toast(item.starred ? "unstarred" : "starred ★");
   }
 
   function setOutcome(id: string, outcome: Outcome) {
-    const item = items.find((i) => i.id === id);
-    const next = items.map((i) =>
+    const item = allItems.find((i) => i.id === id);
+    const next = allItems.map((i) =>
       i.id === id ? { ...i, outcome: i.outcome === outcome ? null : outcome } : i,
     );
-    setItems(next);
+    setAllItems(next);
     savePipeline(next);
     if (item && outcome) {
       logActivity(
@@ -215,8 +221,8 @@ export function PipelineView({ onSendToGenerator }: Props) {
     if (!file || !id) return;
     try {
       const url = await compressImage(file);
-      const next = items.map((i) => (i.id === id ? { ...i, mediaDataUrl: url } : i));
-      setItems(next);
+      const next = allItems.map((i) => (i.id === id ? { ...i, mediaDataUrl: url } : i));
+      setAllItems(next);
       savePipeline(next);
     } catch {
       // swallow
@@ -224,15 +230,15 @@ export function PipelineView({ onSendToGenerator }: Props) {
   }
 
   function removeMedia(id: string) {
-    const next = items.map((i) => (i.id === id ? { ...i, mediaDataUrl: undefined } : i));
-    setItems(next);
+    const next = allItems.map((i) => (i.id === id ? { ...i, mediaDataUrl: undefined } : i));
+    setAllItems(next);
     savePipeline(next);
   }
 
   function deleteItem(id: string) {
-    const item = items.find((i) => i.id === id);
-    const next = items.filter((i) => i.id !== id);
-    setItems(next);
+    const item = allItems.find((i) => i.id === id);
+    const next = allItems.filter((i) => i.id !== id);
+    setAllItems(next);
     savePipeline(next);
     if (expandedId === id) setExpandedId(null);
     if (item) toast(`deleted · "${item.idea.slice(0, 36)}"`, "danger");
@@ -348,15 +354,17 @@ export function PipelineView({ onSendToGenerator }: Props) {
             rows={2}
           />
           <div className="studio__pipe-add-row">
-            <select
-              value={newPlatform}
-              onChange={(e) => setNewPlatform(e.target.value as PlatformId)}
-              className="studio__pipe-select"
-            >
-              <option value="feetfinder">FeetFinder</option>
-              <option value="feet_ig">FeetFinder IG</option>
-              <option value="personal_ig">Personal IG</option>
-            </select>
+            {lockPlatform ? null : (
+              <select
+                value={newPlatform}
+                onChange={(e) => setNewPlatform(e.target.value as PlatformId)}
+                className="studio__pipe-select"
+              >
+                <option value="feetfinder">FeetFinder</option>
+                <option value="feet_ig">FeetFinder IG</option>
+                <option value="personal_ig">Personal IG</option>
+              </select>
+            )}
             <select
               value={newStage}
               onChange={(e) => setNewStage(e.target.value as ContentStage)}

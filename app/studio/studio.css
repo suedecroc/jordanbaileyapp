@@ -19,6 +19,242 @@
   background: #0d0206;
 }
 
+/* ============ STUDIO SHELL (slim outer nav) ============ */
+.studio-shell {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 24px;
+  padding: 14px 28px;
+  background: rgba(13, 2, 6, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 190, 90, 0.14);
+}
+.studio-shell__mark {
+  font-family: var(--font-abril), serif;
+  font-size: 20px;
+  letter-spacing: 0.06em;
+  color: #ffd23f;
+  text-decoration: none;
+  text-shadow: 0 0 22px rgba(255, 106, 19, 0.35);
+  white-space: nowrap;
+}
+.studio-shell__mark:hover { color: #ffe785; }
+.studio-shell__ticker {
+  overflow: hidden;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: rgba(255, 240, 196, 0.42);
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-family: var(--font-body), sans-serif;
+}
+.studio-shell__nav {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+.studio-shell__tab {
+  padding: 8px 14px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 240, 196, 0.55);
+  text-decoration: none;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  font-family: var(--font-body), sans-serif;
+}
+.studio-shell__tab:hover {
+  color: #ffd23f;
+  border-color: rgba(255, 210, 63, 0.25);
+}
+.studio-shell__tab.is-on {
+  color: #ffd23f;
+  border-color: rgba(255, 210, 63, 0.55);
+  background: rgba(255, 106, 19, 0.08);
+}
+.studio-shell__tab-short { display: none; }
+
+@media (max-width: 720px) {
+  .studio-shell {
+    grid-template-columns: auto 1fr;
+    gap: 12px;
+    padding: 10px 16px;
+  }
+  .studio-shell__ticker { display: none; }
+  .studio-shell__nav {
+    grid-column: 1 / -1;
+    justify-content: space-between;
+    gap: 4px;
+  }
+  .studio-shell__tab {
+    flex: 1;
+    padding: 8px 6px;
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+  }
+  .studio-shell__tab-long { display: none; }
+  .studio-shell__tab-short { display: inline; }
+}
+
+/* ============ STUDIO OVERVIEW (the 3-account landing) ============ */
+.studio-overview {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 56px 28px 120px;
+  color: #fff0c4;
+}
+.studio-overview__hero {
+  text-align: center;
+  padding: 24px 0 56px;
+  border-bottom: 1px solid rgba(255, 190, 90, 0.12);
+  margin-bottom: 56px;
+}
+.studio-overview__eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  color: rgba(255, 240, 196, 0.42);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  font-family: var(--font-body), sans-serif;
+}
+.studio-overview__mark {
+  font-family: var(--font-abril), serif;
+  font-size: clamp(72px, 13vw, 168px);
+  line-height: 0.86;
+  margin: 0 0 24px;
+  color: #ffd23f;
+  text-shadow: 0 0 60px rgba(255, 106, 19, 0.35);
+  letter-spacing: 0.005em;
+}
+.studio-overview__blurb {
+  max-width: 540px;
+  margin: 0 auto 36px;
+  font-size: 16px;
+  line-height: 1.55;
+  color: rgba(255, 240, 196, 0.72);
+  font-family: var(--font-body), sans-serif;
+}
+.studio-overview__pulse {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 14px 22px;
+  border: 1px solid rgba(255, 190, 90, 0.22);
+  border-radius: 4px;
+  background: rgba(255, 106, 19, 0.05);
+}
+.studio-overview__pulse-num {
+  font-family: var(--font-abril), serif;
+  font-size: 32px;
+  color: #ffd23f;
+  line-height: 1;
+}
+.studio-overview__pulse-label {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 240, 196, 0.55);
+  font-family: var(--font-body), sans-serif;
+}
+
+.studio-overview__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+@media (min-width: 760px) {
+  .studio-overview__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.studio-overview__card {
+  display: block;
+  padding: 28px 26px;
+  background: #2a0a04;
+  border: 1px solid rgba(255, 190, 90, 0.22);
+  border-radius: 6px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s, transform 0.2s, background 0.2s;
+}
+.studio-overview__card:hover {
+  border-color: rgba(255, 210, 63, 0.55);
+  background: #361109;
+  transform: translateY(-2px);
+}
+.studio-overview__card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.studio-overview__card-label {
+  font-family: var(--font-abril), serif;
+  font-size: 22px;
+  color: #ffd23f;
+  line-height: 1.1;
+}
+.studio-overview__card-arrow {
+  font-size: 20px;
+  color: rgba(255, 240, 196, 0.45);
+  transition: transform 0.2s, color 0.2s;
+}
+.studio-overview__card:hover .studio-overview__card-arrow {
+  color: #ffd23f;
+  transform: translateX(4px);
+}
+.studio-overview__card-sub {
+  margin: 0 0 22px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(255, 240, 196, 0.6);
+  font-family: var(--font-body), sans-serif;
+}
+.studio-overview__card-stats {
+  display: flex;
+  gap: 22px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 190, 90, 0.12);
+}
+.studio-overview__card-stats > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.studio-overview__stat-num {
+  font-family: var(--font-abril), serif;
+  font-size: 22px;
+  color: #fff0c4;
+  line-height: 1;
+}
+.studio-overview__stat-label {
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 240, 196, 0.45);
+  font-family: var(--font-body), sans-serif;
+}
+
+@media (max-width: 720px) {
+  .studio-overview {
+    padding: 32px 18px 80px;
+  }
+  .studio-overview__hero {
+    padding: 12px 0 36px;
+    margin-bottom: 36px;
+  }
+}
+
 /* ============ LOGIN (unchanged structure, kept warm) ============ */
 .studio-login {
   min-height: 100dvh;
@@ -58,11 +294,17 @@
   margin-top: -2px;
   margin-bottom: 8px;
 }
+.studio-login__field {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
 .studio-login__input {
+  flex: 1;
   background: #2a0a04;
   border: 1px solid rgba(255, 190, 90, 0.32);
   border-radius: 4px;
-  padding: 14px 14px;
+  padding: 14px 64px 14px 14px;
   color: #fff0c4;
   font-size: 16px;
   font-family: inherit;
@@ -70,6 +312,27 @@
   transition: border-color 0.15s;
 }
 .studio-login__input:focus { border-color: #ffb020; }
+.studio-login__toggle {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: 1px solid rgba(255, 190, 90, 0.28);
+  border-radius: 3px;
+  color: rgba(255, 240, 196, 0.7);
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 6px 8px;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+.studio-login__toggle:hover {
+  color: #ffd23f;
+  border-color: rgba(255, 210, 63, 0.55);
+}
 .studio-login__error { font-size: 13px; color: #ff4a1a; }
 .studio-login__btn {
   background: linear-gradient(135deg, #ffd23f, #ff6a13 55%, #b81c05);
@@ -3373,6 +3636,83 @@
 
 /* ---------- Ticker: GPU-promoted track, paint isolated ---------- */
 .studio__ticker { contain: layout paint; }
+
+/* ============================================================
+   MOBILE POLISH — chrome reduction on ≤720px
+   Fixes: topbar overflow (cuts LOCK), redundant ticker, noisy
+   pipeline header, wrapping stage filter, overview hero padding.
+   Desktop is untouched.
+   ============================================================ */
+@media (max-width: 720px) {
+  /* 1. Redundant marquee ticker: shell ticker is already hidden on
+     mobile, and this inner one is decorative — reclaim the row. */
+  .studio__ticker { display: none; }
+
+  /* 2. Topbar collapses to a single ··· (menu) button. Variant
+     switching + activity + vault + lock all live in the command
+     palette, so hiding them here loses nothing. */
+  .studio__topbar {
+    padding: 6px 16px 10px;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+  .studio__variant-bar { display: none; }
+  .studio__header-actions .studio__ghost { display: none; }
+  .studio__header-actions .studio__ghost[aria-label="open command palette"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    padding: 9px 14px;
+  }
+  .studio__header-actions .studio__sync { display: none; }
+
+  /* 3. Pipeline view header: kill the description, one-line title. */
+  .studio__view { padding: 20px 16px 64px; gap: 18px; }
+  .studio__view-header { padding-bottom: 10px; }
+  .studio__view-title { font-size: 26px; margin: 0; }
+  .studio__view-desc { display: none; }
+
+  /* 4. Stage filter: horizontal scroll instead of wrapping to 2 rows. */
+  .studio__pipe-stages {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 2px;
+    margin: 0 -16px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .studio__pipe-stages::-webkit-scrollbar { display: none; }
+  .studio__pipe-stage-btn { flex: 0 0 auto; }
+
+  /* 5. Overview hero: tighten vertical spacing so account cards sit
+     closer to the fold. The eyebrow/blurb/pulse were all pushing
+     the grid down unnecessarily. */
+  .studio-overview { padding: 20px 16px 72px; }
+  .studio-overview__hero {
+    padding: 6px 0 24px;
+    margin-bottom: 24px;
+  }
+  .studio-overview__eyebrow {
+    margin-bottom: 14px;
+    font-size: 10px;
+    letter-spacing: 0.26em;
+  }
+  .studio-overview__mark {
+    font-size: clamp(56px, 15vw, 92px);
+    margin: 0 0 14px;
+  }
+  .studio-overview__blurb {
+    font-size: 14px;
+    margin: 0 auto 20px;
+  }
+  .studio-overview__pulse { padding: 10px 16px; }
+  .studio-overview__pulse-num { font-size: 26px; }
+}
 
 /* ---------- Reduced-motion: cut every infinite animation ---------- */
 @media (prefers-reduced-motion: reduce) {

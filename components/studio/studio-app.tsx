@@ -275,7 +275,11 @@ function classifyIdea(idea: string): Inference {
   };
 }
 
-export function StudioApp() {
+type StudioAppProps = {
+  account?: PlatformId;
+};
+
+export function StudioApp({ account }: StudioAppProps = {}) {
   const [syncState, setSyncState] = useState<"idle" | "pulling" | "synced" | "offline">("idle");
 
   // Seed pipeline and buyers synchronously on first visit — before any child renders.
@@ -292,10 +296,12 @@ export function StudioApp() {
     return null;
   });
 
-  const [tab, setTab] = useState<Tab>("today");
+  const [tab, setTab] = useState<Tab>(account ? "pipeline" : "today");
   const [variant, setVariant] = useState<Variant>("v1");
   const [idea, setIdea] = useState("");
-  const [platforms, setPlatforms] = useState<PlatformId[]>(["feetfinder", "feet_ig"]);
+  const [platforms, setPlatforms] = useState<PlatformId[]>(
+    account ? [account] : ["feetfinder", "feet_ig"],
+  );
   const [tone, setTone] = useState<ToneId>("dangerous");
   const [wantCTA, setWantCTA] = useState(true);
   const [wantHashtags, setWantHashtags] = useState(false);
@@ -604,6 +610,33 @@ export function StudioApp() {
     });
   }
 
+  // Pull recent winners from the pipeline for the platforms being generated against.
+  // These are real captions the user already marked as performing — the strongest signal
+  // the model can get about this brand's voice. Injected into every generate call.
+  function collectWinners(targetPlatforms: PlatformId[]) {
+    try {
+      const raw = JSON.parse(localStorage.getItem(PIPELINE_KEY) ?? "[]") as PipelineItem[];
+      return raw
+        .filter(
+          (i) =>
+            i.outcome === "winner" &&
+            typeof i.caption === "string" &&
+            i.caption.trim().length > 0 &&
+            targetPlatforms.includes(i.platform),
+        )
+        .sort((a, b) => (b.postedAt ?? b.createdAt) - (a.postedAt ?? a.createdAt))
+        .slice(0, 6)
+        .map((i) => ({
+          platform: i.platform,
+          caption: i.caption as string,
+          tone: undefined,
+          note: i.performanceNote,
+        }));
+    } catch {
+      return [];
+    }
+  }
+
   async function generate() {
     if (!idea.trim() || platforms.length === 0) return;
     setBusy(true);
@@ -614,10 +647,11 @@ export function StudioApp() {
     setShotNotes(null);
     setFollowUpHook(null);
     try {
+      const winners = collectWinners(platforms);
       const res = await fetch("/api/studio/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ idea, platforms, tone, wantCTA, wantHashtags }),
+        body: JSON.stringify({ idea, platforms, tone, wantCTA, wantHashtags, winners }),
       });
       const json: GenerateResponse = await res.json();
       if (!res.ok || !json.ok || !json.data) {
@@ -908,7 +942,12 @@ export function StudioApp() {
 
       {/* Navigation tabs */}
       <nav className="studio__nav" aria-label="studio sections" ref={navRef}>
-        {(["today", "generator", "pipeline", "buyers"] as Tab[]).map((t) => {
+        {((account
+          ? account === "feetfinder"
+            ? (["generator", "pipeline", "buyers"] as Tab[])
+            : (["generator", "pipeline"] as Tab[])
+          : (["today", "generator", "pipeline", "buyers"] as Tab[])
+        )).map((t) => {
           const count = navCounts[t];
           return (
             <button
@@ -944,7 +983,7 @@ export function StudioApp() {
         />
       </nav>
 
-      <header className="studio__hero">
+      {!account && (<header className="studio__hero">
         <div className="studio__hero-rule">
           <span />
           <span />
@@ -983,13 +1022,15 @@ export function StudioApp() {
           Three voices. One desk. Captions in, captions out — finished, on-brand, and ready to
           drop. <em>Bitte schön.</em>
         </p>
-      </header>
+      </header>)}
 
       {/* ========== TODAY ========== */}
       {tab === "today" && <TodayView onNavigate={(t) => switchTab(t)} />}
 
       {/* ========== PIPELINE ========== */}
-      {tab === "pipeline" && <PipelineView onSendToGenerator={sendToGenerator} />}
+      {tab === "pipeline" && (
+        <PipelineView onSendToGenerator={sendToGenerator} lockPlatform={account} />
+      )}
 
       {/* ========== BUYERS ========== */}
       {tab === "buyers" && <BuyersView onSendToGenerator={sendToGenerator} />}
@@ -1514,6 +1555,17 @@ export function StudioApp() {
             >
               <span>Open the vault</span>
               <kbd>{history.length}</kbd>
+            </button>
+            <button
+              type="button"
+              className="studio__palette-item"
+              onClick={() => {
+                setPaletteOpen(false);
+                setActivityOpen(true);
+              }}
+            >
+              <span>Activity feed</span>
+              <kbd>{unreadActivity > 0 ? `${unreadActivity > 9 ? "9+" : unreadActivity} new` : "feed"}</kbd>
             </button>
             <button
               type="button"

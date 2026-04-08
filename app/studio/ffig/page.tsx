@@ -1,16 +1,16 @@
 import { isStudioAuthed } from "@/lib/studio/auth";
+import { StudioApp } from "@/components/studio/studio-app";
 import { StudioLogin } from "@/components/studio/studio-login";
-import { StudioOverview } from "@/components/studio/studio-overview";
 import { StudioShell } from "@/components/studio/studio-shell";
 
 export const dynamic = "force-dynamic";
 
-export default async function StudioPage() {
+export default async function StudioFFIGPage() {
   const authed = await isStudioAuthed();
   if (!authed) return <StudioLogin />;
   return (
     <StudioShell>
-      <StudioOverview />
+      <StudioApp account="feet_ig" />
     </StudioShell>
   );
 }
