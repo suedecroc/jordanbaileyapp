@@ -275,12 +275,12 @@ export const reelsShowcaseCopy = {
   },
   pageEyebrow: { en: "Listening lanes", de: "Listening-Lanes" },
   pageTitle: {
-    en: "Pick a lane and let the work speak for itself.",
-    de: "Wähl die Spur und lass die Stimme überzeugen.",
+    en: "Four lanes. Pick one and press play.",
+    de: "Vier Spuren. Wähl eine und drück Play.",
   },
   pageDescription: {
-    en: "Commercial, cinematic, character, narration, promo. Different jobs. Same standard.",
-    de: "Character, Cinematic, Narration, Promo, Commercial. Gleiche Stimme. Andere Druckkurven.",
+    en: "Cinematic, audiobook, promo, character. Different jobs, same control.",
+    de: "Cinematic, Hörbuch, Promo, Character. Andere Jobs, gleiche Kontrolle.",
   },
   panelTitle: {
     en: "Not doing the fake announcer thing.",
