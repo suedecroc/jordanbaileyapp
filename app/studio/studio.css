@@ -229,15 +229,17 @@
   height: 10px;
   border-radius: 50%;
   background: currentColor;
-  box-shadow: 0 0 12px currentColor, 0 0 22px currentColor;
+  box-shadow: 0 0 10px currentColor;
   animation: studio-bulb 1.8s ease-in-out infinite;
+  will-change: opacity;
 }
 .studio__bulbs i:nth-child(2n)  { animation-delay: 0.2s; }
 .studio__bulbs i:nth-child(3n)  { animation-delay: 0.4s; }
 .studio__bulbs i:nth-child(5n)  { animation-delay: 0.6s; }
 @keyframes studio-bulb {
-  0%, 100% { opacity: 0.45; transform: scale(0.85); }
-  50%      { opacity: 1;    transform: scale(1); }
+  /* opacity-only — transform on each bulb forces a paint per frame */
+  0%, 100% { opacity: 0.45; }
+  50%      { opacity: 1; }
 }
 .studio__hero-sub {
   margin-top: 18px;
@@ -534,7 +536,7 @@
   border: 1px solid currentColor;
   background: transparent;
   color: inherit;
-  transition: all 0.18s;
+  transition: background 180ms, color 180ms, border-color 180ms, transform 180ms;
 }
 .studio__go:disabled { opacity: 0.4; cursor: not-allowed; }
 .studio__go--alt {
@@ -825,8 +827,7 @@
   background: var(--bg-elev);
   border-color: var(--primary);
   border-radius: 22px;
-  backdrop-filter: blur(10px);
-  box-shadow: inset 0 1px 0 rgba(255, 234, 207, 0.08), 0 30px 80px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 1px 0 rgba(255, 234, 207, 0.08), 0 18px 50px rgba(0, 0, 0, 0.45);
 }
 .studio.v2 .studio__paper-tape { background: linear-gradient(135deg, var(--primary2), var(--primary)); color: #1a0604; border-radius: 999px; }
 .studio.v2 .studio__textarea { color: var(--ink); }
@@ -838,7 +839,6 @@
   border: 1px solid var(--primary);
   background: rgba(255, 234, 207, 0.04);
   border-radius: 22px;
-  backdrop-filter: blur(8px);
 }
 .studio.v2 .studio__stage-card:hover { color: var(--ink); border-color: var(--primary2); }
 .studio.v2 .studio__stage-card.is-on {
@@ -855,7 +855,6 @@
   border: 1px solid var(--primary);
   background: rgba(255, 234, 207, 0.04);
   border-radius: 999px;
-  backdrop-filter: blur(6px);
 }
 .studio.v2 .studio__tone:hover { color: var(--ink); }
 .studio.v2 .studio__tone.is-on {
@@ -894,7 +893,7 @@
 }
 
 .studio.v2 .studio__error { color: #ffb088; border-color: rgba(255, 74, 14, 0.4); background: rgba(255, 74, 14, 0.1); border-radius: 12px; }
-.studio.v2 .studio__platform-block { background: var(--bg-elev); border: 1px solid var(--primary); border-radius: 22px; backdrop-filter: blur(10px); }
+.studio.v2 .studio__platform-block { background: var(--bg-elev); border: 1px solid var(--primary); border-radius: 22px; }
 .studio.v2 .studio__platform-name { color: #fff5d6; }
 .studio.v2 .studio__caption { background: rgba(255, 234, 207, 0.04); border-color: rgba(255, 122, 31, 0.32); border-radius: 14px; }
 .studio.v2 .studio__caption-text { color: var(--ink); }
@@ -1009,7 +1008,7 @@
     8px 8px 0 0 var(--deep),
     8px 8px 0 3px #0e0604;
   transform: rotate(-1deg);
-  transition: all 0.12s;
+  transition: background 120ms, transform 120ms, box-shadow 120ms;
 }
 .studio.v3 .studio__go:hover:not(:disabled) {
   background: var(--hot);
@@ -1353,20 +1352,20 @@
 .studio.v2 .studio__hero-blurb em { color: var(--primary2); }
 .studio.v2 .studio__act--field { color: var(--ink); }
 .studio.v2 .studio__drop-stamp { color: var(--primary2); border-color: var(--primary); background: var(--bg-elev); border-radius: 999px; }
-.studio.v2 .studio__drop-tabs { border-color: var(--primary); border-radius: 999px; overflow: hidden; background: var(--bg-elev); backdrop-filter: blur(10px); }
+.studio.v2 .studio__drop-tabs { border-color: var(--primary); border-radius: 999px; overflow: hidden; background: var(--bg-elev); }
 .studio.v2 .studio__drop-tab { color: var(--ink-dim); border-right-color: rgba(255, 122, 31, 0.4); }
 .studio.v2 .studio__drop-tab:hover { color: var(--ink); }
 .studio.v2 .studio__drop-tab.is-on { background: linear-gradient(135deg, var(--primary2), var(--primary)); color: #1a0604; }
 .studio.v2 .studio__drop-blurb { color: var(--ink-dim); }
 .studio.v2 .studio__drop-blurb-mark { color: var(--primary2); }
-.studio.v2 .studio__drop-table { background: var(--bg-elev); border-color: var(--primary); border-radius: 22px; overflow: hidden; backdrop-filter: blur(10px); }
+.studio.v2 .studio__drop-table { background: var(--bg-elev); border-color: var(--primary); border-radius: 22px; overflow: hidden; }
 .studio.v2 .studio__drop-thead { color: #fff5d6; border-bottom-color: rgba(255, 122, 31, 0.4); }
 .studio.v2 .studio__drop-row { color: var(--ink); border-top-color: rgba(255, 122, 31, 0.22); }
 .studio.v2 .studio__drop-row:hover { background: rgba(255, 122, 31, 0.1); }
 .studio.v2 .studio__drop-row.is-on { background: linear-gradient(135deg, rgba(255, 176, 32, 0.18), rgba(255, 122, 31, 0.18)); color: #fff5d6; }
 .studio.v2 .studio__drop-day-short { color: var(--primary2); }
 .studio.v2 .studio__drop-dot { color: var(--primary2); }
-.studio.v2 .studio__drop-callout { background: var(--bg-elev); border-color: var(--primary); color: var(--ink); border-radius: 18px; backdrop-filter: blur(10px); }
+.studio.v2 .studio__drop-callout { background: var(--bg-elev); border-color: var(--primary); color: var(--ink); border-radius: 18px; }
 .studio.v2 .studio__drop-callout::before { background: #2a0a0a; color: var(--primary2); }
 .studio.v2 .studio__drop-callout-eyebrow { color: var(--primary); }
 .studio.v2 .studio__drop-callout-title { color: #fff5d6; }
@@ -1539,8 +1538,8 @@
   position: fixed;
   inset: 0;
   background: rgba(8, 2, 4, 0.72);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   z-index: 1000;
   display: flex;
   align-items: flex-start;
@@ -2708,8 +2707,8 @@
   position: fixed;
   inset: 0;
   background: rgba(10, 3, 2, 0.78);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   z-index: 80;
   display: flex;
   align-items: flex-start;
@@ -2728,8 +2727,8 @@
   position: fixed;
   inset: 0;
   background: rgba(10, 3, 2, 0.78);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   z-index: 80;
   animation: studio-overlay-in 180ms ease-out;
 }
@@ -2741,7 +2740,7 @@
   max-height: calc(100vh - 100px);
   background: var(--bg-elev);
   border: 1px solid rgba(var(--paper-rgb), 0.35);
-  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6);
   display: flex;
   flex-direction: column;
   animation: studio-vault-in 220ms ease-out;
@@ -3140,11 +3139,12 @@
 .studio__nav-badge--alert {
   background: #ff4a1a;
   color: #fff;
+  /* Compositor-only pulse: opacity is cheap, no paint per frame */
   animation: studioBadgePulse 2.4s ease-in-out infinite;
 }
 @keyframes studioBadgePulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 74, 26, 0.55); }
-  50%      { box-shadow: 0 0 0 6px rgba(255, 74, 26, 0); }
+  0%, 100% { opacity: 0.78; }
+  50%      { opacity: 1; }
 }
 
 /* ---------- sliding tab indicator ---------- */
@@ -3332,5 +3332,66 @@
   .studio__activity-panel { max-height: calc(100vh - 60px); }
   .studio__activity-row { grid-template-columns: 64px 1fr auto; padding: 10px 16px; font-size: 12px; gap: 8px; }
   .studio__toast { font-size: 12px; padding: 10px 14px; }
+}
+
+/* ============================================================
+   PERF PASS — containment + reduced motion
+   Long lists isolate their layout/paint, repeated cards isolate
+   their internals, and infinite animations stop respecting
+   prefers-reduced-motion. The cumulative effect is huge for
+   scroll-thru on dense pages.
+   ============================================================ */
+
+/* ---------- Repeated cards: isolate paint + layout ---------- */
+.studio__pipe-item,
+.studio__today-mini-card,
+.studio__today-card,
+.studio__caption,
+.studio__platform-block,
+.studio__activity-row,
+.studio__vault-row {
+  contain: layout style paint;
+}
+
+/* ---------- Long scrollable bodies: skip work for offscreen items ---------- */
+.studio__pipe-list,
+.studio__activity-list,
+.studio__vault-body,
+.studio__activity-body {
+  contain: layout style;
+}
+.studio__pipe-list > *,
+.studio__activity-list > *,
+.studio__vault-body > * {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 80px;
+}
+
+/* ---------- Hero is heavy: isolate its layout from the page ---------- */
+.studio__hero { contain: layout paint; }
+.studio__act { contain: layout paint; }
+
+/* ---------- Ticker: GPU-promoted track, paint isolated ---------- */
+.studio__ticker { contain: layout paint; }
+
+/* ---------- Reduced-motion: cut every infinite animation ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .studio__ticker-track,
+  .studio__bulbs i,
+  .studio__nav-badge--alert,
+  .studio__activity-pip,
+  .studio__sync--pulling {
+    animation: none !important;
+  }
+  .studio__nav-indicator,
+  .studio__toast,
+  .studio__activity-row,
+  .studio__hero-mode,
+  .studio__overlay,
+  .studio__palette,
+  .studio__vault-panel {
+    transition: none !important;
+    animation: none !important;
+  }
 }
 
