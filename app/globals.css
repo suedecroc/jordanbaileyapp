@@ -532,6 +532,14 @@ img {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.76);
 }
 
+.icon-rail {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
+}
+
 .button-rail-secondary:hover,
 .button-rail-secondary:focus-visible,
 .lane-tab:hover,
