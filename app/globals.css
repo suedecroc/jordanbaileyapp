@@ -114,7 +114,9 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  /* No global scroll-behavior: smooth — it overrides native trackpad/wheel
+     inertia and makes every scroll feel sticky. The scroll-to-top button
+     and anchor jumps that need smoothing pass behavior: "smooth" explicitly. */
   scroll-padding-top: 7.15rem;
 }
 
