@@ -77,6 +77,10 @@ export function ReelsPage() {
                     )}
                   </p>
                 </div>
+
+                <div className="listening-stage mt-5">
+                  <ReelsShowcase mode="page" stacked />
+                </div>
               </div>
             </FadeIn>
 
@@ -132,11 +136,6 @@ export function ReelsPage() {
             </FadeIn>
           </div>
 
-          <div className="stage-rule mt-5" />
-
-          <div className="listening-stage mt-5">
-            <ReelsShowcase mode="page" />
-          </div>
         </div>
       </Container>
     </section>

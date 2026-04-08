@@ -10,8 +10,10 @@ import { cn } from "@/lib/utils";
 
 export function ReelsShowcase({
   mode = "home",
+  stacked = false,
 }: {
   mode?: "home" | "page";
+  stacked?: boolean;
 }) {
   const { locale } = useLanguage();
   const [activeId, setActiveId] = useState(
@@ -47,10 +49,12 @@ export function ReelsShowcase({
     <div
       id={mode === "home" ? "featured-reel" : undefined}
       className={cn(
-        "grid gap-5 xl:items-start",
-        mode === "page"
-          ? "xl:grid-cols-[minmax(0,0.9fr)_minmax(300px,0.42fr)]"
-          : "2xl:grid-cols-[minmax(0,0.9fr)_minmax(280px,0.45fr)]",
+        "grid gap-5",
+        stacked
+          ? "grid-cols-1"
+          : mode === "page"
+            ? "xl:grid-cols-[minmax(0,0.9fr)_minmax(300px,0.42fr)] xl:items-start"
+            : "2xl:grid-cols-[minmax(0,0.9fr)_minmax(280px,0.45fr)] 2xl:items-start",
       )}
     >
       <div
