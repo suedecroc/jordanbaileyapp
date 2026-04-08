@@ -10,7 +10,7 @@ export type NavigationItem = {
 };
 
 export type ReelItem = {
-  id: "commercial" | "cinematic" | "narration" | "promo" | "character";
+  id: "commercial" | "cinematic" | "audiobook" | "narration" | "promo" | "character";
   label: LocalizedText;
   title: LocalizedText;
   description: LocalizedText;
@@ -104,8 +104,24 @@ export const reels: ReelItem[] = [
       en: "Smooth when it helps. Dangerous when it counts.",
       de: "Warm, wenn nötig. Gefährlich auf den Takt.",
     },
-    src: "/media/reels/cinematic-demo.m4a",
-    mimeType: "audio/mp4",
+    src: "/media/reels/cinematic-demo.mp3",
+    mimeType: "audio/mpeg",
+    category: "featured",
+  },
+  {
+    id: "audiobook",
+    label: { en: "Audiobook", de: "Hörbuch" },
+    title: { en: "Audiobook", de: "Hörbuch" },
+    description: {
+      en: "Long-form storytelling with the patience to let scenes land. Voice you can sit with for hours.",
+      de: "Langform mit Geduld. Eine Stimme, mit der man stundenlang sitzen kann, ohne dass sie ermüdet.",
+    },
+    note: {
+      en: "Built for the long read.",
+      de: "Gebaut für den langen Read.",
+    },
+    src: "/media/reels/audiobook-demo.mp3",
+    mimeType: "audio/mpeg",
     category: "featured",
   },
   {

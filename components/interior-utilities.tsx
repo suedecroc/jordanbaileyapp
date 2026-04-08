@@ -131,12 +131,12 @@ export function InteriorUtilities() {
 
         <button
           type="button"
-          onClick={() =>
-            window.scrollTo({
-              top: 0,
-              behavior: prefersReducedMotion ? "auto" : "smooth",
-            })
-          }
+          onClick={() => {
+            const behavior = prefersReducedMotion ? "auto" : "smooth";
+            const target = document.scrollingElement ?? document.documentElement;
+            target.scrollTo({ top: 0, behavior });
+            window.scrollTo({ top: 0, behavior });
+          }}
           className="icon-rail floating-top-rail"
           aria-label={getLocalizedText(
             { en: "Back to top", de: "Nach oben" },

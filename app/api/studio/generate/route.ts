@@ -9,6 +9,7 @@ import {
   SYSTEM_PROMPT,
   TONES,
   ToneId,
+  type WinnerExample,
 } from "@/lib/studio/prompt";
 
 export const runtime = "nodejs";
@@ -20,6 +21,12 @@ type GenerateBody = {
   tone?: string;
   wantCTA?: boolean;
   wantHashtags?: boolean;
+  winners?: Array<{
+    platform?: string;
+    caption?: string;
+    tone?: string;
+    note?: string;
+  }>;
 };
 
 export async function POST(request: NextRequest) {
@@ -53,12 +60,30 @@ export async function POST(request: NextRequest) {
 
   const tone: ToneId = (body?.tone && body.tone in TONES ? body.tone : "dangerous") as ToneId;
 
+  // Sanitize winners: only accept items with a real caption and a known platform.
+  // Cap length on each field so a client can't blow up the prompt.
+  const winners: WinnerExample[] = (body?.winners ?? [])
+    .map((w) => {
+      if (!w || typeof w !== "object") return null;
+      if (!w.caption || typeof w.caption !== "string") return null;
+      if (!w.platform || !(w.platform in PLATFORMS)) return null;
+      return {
+        platform: w.platform as PlatformId,
+        caption: w.caption.slice(0, 280),
+        tone: w.tone && w.tone in TONES ? (w.tone as ToneId) : undefined,
+        note: w.note ? String(w.note).slice(0, 140) : undefined,
+      };
+    })
+    .filter((w): w is WinnerExample => w !== null)
+    .slice(0, 8);
+
   const userMessage = buildUserMessage({
     idea,
     platforms,
     tone,
     wantCTA: body?.wantCTA ?? true,
     wantHashtags: body?.wantHashtags ?? false,
+    winners,
   });
 
   const client = new Anthropic({ apiKey });
