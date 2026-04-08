@@ -62,19 +62,22 @@ export async function POST(request: NextRequest) {
 
   // Sanitize winners: only accept items with a real caption and a known platform.
   // Cap length on each field so a client can't blow up the prompt.
+  // flatMap (instead of map+filter) sidesteps TS predicate-narrowing issues
+  // that broke the Turbopack production build.
   const winners: WinnerExample[] = (body?.winners ?? [])
-    .map((w) => {
-      if (!w || typeof w !== "object") return null;
-      if (!w.caption || typeof w.caption !== "string") return null;
-      if (!w.platform || !(w.platform in PLATFORMS)) return null;
-      return {
-        platform: w.platform as PlatformId,
-        caption: w.caption.slice(0, 280),
-        tone: w.tone && w.tone in TONES ? (w.tone as ToneId) : undefined,
-        note: w.note ? String(w.note).slice(0, 140) : undefined,
-      };
+    .flatMap((w): WinnerExample[] => {
+      if (!w || typeof w !== "object") return [];
+      if (!w.caption || typeof w.caption !== "string") return [];
+      if (!w.platform || !(w.platform in PLATFORMS)) return [];
+      return [
+        {
+          platform: w.platform as PlatformId,
+          caption: w.caption.slice(0, 280),
+          tone: w.tone && w.tone in TONES ? (w.tone as ToneId) : undefined,
+          note: w.note ? String(w.note).slice(0, 140) : undefined,
+        },
+      ];
     })
-    .filter((w): w is WinnerExample => w !== null)
     .slice(0, 8);
 
   const userMessage = buildUserMessage({
