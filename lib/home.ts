@@ -181,7 +181,7 @@ export const pageThree = {
       de: "Erster Eindruck",
     },
     src: "/media/reels/reels-feature-video.mp4",
-    poster: "/media/reels/reels-feature-video-poster.png",
+    poster: "/media/reels/reels-feature-video-poster.jpg",
     alt: {
       en: "A featured Jordan Bailey video clip on the reels page.",
       de: "Ein Video-Clip von Jordan Bailey auf der Reels-Seite.",
