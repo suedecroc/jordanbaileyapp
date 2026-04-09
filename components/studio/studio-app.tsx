@@ -746,6 +746,33 @@ export function StudioApp({ account }: StudioAppProps = {}) {
     });
   }
 
+  // Ship a caption straight to the pipeline as a winner — skips the entire
+  // stage progression. collectWinners() picks these up on the next generate.
+  const [shippedWinners, setShippedWinners] = useState<Set<string>>(new Set());
+
+  function shipAsWinner(caption: string, platform: PlatformId, sourceIdea: string) {
+    const item: PipelineItem = {
+      id: crypto.randomUUID(),
+      stage: "posted",
+      idea: sourceIdea.slice(0, 120),
+      platform,
+      theme: "general",
+      vibe: tone,
+      caption,
+      priority: "high",
+      createdAt: Date.now(),
+      postedAt: Date.now(),
+      repurposePotential: "medium",
+      outcome: "winner",
+    };
+    const raw = JSON.parse(localStorage.getItem(PIPELINE_KEY) ?? "[]");
+    const next = [item, ...raw];
+    localStorage.setItem(PIPELINE_KEY, JSON.stringify(next));
+    setShippedWinners((prev) => new Set(prev).add(caption));
+    toast("★ saved as winner — feeding future generations");
+    logActivity("outcome", `★ winner · "${sourceIdea.slice(0, 40)}"`, { tone: "good" });
+  }
+
   function clearDraft() {
     setIdea("");
     localStorage.removeItem(DRAFT_KEY);
@@ -1344,6 +1371,13 @@ export function StudioApp({ account }: StudioAppProps = {}) {
                               >
                                 copy
                               </button>
+                              <button
+                                className={`studio__ghost ${shippedWinners.has(c.caption) ? "is-on" : ""}`}
+                                onClick={() => shipAsWinner(c.caption, r.platform, idea)}
+                                disabled={shippedWinners.has(c.caption)}
+                              >
+                                {shippedWinners.has(c.caption) ? "★ saved" : "★ winner"}
+                              </button>
                             </div>
                           </article>
                         );
@@ -1437,6 +1471,24 @@ export function StudioApp({ account }: StudioAppProps = {}) {
                       </div>
                     </button>
                     <div className="studio__vault-row-actions">
+                      {h.data?.results?.[0]?.captions?.[0] && (
+                        <button
+                          type="button"
+                          className={`studio__ghost studio__ghost--sm ${shippedWinners.has(h.data.results[0].captions[0].caption) ? "is-on" : ""}`}
+                          onClick={() =>
+                            shipAsWinner(
+                              h.data!.results[0].captions[0].caption,
+                              h.data!.results[0].platform,
+                              h.idea,
+                            )
+                          }
+                          disabled={shippedWinners.has(h.data.results[0].captions[0].caption)}
+                          aria-label="mark as winner"
+                          title="mark as winner"
+                        >
+                          {shippedWinners.has(h.data.results[0].captions[0].caption) ? "★" : "🏆"}
+                        </button>
+                      )}
                       <button
                         type="button"
                         className="studio__ghost studio__ghost--sm"

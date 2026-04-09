@@ -90,8 +90,8 @@ export function AboutPage() {
                   <p className="text-base leading-7 text-muted">
                     {getLocalizedText(
                       {
-                        en: "Games, animation, commercial, corporate, all of it clocks fake weight right away. If the read doesn’t feel real first, nobody cares how impressive it sounds.",
-                        de: "Games, Animation und Cinematic-Arbeit bestrafen falsches Gewicht sofort. Der Read muss sich gelebt anfühlen, bevor er beeindruckt.",
+                        en: "Across games, animation, commercial, and corporate, the standard stays the same: make it real. Audiences can hear when a read is trying too hard. If the honesty is missing, the rest falls flat.",
+                        de: "Quer durch Games, Animation, Commercial und Corporate bleibt der Standard derselbe: Es muss echt klingen. Das Publikum hört sofort, wenn ein Read zu gewollt ist. Fehlt die Ehrlichkeit, fällt der Rest flach.",
                       },
                       locale,
                     )}
@@ -99,8 +99,8 @@ export function AboutPage() {
                   <p className="text-base leading-7 text-muted">
                     {getLocalizedText(
                       {
-                        en: "German and English are not the same line with different words on top. It has to sound natural in both, or it’s not done.",
-                        de: "Deutsch und Englisch sind keine alternativen Skins derselben Zeile. Die Adaption muss auch unter Druck noch nativ klingen.",
+                        en: "German and English require the same level of precision, but not the same approach. Both need to sound lived in, natural, and effortless. Anything less feels off.",
+                        de: "Deutsch und Englisch verlangen dasselbe Maß an Präzision, aber nicht denselben Ansatz. Beide müssen gelebt, natürlich und mühelos klingen. Alles andere fühlt sich falsch an.",
                       },
                       locale,
                     )}
@@ -113,7 +113,7 @@ export function AboutPage() {
               <div className="sheet-card rounded-[1.15rem] p-4 sm:p-5">
                 <p className="cue-label">
                   {getLocalizedText(
-                    { en: "How I move", de: "Wie ich arbeite" },
+                    { en: "How I work", de: "Wie ich arbeite" },
                     locale,
                   )}
                 </p>
