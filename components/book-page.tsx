@@ -40,6 +40,10 @@ export function BookPage() {
                     </span>
                   ))}
                 </div>
+
+                <div id="booking-form" className="mt-5 scroll-mt-32">
+                  <BookingForm />
+                </div>
               </div>
             </FadeIn>
 
@@ -57,14 +61,6 @@ export function BookPage() {
               </div>
             </FadeIn>
           </div>
-
-          <div className="stage-rule mt-5" />
-
-          <FadeIn>
-            <div id="booking-form" className="mt-5 scroll-mt-32">
-              <BookingForm />
-            </div>
-          </FadeIn>
         </div>
       </Container>
     </section>
