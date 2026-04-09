@@ -318,7 +318,7 @@ export const contactCopy = {
     de: "Du bist hier. Lass uns jetzt buchen.",
   },
   body: {
-    en: "Email, call, or use the booking form. Whatever works. jordan@jordanbaileyvoice.com or 678-559-9787.",
-    de: "Mail, Anruf oder Booking-Formular. Was für dich passt. jordan@jordanbaileyvoice.com oder 678-559-9787.",
+    en: "Email, call, or use the booking form. Whatever works. jordan@jordanbaileyvoice.com or 404-913-9124.",
+    de: "Mail, Anruf oder Booking-Formular. Was für dich passt. jordan@jordanbaileyvoice.com oder 404-913-9124.",
   },
 };
