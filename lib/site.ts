@@ -247,24 +247,16 @@ export const serviceCards: ServiceCard[] = [
 
 export const aboutPageCopy: LocalizedText[] = [
   {
-    en: "Voice actor, Tier 3 IT Operations Engineer, Atlanta-based, Frankfurt-born. I approach voice work the same way I approach high-pressure environments: steady, focused, and right for the moment.",
-    de: "Sprecher, Tier-3-IT-Operations-Engineer, in Atlanta zuhause, in Frankfurt geboren. Ich gehe an Voice-Work genauso ran wie an High-Pressure-Umgebungen: ruhig, fokussiert und genau richtig für den Moment.",
+    en: "What matters to me most is not just how a read sounds, but whether it actually reaches out and connects with the audience. If the tone is off, the pacing feels forced, or the message gets lost, none of the rest of it matters.",
+    de: "Was mir am wichtigsten ist, ist nicht nur wie ein Read klingt, sondern ob er wirklich beim Publikum ankommt. Wenn der Ton nicht stimmt, das Pacing gezwungen wirkt oder die Message verloren geht, ist der Rest egal.",
   },
   {
-    en: "I come ready to work. Commercial, animation, games, corporate, cinematic — whatever the project calls for, I lock in and find the read that fits. No ego, no overcomplicating it, and no wasting your time.",
-    de: "Ich komme bereit zum Arbeiten. Commercial, Animation, Games, Corporate, Cinematic — was auch immer das Projekt verlangt, ich lock in und finde den passenden Read. Kein Ego, kein Overcomplizieren, und keine Zeitverschwendung.",
+    en: "I find what the project is really asking for and meet you there. Sometimes that means restraint. Sometimes it means presence. Sometimes it means giving the line just enough weight to make people feel it without pushing too hard. I\u2019m not interested in doing the most. I\u2019m interested in getting it right.",
+    de: "Ich finde heraus, was das Projekt wirklich braucht, und treffe dich dort. Manchmal heißt das Zurückhaltung. Manchmal Präsenz. Manchmal heißt es, der Zeile gerade genug Gewicht zu geben, damit sie ankommt, ohne zu drücken. Es geht mir nicht darum, das Maximum rauszuholen. Es geht mir darum, es richtig zu machen.",
   },
   {
-    en: "English and German are not two separate modes for me. It’s the same ear, the same standard, and the same voice carrying through both. That’s not a trick. That’s just how I’m built.",
-    de: "Englisch und Deutsch sind für mich keine zwei getrennten Modi. Dasselbe Gehör, derselbe Standard, dieselbe Stimme in beiden Sprachen. Das ist kein Trick. Das ist einfach, wie ich aufgewachsen bin.",
-  },
-  {
-    en: "A clean setup means nothing if the read doesn’t feel real. Connecting with the material is my top priority.",
-    de: "Ein sauberes Setup bedeutet nichts, wenn der Read sich nicht echt anfühlt. Den Read wirklich zu treffen ist meine oberste Priorität.",
-  },
-  {
-    en: "Tell me what the project needs. I’ll take it from there.",
-    de: "Sag mir, was das Projekt braucht. Den Rest übernehme ich.",
+    en: "I\u2019m easy to direct, quick to adjust, and serious about making sessions feel smooth from start to finish. English and German both come through naturally, with the same ear, the same care, and the same standard behind them. Book now.",
+    de: "Ich bin leicht zu directen, passe mich schnell an und sorge dafür, dass Sessions von Anfang bis Ende smooth laufen. Englisch und Deutsch kommen beide natürlich rüber \u2014 mit demselben Gehör, derselben Sorgfalt und demselben Standard dahinter. Jetzt buchen.",
   },
 ];
 
