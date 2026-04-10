@@ -1,5 +1,5 @@
-import { LandingPageV2Cinematic } from "./landing-page-v2-cinematic";
+import { LandingPageWarmGlow } from "./landing-page-warm-glow";
 
 export function LandingPage() {
-  return <LandingPageV2Cinematic />;
+  return <LandingPageWarmGlow />;
 }
