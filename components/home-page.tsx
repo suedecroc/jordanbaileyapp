@@ -37,9 +37,11 @@ export function HomePage() {
                 <h1 className="mt-3 max-w-[13ch] font-serif text-[2.85rem] leading-[0.9] tracking-[0.01em] text-foreground sm:text-[4.13rem]">
                   {getLocalizedText(pageOne.title, locale)}
                 </h1>
-                <p className="mt-3.5 max-w-[38rem] text-base leading-7 text-muted-strong sm:text-lg sm:leading-8">
-                  {getLocalizedText(pageOne.body, locale)}
-                </p>
+                <div className="mt-3.5 max-w-[38rem] space-y-4 text-base leading-7 text-muted-strong sm:text-lg sm:leading-8">
+                  {getLocalizedText(pageOne.body, locale).split("\n\n").map((para) => (
+                    <p key={para.slice(0, 20)}>{para}</p>
+                  ))}
+                </div>
                 <p className="mt-4 max-w-[34rem] text-sm font-semibold uppercase tracking-[0.18em] text-accent-strong sm:text-[0.92rem]">
                   {getLocalizedText(pageOne.capabilityQuote, locale)}
                 </p>

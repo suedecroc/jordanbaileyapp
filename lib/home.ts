@@ -40,8 +40,8 @@ export const pageOne = {
     de: "Tier-3-Ops haben mir beigebracht, wie man ruhig bleibt, wenn alles laut wird.",
   },
   body: {
-    en: "That carries over. Sessions stay focused. Direction lands. Work gets done. English and German both sound right. Not close. Right.",
-    de: "Das überträgt sich. Sessions bleiben fokussiert. Direction sitzt. Arbeit wird gemacht. Englisch und Deutsch klingen beide richtig. Nicht fast. Richtig.",
+    en: "Commercial, corporate, games, animation, whatever you\u2019re building. I show up and it gets better. Fast pickups, easy to direct, funny when it lands, sharp when it cuts.\n\nEnglish or German, doesn\u2019t change. Same presence. Same energy.\n\nNo fake voice actor shit. Just Jordan. Confident. Grounded. I\u2019ve been around long enough to know what separates good from great, and I\u2019m built to make everything I touch land there.\n\nThe kind of voice that walks in first. The kind you remember.",
+    de: "Commercial, Corporate, Games, Animation \u2014 was auch immer du baust. Ich komme und es wird besser. Schnelle Pickups, leicht zu directen, witzig wenn\u2019s passt, scharf wenn\u2019s schneidet.\n\nEnglisch oder Deutsch, ändert nichts. Dieselbe Präsenz. Dieselbe Energie.\n\nKein fake Voice-Actor-Ding. Einfach Jordan. Selbstbewusst. Geerdet. Ich bin lang genug dabei, um zu wissen, was gut von großartig trennt \u2014 und ich bin gebaut, um alles was ich anfasse dort landen zu lassen.\n\nDie Art Stimme, die zuerst den Raum betritt. Die Art, an die man sich erinnert.",
   },
   capabilityQuote: {
     en: "Presence, control, range.",
