@@ -4,5 +4,29 @@
       "path": "/api/studio/cron/refresh-drop-times",
       "schedule": "0 10 * * 1"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "jbv.ong"
+        }
+      ],
+      "destination": "https://jordanbaileyvoice.com/$1",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.jbv.ong"
+        }
+      ],
+      "destination": "https://jordanbaileyvoice.com/$1",
+      "permanent": true
+    }
   ]
 }
