@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 
+import { ActNavigator } from "@/components/act-navigator";
 import { FadeIn } from "@/components/fade-in";
 import { useLanguage } from "@/components/language-provider";
 import { ReelsShowcase } from "@/components/reels-showcase";
@@ -138,6 +139,7 @@ export function ReelsPage() {
 
         </div>
       </Container>
+      <ActNavigator />
     </section>
   );
 }

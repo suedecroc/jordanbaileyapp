@@ -2,6 +2,7 @@
 
 import { ArrowRight } from "lucide-react";
 
+import { ActNavigator } from "@/components/act-navigator";
 import { FadeIn } from "@/components/fade-in";
 import { useLanguage } from "@/components/language-provider";
 import { ButtonLink } from "@/components/ui/button-link";
@@ -129,6 +130,7 @@ export function AboutPage() {
           </div>
         </div>
       </Container>
+      <ActNavigator />
     </section>
   );
 }
