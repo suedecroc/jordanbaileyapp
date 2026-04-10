@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 
+import { ActNavigator } from "@/components/act-navigator";
 import { BookingForm } from "@/components/booking-form";
 import { FadeIn } from "@/components/fade-in";
 import { useLanguage } from "@/components/language-provider";
@@ -63,6 +64,7 @@ export function BookPage() {
           </div>
         </div>
       </Container>
+      <ActNavigator />
     </section>
   );
 }
