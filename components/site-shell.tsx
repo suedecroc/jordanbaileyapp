@@ -32,6 +32,13 @@ export function SiteShell({ children }: { children: ReactNode }) {
       <div className="site-shell__glow site-shell__glow--left" aria-hidden="true" />
       <div className="site-shell__glow site-shell__glow--right" aria-hidden="true" />
 
+      {!isCoverRoute ? (
+        <>
+          <div className="site-shell__grain" aria-hidden="true" />
+          <div className="site-shell__particles" aria-hidden="true" />
+        </>
+      ) : null}
+
       {!isCoverRoute ? <Navbar /> : null}
 
       <main className={cn("site-main", isCoverRoute && "site-main--cover")}>
