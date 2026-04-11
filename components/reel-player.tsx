@@ -161,21 +161,28 @@ export function ReelPlayer({
           </div>
         </div>
 
-        <button
-          type="button"
-          onClick={togglePlayback}
-          className={cn(
-            "audio-trigger inline-flex items-center justify-center",
-            isPlaying && "audio-trigger--active",
-          )}
-          aria-label={isPlaying ? `Pause ${title}` : `Play ${title}`}
-        >
-          {isPlaying ? (
-            <Pause className="h-5 w-5" />
-          ) : (
-            <Play className="ml-0.5 h-5 w-5" />
-          )}
-        </button>
+        <div className="flex items-center gap-3">
+          <div className={cn("waveform-bars", isPlaying && "waveform-bars--playing")}>
+            {Array.from({ length: 12 }, (_, i) => (
+              <span key={i} />
+            ))}
+          </div>
+          <button
+            type="button"
+            onClick={togglePlayback}
+            className={cn(
+              "audio-trigger inline-flex items-center justify-center",
+              isPlaying && "audio-trigger--active",
+            )}
+            aria-label={isPlaying ? `Pause ${title}` : `Play ${title}`}
+          >
+            {isPlaying ? (
+              <Pause className="h-5 w-5" />
+            ) : (
+              <Play className="ml-0.5 h-5 w-5" />
+            )}
+          </button>
+        </div>
       </div>
 
       <div className="mt-5">

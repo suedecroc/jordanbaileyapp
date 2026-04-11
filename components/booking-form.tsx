@@ -40,7 +40,7 @@ export function BookingForm() {
     <div className="sheet-card rounded-[1.9rem] p-5 sm:p-6">
       <form ref={formRef} action={formAction} className="grid gap-5">
         <div className="grid gap-5 sm:grid-cols-2">
-          <label className="block">
+          <label className="form-field block">
             <span className="mb-2 block text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-muted">
               {getLocalizedText({ en: "Name", de: "Name" }, locale)}
             </span>
@@ -53,7 +53,7 @@ export function BookingForm() {
             />
             <FieldError errors={state.fieldErrors.name} />
           </label>
-          <label className="block">
+          <label className="form-field block">
             <span className="mb-2 block text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-muted">
               {getLocalizedText({ en: "Email", de: "E-Mail" }, locale)}
             </span>
@@ -79,7 +79,7 @@ export function BookingForm() {
         {state.message ? (
           <div
             className={cn(
-              "rounded-[1.35rem] border px-4 py-4 text-sm leading-6",
+              "rounded-[1.35rem] border px-4 py-4 text-sm leading-6 form-success-enter",
               state.status === "success"
                 ? "border-[rgba(111,67,35,0.14)] bg-[rgba(255,255,255,0.72)] text-foreground"
                 : "border-[rgba(149,94,63,0.18)] bg-[rgba(252,244,236,0.86)] text-[var(--paper-ink)]",

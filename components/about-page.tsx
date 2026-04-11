@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { ActNavigator } from "@/components/act-navigator";
 import { FadeIn } from "@/components/fade-in";
 import { useLanguage } from "@/components/language-provider";
+import { TiltCard } from "@/components/tilt-card";
 import { ButtonLink } from "@/components/ui/button-link";
 import { Container } from "@/components/ui/container";
 import { pageTwo } from "@/lib/home";
@@ -79,7 +80,8 @@ export function AboutPage() {
           </div>
 
           <div className="mt-5 grid gap-3.5 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,0.92fr)]">
-            <FadeIn>
+            <FadeIn staggerIndex={0}>
+              <TiltCard>
               <div className="sheet-card rounded-[1.15rem] p-4 sm:p-5">
                 <p className="cue-label">
                   {getLocalizedText(
@@ -108,9 +110,11 @@ export function AboutPage() {
                   </p>
                 </div>
               </div>
+              </TiltCard>
             </FadeIn>
 
-            <FadeIn delay={0.05}>
+            <FadeIn staggerIndex={1}>
+              <TiltCard>
               <div className="sheet-card rounded-[1.15rem] p-4 sm:p-5">
                 <p className="cue-label">
                   {getLocalizedText(
@@ -126,6 +130,7 @@ export function AboutPage() {
                   ))}
                 </div>
               </div>
+              </TiltCard>
             </FadeIn>
           </div>
         </div>

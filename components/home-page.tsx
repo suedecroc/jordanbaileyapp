@@ -7,6 +7,7 @@ import { ActNavigator } from "@/components/act-navigator";
 import { FadeIn } from "@/components/fade-in";
 import { useLanguage } from "@/components/language-provider";
 import { ReelsShowcase } from "@/components/reels-showcase";
+import { TiltCard } from "@/components/tilt-card";
 import { ButtonLink } from "@/components/ui/button-link";
 import { Container } from "@/components/ui/container";
 import { contactCopy, pageOne } from "@/lib/home";
@@ -147,16 +148,18 @@ export function HomePage() {
 
           <div className="mt-4 grid gap-3.5 lg:grid-cols-3">
             {pageOne.cards.map((card, index) => (
-              <FadeIn key={card.title.en} delay={index * 0.04}>
-                <article className="sheet-card rounded-[1.15rem] p-4">
-                  <p className="cue-label">{getLocalizedText(card.eyebrow, locale)}</p>
-                  <h2 className="mt-3 max-w-[12ch] font-serif text-[1.95rem] leading-[0.96] text-foreground">
-                    {getLocalizedText(card.title, locale)}
-                  </h2>
-                  <p className="mt-3 text-base leading-7 text-muted">
-                    {getLocalizedText(card.body, locale)}
-                  </p>
-                </article>
+              <FadeIn key={card.title.en} staggerIndex={index}>
+                <TiltCard>
+                  <article className="sheet-card rounded-[1.15rem] p-4">
+                    <p className="cue-label">{getLocalizedText(card.eyebrow, locale)}</p>
+                    <h2 className="mt-3 max-w-[12ch] font-serif text-[1.95rem] leading-[0.96] text-foreground">
+                      {getLocalizedText(card.title, locale)}
+                    </h2>
+                    <p className="mt-3 text-base leading-7 text-muted">
+                      {getLocalizedText(card.body, locale)}
+                    </p>
+                  </article>
+                </TiltCard>
               </FadeIn>
             ))}
           </div>

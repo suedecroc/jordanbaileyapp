@@ -1300,7 +1300,7 @@ img {
 }
 
 .act-spine__progress {
-  background: linear-gradient(180deg, rgba(111, 67, 35, 0.18), rgba(111, 67, 35, 0.72));
+  /* Base gradient — overridden by animated shimmer in the flair section below */
   transform-origin: top;
 }
 
@@ -3908,6 +3908,391 @@ img {
 .v3-root.layout-c .v3-precision-info,
 .v4-root.layout-c .v4-identity {
   margin-top: 0;
+}
+
+/* ==========================================================================
+   INTERIOR PAGE FLAIR — AMBIENT & SCROLL-DRIVEN EFFECTS
+   ========================================================================== */
+
+/* --- Grain overlay (interior pages only) -------------------------------- */
+.site-shell__grain {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-fixed-back);
+  pointer-events: none;
+  opacity: 0.032;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: interior-grain 0.4s steps(4) infinite;
+}
+
+@keyframes interior-grain {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(-1.5%, 1%); }
+  50%  { transform: translate(1%, -1.5%); }
+  75%  { transform: translate(-0.5%, 2%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* --- Breathing glow on ambient radials ---------------------------------- */
+.site-shell__glow--left {
+  animation: glow-breathe 6s ease-in-out infinite;
+}
+
+.site-shell__glow--right {
+  animation: glow-breathe 6s ease-in-out infinite;
+  animation-delay: -3s;
+}
+
+@keyframes glow-breathe {
+  0%, 100% { opacity: 0.56; }
+  50%      { opacity: 0.78; }
+}
+
+/* --- Text shimmer on interior H1s --------------------------------------- */
+@supports (animation-timeline: view()) {
+  .book-page h1,
+  .book-page--paper h1 {
+    --shimmer-gold: rgba(200, 155, 60, 0.7);
+    background: linear-gradient(
+      90deg,
+      var(--foreground) 0%,
+      var(--foreground) 30%,
+      var(--shimmer-gold) 50%,
+      var(--foreground) 70%,
+      var(--foreground) 100%
+    );
+    background-size: 250% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: text-shimmer linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 40%;
+  }
+}
+
+@keyframes text-shimmer {
+  from { background-position: 200% center; }
+  to   { background-position: -50% center; }
+}
+
+/* --- Image curtain reveal on scroll ------------------------------------- */
+@supports (animation-timeline: view()) {
+  .hero-portrait {
+    animation: curtain-reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 50%;
+  }
+}
+
+@keyframes curtain-reveal {
+  from { clip-path: inset(0 0 100% 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+
+/* --- Parallax drift on hero portrait images ----------------------------- */
+@supports (animation-timeline: view()) {
+  .hero-portrait img {
+    animation: portrait-parallax linear both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+  }
+}
+
+@keyframes portrait-parallax {
+  from { transform: translateY(-16px); }
+  to   { transform: translateY(16px); }
+}
+
+/* --- Act spine: progress line shimmer ----------------------------------- */
+.act-spine__progress {
+  background: linear-gradient(
+    180deg,
+    rgba(111, 67, 35, 0.18),
+    rgba(142, 93, 49, 0.82) 40%,
+    rgba(200, 155, 60, 0.9) 50%,
+    rgba(142, 93, 49, 0.82) 60%,
+    rgba(111, 67, 35, 0.72)
+  );
+  background-size: 100% 300%;
+  animation: spine-shimmer 3.5s ease-in-out infinite;
+}
+
+@keyframes spine-shimmer {
+  0%, 100% { background-position: 0% 100%; }
+  50%      { background-position: 0% 0%; }
+}
+
+/* --- Act spine: active dot pulse ---------------------------------------- */
+.act-spine__item--active .act-spine__dot {
+  animation: dot-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes dot-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 3px rgba(255, 255, 255, 0.76),
+      0 0 0 8px rgba(111, 67, 35, 0.08);
+  }
+  50% {
+    box-shadow:
+      0 0 0 3px rgba(255, 255, 255, 0.82),
+      0 0 0 12px rgba(111, 67, 35, 0.14);
+  }
+}
+
+/* --- Floating CSS particles --------------------------------------------- */
+.site-shell__particles {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-fixed-back);
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.site-shell__particles::before,
+.site-shell__particles::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: var(--radius-full);
+  background: rgba(142, 93, 49, 0.18);
+  opacity: 0;
+}
+
+.site-shell__particles::before {
+  box-shadow:
+    12vw 15vh 0 rgba(142, 93, 49, 0.06),
+    34vw 42vh 0 rgba(142, 93, 49, 0.05),
+    68vw 22vh 0 rgba(142, 93, 49, 0.04),
+    82vw 65vh 0 rgba(142, 93, 49, 0.06),
+    25vw 78vh 0 rgba(142, 93, 49, 0.05),
+    55vw 88vh 0 rgba(142, 93, 49, 0.04);
+  animation: particle-drift-a 28s ease-in-out infinite;
+}
+
+.site-shell__particles::after {
+  box-shadow:
+    18vw 32vh 0 rgba(142, 93, 49, 0.05),
+    48vw 58vh 0 rgba(142, 93, 49, 0.06),
+    76vw 12vh 0 rgba(142, 93, 49, 0.04),
+    40vw 85vh 0 rgba(142, 93, 49, 0.05);
+  animation: particle-drift-b 32s ease-in-out infinite;
+  animation-delay: -14s;
+}
+
+@keyframes particle-drift-a {
+  0%, 100% { transform: translate(0, 0);       opacity: 0.5; }
+  25%      { transform: translate(6px, -18px);  opacity: 0.7; }
+  50%      { transform: translate(-4px, -32px); opacity: 0.5; }
+  75%      { transform: translate(8px, -14px);  opacity: 0.65; }
+}
+
+@keyframes particle-drift-b {
+  0%, 100% { transform: translate(0, 0);        opacity: 0.4; }
+  33%      { transform: translate(-8px, -22px);  opacity: 0.6; }
+  66%      { transform: translate(5px, -38px);   opacity: 0.45; }
+}
+
+/* --- Card hover 3D tilt ------------------------------------------------- */
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 180ms ease-out, box-shadow 180ms ease-out;
+}
+
+.tilt-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(255, 255, 255, 0.07),
+    transparent 55%
+  );
+  opacity: 0;
+  transition: opacity 180ms ease-out;
+  z-index: 2;
+}
+
+.tilt-card:hover::after {
+  opacity: 1;
+}
+
+/* Tilt needs overflow visible — override contain on wrapped cards */
+.tilt-card > .sheet-card,
+.tilt-card > .panel-soft,
+.tilt-card > .paper-panel {
+  contain: none;
+}
+
+@media (hover: none) {
+  .tilt-card {
+    transform: none !important;
+  }
+  .tilt-card::after {
+    display: none;
+  }
+}
+
+/* --- Form field micro-interactions -------------------------------------- */
+.form-field {
+  position: relative;
+}
+
+.form-field .input-shell {
+  placeholder-color: transparent;
+}
+
+.form-field .input-shell:focus {
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-size: 100% 2px;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  transition: background-size 260ms ease;
+}
+
+.form-field .input-shell:not(:focus) {
+  background-size: 0% 2px;
+  background-position: bottom center;
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-repeat: no-repeat;
+  transition: background-size 180ms ease;
+}
+
+/* --- Form success entrance --------------------------------------------- */
+.form-success-enter {
+  animation: form-success-in 300ms ease both;
+}
+
+@keyframes form-success-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* --- Waveform bars (reel player) ---------------------------------------- */
+.waveform-bars {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 1.2rem;
+}
+
+.waveform-bars span {
+  display: block;
+  width: 2.5px;
+  height: 40%;
+  border-radius: var(--radius-full);
+  background: currentColor;
+  opacity: 0.35;
+  transition: opacity 180ms ease;
+}
+
+.waveform-bars--playing span {
+  opacity: 0.7;
+  animation: waveform-bounce 0.6s ease-in-out infinite alternate;
+}
+
+.waveform-bars--playing span:nth-child(2)  { animation-delay: 0.08s; height: 65%; }
+.waveform-bars--playing span:nth-child(3)  { animation-delay: 0.16s; height: 85%; }
+.waveform-bars--playing span:nth-child(4)  { animation-delay: 0.24s; height: 55%; }
+.waveform-bars--playing span:nth-child(5)  { animation-delay: 0.10s; height: 95%; }
+.waveform-bars--playing span:nth-child(6)  { animation-delay: 0.20s; height: 70%; }
+.waveform-bars--playing span:nth-child(7)  { animation-delay: 0.06s; height: 50%; }
+.waveform-bars--playing span:nth-child(8)  { animation-delay: 0.14s; height: 80%; }
+.waveform-bars--playing span:nth-child(9)  { animation-delay: 0.22s; height: 60%; }
+.waveform-bars--playing span:nth-child(10) { animation-delay: 0.12s; height: 75%; }
+.waveform-bars--playing span:nth-child(11) { animation-delay: 0.18s; height: 45%; }
+.waveform-bars--playing span:nth-child(12) { animation-delay: 0.04s; height: 65%; }
+
+@keyframes waveform-bounce {
+  from { transform: scaleY(0.4); }
+  to   { transform: scaleY(1); }
+}
+
+/* --- Active reel tab glow ----------------------------------------------- */
+.lane-tab--active {
+  animation: tab-glow 2.5s ease-in-out infinite;
+}
+
+@keyframes tab-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(142, 93, 49, 0); }
+  50%      { box-shadow: 0 0 0 4px rgba(142, 93, 49, 0.1); }
+}
+
+/* --- Mobile: simplify flair --------------------------------------------- */
+@media (max-width: 768px) {
+  .site-shell__grain {
+    opacity: 0.02;
+  }
+
+  .site-shell__particles {
+    display: none;
+  }
+
+  .hero-portrait img {
+    animation-range: entry 0% exit 100%;
+  }
+}
+
+/* --- Reduced motion: kill all flair animations -------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .site-shell__grain,
+  .site-shell__particles {
+    animation: none;
+  }
+
+  .site-shell__grain {
+    /* Keep static grain, just no jitter */
+    animation: none;
+  }
+
+  .site-shell__particles::before,
+  .site-shell__particles::after {
+    animation: none;
+  }
+
+  .site-shell__glow--left,
+  .site-shell__glow--right {
+    animation: none;
+    opacity: 0.56;
+  }
+
+  .act-spine__progress {
+    animation: none;
+  }
+
+  .act-spine__item--active .act-spine__dot {
+    animation: none;
+  }
+
+  .book-page h1,
+  .book-page--paper h1 {
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+    color: var(--foreground) !important;
+    animation: none !important;
+  }
+
+  .hero-portrait {
+    clip-path: none !important;
+    animation: none !important;
+  }
+
+  .hero-portrait img {
+    animation: none !important;
+    transform: none !important;
+  }
 }
 
 /* Disable animations on devices that prefer reduced motion */
